@@ -332,7 +332,9 @@ var VS=[{t:"Galaxy A17 5G, AI untuk Semua",p:"HP 5G terbaru dari Samsung dengan 
 <div class="vs-s"><video src="samsung-a17.mp4" autoplay loop muted playsinline preload="auto"></video><span class="vs-brand">SAMSUNG</span></div>
 <div class="vs-s"><video src="xiaomi-18-pro.mp4" autoplay loop muted playsinline preload="auto"></video><span class="vs-brand">XIAOMI</span></div>
 <div class="vs-s"><video src="oppo-find-x9.mp4" autoplay loop muted playsinline preload="auto"></video><span class="vs-brand">OPPO</span></div>
-var vi=0,vsnd=false,vvis=true,vg=false,vids=document.querySelectorAll(".vs-s video");
+var vi=0,vsnd=false,vvis=true,vg=false,vids=document.querySelectorAll("#vtk video"),vsl=document.querySelectorAll("#vtk .vs-s"),vdt;
+document.getElementById("vd").innerHTML=VS.map(function(s,k){return '<button onclick="vShow('+k+')" aria-label="Video '+(k+1)+'"><i></i></button>'}).join("");
+vdt=document.querySelectorAll("#vd button");
 function vIcon(){document.getElementById("vsn").classList.toggle("on",vsnd);document.getElementById("vtp").textContent=vsnd?"Suara aktif":"Ketuk untuk suara"}
 function vPlay(){var v=vids[vi];v.muted=!vsnd;var p=v.play();if(p!==undefined){p.catch(()=>{vsnd=false;v.muted=true;vIcon();v.play().catch(()=>{})})}}
 function vSet(on){vsnd=on;vids[vi].muted=!on;vIcon();vPlay()}
