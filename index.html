@@ -364,6 +364,41 @@ var end=Date.now()+6*3600*1000;
 setInterval(function(){var r=Math.max(0,end-Date.now());function z(n){return String(n).padStart(2,"0")}
  document.getElementById("h").textContent=z(Math.floor(r/3600000));document.getElementById("m").textContent=z(Math.floor(r/60000)%60);document.getElementById("s").textContent=z(Math.floor(r/1000)%60)},1000);
 drawTabs();render();
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll(".vs-s");
+  const videos = document.querySelectorAll(".vs-s video");
+
+  function syncVideoPlayback() {
+    videos.forEach((vid, index) => {
+      vid.setAttribute("playsinline", "");
+      vid.setAttribute("loop", "");
+      
+      // Cek apakah slide video ini sedang aktif/terlihat
+      const rect = slides[index].getBoundingClientRect();
+      const isVisible = rect.width > 0 && rect.left >= -50 && rect.left < window.innerWidth - 50;
+
+      if (isVisible) {
+        if (vid.paused) {
+          vid.play().catch(() => {
+            vid.muted = true;
+            vid.play().catch(() => {});
+          });
+        }
+      } else {
+        vid.pause();
+      }
+    });
+  }
+
+  // Jalankan otomatis saat halaman pertama kali dibuka
+  videos[0].muted = true;
+  videos[0].play().catch(() => {});
+  setTimeout(syncVideoPlayback, 300);
+
+  // Jalankan setiap kali slide bergeser atau tombol diklik
+  setInterval(syncVideoPlayback, 500);
+});
 </script>
 </body>
 </html>
