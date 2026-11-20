@@ -1,0 +1,33 @@
+name: Download Foto Produk
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install openpyxl requests pillow ddgs duckduckgo-search
+
+      - name: Jalankan skrip download foto
+        run: python download_foto.py
+
+      - name: Commit foto dan update Excel
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.jpg daftar-produk.xlsx
+          git commit -m "chore: unduh foto produk otomatis" || echo "Tidak ada perubahan baru"
+          git push
