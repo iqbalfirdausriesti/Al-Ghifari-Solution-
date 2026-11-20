@@ -1,113 +1,73 @@
-import os
-import re
-import time
-from io import BytesIO
-import openpyxl
-import requests
+#!/usr/bin/env python3
+"""
+Download foto produk PRESISI dari daftar-produk.xlsx.
+
+Kenapa hasil lama ngawur (logo, artis, meme)? Karena pencarian gambar langsung
+dipakai tanpa verifikasi. Skrip ini menambahkan 4 lapis filter:
+  1. Judul/URL gambar HARUS memuat semua token model (mis. "galaxy" + "s25").
+  2. Varian salah ditolak (S25 Ultra, iPhone 15 Pro Max, dst.).
+  3. Domain stok/watermark/sosmed ditolak (alamy, pinterest, dll.).
+  4. CLIP memverifikasi isi gambar benar-benar HP/laptop/earbuds/dll.
+     (bukan logo, orang, poster, meme). Plus dedupe & ukuran minimal.
+Kalau tidak ada yang lolos, foto DIKOSONGKAN (bukan diisi asal) dan dicatat di
+foto-laporan.csv supaya bisa kamu upload manual.
+
+ENV: ULANG_SEMUA=true|false  (hapus & unduh ulang)   NOMOR="15,16,35" (hanya baris tsb)
+"""
+import csv, hashlib, io, os, re, sys, time
+from urllib.parse import urlparse
+import openpyxl, requests
 from PIL import Image
 
-try:
-    from ddgs import DDGS
-except ImportError:
-    from duckduckgo_search import DDGS
+XLSX = "daftar-produk.xlsx"
+LAPORAN = "foto-laporan.csv"
+ULANG = os.getenv("ULANG_SEMUA", "true").lower() == "true"
+NOMOR = {int(x) for x in re.findall(r"\d+", os.getenv("NOMOR", ""))}
+MIN_SISI, MAX_SISI, JUMLAH = 500, 1200, 3
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124 Safari/537.36"}
 
-EXCEL_FILE = "daftar-produk.xlsx"
-SHEET_NAME = "Daftar Produk"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-}
-
-
-def download_as_jpg(url, save_path):
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=12)
-        resp.raise_for_status()
-        img = Image.open(BytesIO(resp.content))
-        if img.mode in ("RGBA", "LA", "P"):
-            bg = Image.new("RGB", img.size, (255, 255, 255))
-            if img.mode == "P":
-                img = img.convert("RGBA")
-            bg.paste(img, mask=img.split()[-1] if "A" in img.mode else None)
-            img = bg
-        else:
-            img = img.convert("RGB")
-
-        # Skip tiny thumbnails/icons
-        if img.width < 220 or img.height < 220:
-            return False
-
-        # Resize if overly huge to keep GitHub repo lightweight
-        max_dim = 1000
-        if max(img.width, img.height) > max_dim:
-            img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
-
-        img.save(save_path, "JPEG", quality=88, optimize=True)
-        return True
-    except Exception:
-        return False
-
-
-def search_images(query, max_results=15):
-    for attempt in range(3):
-        try:
-            with DDGS() as ddgs:
-                return list(ddgs.images(query, max_results=max_results))
-        except Exception as e:
-            print(f"  Percobaan {attempt + 1} gagal ({e}), menunggu...")
-            time.sleep(3 * (attempt + 1))
-    return []
-
-
+BLOK_DOMAIN = ("alamy", "pinterest", "shutterstock", "istockphoto", "gettyimages", "dreamstime",
+               "123rf", "depositphotos", "facebook", "instagram", "tiktok", "youtube", "twimg",
+               "twitter", "x.com", "reddit", "ebay", "aliexpress", "wallpaper", "vecteezy",
+               "freepik", "pngtree", "pngwing", "flaticon", "redbubble", "etsy")
+BLOK_KATA = ("logo", "wallpaper", "meme", "vector", "icon", "sticker", "poster", "wallpapers",
+             "case ", "casing", "cover", "tempered", "screen protector", "skin", "mockup",
+             "concept", "render leak", "drawing", "illustration", "cartoon", "tattoo", "actress",
+             "actor", "model photo", "unboxing thumbnail", "vs ")
 def main():
-    wb = openpyxl.load_workbook(EXCEL_FILE)
-    ws = wb[SHEET_NAME]
-
-    for row in range(2, ws.max_row + 1):
-        no = ws.cell(row, 1).value
-        if not isinstance(no, (int, float)):
-            continue
-
-        nama = str(ws.cell(row, 2).value or "").strip()
-        merek = str(ws.cell(row, 4).value or "").strip()
-        target_files = [
-            ws.cell(row, 9).value,   # Foto 1
-            ws.cell(row, 10).value,  # Foto 2
-            ws.cell(row, 11).value,  # Foto 3
-        ]
-
-        missing_files = [f for f in target_files if f and not os.path.exists(f)]
-        if not missing_files:
-            ws.cell(row, 12).value = "Ya"
-            print(f"[{int(no):02d}/39] {nama} -> Lengkap")
-            continue
-
-        clean_nama = re.sub(r"\(second\)", "", nama, flags=re.IGNORECASE).strip()
-        base_q = clean_nama if merek.lower() in clean_nama.lower() else f"{merek} {clean_nama}"
-        query = f"{base_q} product photo"
-
-        print(f"[{int(no):02d}/39] Mencari foto: {query}...")
-        results = search_images(query, max_results=15)
-
-        url_idx = 0
-        for filename in missing_files:
-            saved = False
-            while url_idx < len(results) and not saved:
-                img_url = results[url_idx].get("image")
-                url_idx += 1
-                if img_url and download_as_jpg(img_url, filename):
-                    print(f"  [OK] {filename}")
-                    saved = True
-            if not saved:
-                print(f"  [GAGAL] {filename}")
-
-        if all(f and os.path.exists(f) for f in target_files):
-            ws.cell(row, 12).value = "Ya"
-
-        wb.save(EXCEL_FILE)
-        time.sleep(1.5)
-
-    print("\nSelesai! Foto produk berhasil diunduh dan daftar-produk.xlsx telah diperbarui.")
-
+    wb = openpyxl.load_workbook(XLSX)
+    ws = wb.active
+    hdr = [c.value for c in ws[1]]
+    cF = [hdr.index(f"Foto {i}") for i in (1, 2, 3)]
+    cOK = hdr.index("Foto Sudah Ada?")
+    laporan = []
+    for row in ws.iter_rows(min_row=2):
+        no, nama, kat, merek = (row[0].value, row[1].value, row[2].value, row[3].value)
+        if not isinstance(no, int) or not nama: continue
+        if NOMOR and no not in NOMOR: continue
+        files = [row[i].value for i in cF]
+        ada = [f for f in files if f and os.path.exists(f)]
+        if not ULANG and not NOMOR and len(ada) == JUMLAH:
+            row[cOK].value = "Ya"; continue
+        for f in files:
+            if f and os.path.exists(f): os.remove(f)
+        print(f"[{no}] {nama}")
+        hasil = proses(nama, kat, merek)
+        for (img, u, src, sk), f in zip(hasil, files):
+            img.save(f, "JPEG", quality=88, optimize=True)
+            laporan.append([no, nama, f, f"{sk:.2f}", u, src])
+            print(f"   OK {f} (clip {sk:.2f})")
+        for f in files[len(hasil):]:
+            laporan.append([no, nama, f, "KOSONG", "", ""])
+        row[cOK].value = "Ya" if len(hasil) == JUMLAH else f"Perlu cek ({len(hasil)}/{JUMLAH})"
+        print(f"   => {len(hasil)}/{JUMLAH}")
+    wb.save(XLSX)
+    baru = not os.path.exists(LAPORAN) or not NOMOR
+    with open(LAPORAN, "a" if NOMOR and os.path.exists(LAPORAN) else "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        if baru: w.writerow(["No", "Produk", "File", "Skor CLIP", "URL gambar", "Halaman sumber"])
+        w.writerows(laporan)
 
 if __name__ == "__main__":
     main()
