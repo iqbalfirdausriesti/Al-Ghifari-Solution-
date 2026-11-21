@@ -177,11 +177,6 @@ footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr
 .ld-dots b:nth-child(1){left:12%;animation-duration:5.2s}.ld-dots b:nth-child(2){left:27%;animation-duration:6.4s;animation-delay:.8s}
 .ld-dots b:nth-child(3){left:41%;animation-duration:4.8s;animation-delay:.3s}.ld-dots b:nth-child(4){left:58%;animation-duration:6s;animation-delay:1.2s}
 .ld-dots b:nth-child(5){left:73%;animation-duration:5.5s;animation-delay:.5s}.ld-dots b:nth-child(6){left:88%;animation-duration:6.8s;animation-delay:1.6s}
-.ld-snd{position:absolute;z-index:3;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 44px);width:58px;height:58px;margin-left:-29px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--brand);display:grid;place-items:center;padding:0;cursor:pointer;opacity:0;transform:translateY(14px) scale(.8);pointer-events:none;transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1);box-shadow:0 10px 26px #1746d633}
-.ld-snd svg{width:26px;height:26px}
-.ld-snd::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid var(--acc);opacity:0}
-.ld.ask .ld-snd{opacity:1;transform:none;pointer-events:auto}
-.ld.ask .ld-snd::after{animation:ldRipple 1.5s ease-out infinite}
 @keyframes ldRipple{0%{transform:scale(.75);opacity:.9}100%{transform:scale(1.5);opacity:0}}
 .ld.done{opacity:0;visibility:hidden;transform:scale(1.06)}
 .ld.done .ld-in{transform:scale(.92);transition:transform .6s ease}
@@ -213,7 +208,6 @@ html:has(.ld:not(.done)){overflow:hidden}
 <b class="ld-word">Al Ghifari<small>SOLUTION</small></b>
 <div class="ld-bar"><i></i></div>
 </div>
-<button class="ld-snd" id="ldsnd" type="button" aria-label="Aktifkan suara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
 </div>
 <noscript><style>.ld{display:none}</style></noscript>
 <div class="top">🚚 Gratis ongkir se-Indonesia • Cicilan 0% • Garansi resmi</div>
@@ -510,7 +504,7 @@ function tap(){if(fin)return;var p=snd.play();
 function ok(){unbind();blocked=false;l.classList.remove("ask");clearTimeout(hold);setTimeout(done,1700)}
 function done(){if(fin)return;fin=true;unbind();l.classList.add("done");setTimeout(function(){l.remove()},900)}
 function playSnd(){var p=snd.play();if(p&&p.catch)p.catch(function(){blocked=true;bind();if(Date.now()-t0>=3000)ask()})}
-function ask(){if(blocked&&!fin){l.classList.add("ask");clearTimeout(hold);hold=setTimeout(done,8000)}}
+function ask(){if(blocked&&!fin)done()}
 function go(){setTimeout(function(){if(blocked)ask();else done()},Math.max(0,3000-(Date.now()-t0)))}
 playSnd();
 if(document.readyState==="complete")go();else window.addEventListener("load",go);
