@@ -222,7 +222,7 @@ html:has(.ld:not(.done)){overflow:hidden}
 
 <main class="wrap">
 <section class="vs" id="vs">
-<div class="vs-top"><div><span class="vs-k">SEDANG HYPE</span><h2 id="vt"></h2></div><div class="vs-cnt"><b id="vn">01</b> / 03</div></div>
+<div class="vs-top"><div><span class="vs-k">TRENDING SEKARANG</span><h2 id="vt"></h2></div><div class="vs-cnt"><b id="vn">01</b> / 03</div></div>
 <div class="vs-view" id="vview">
 <div class="vs-track" id="vtk">
 <div class="vs-s"><video src="samsung-a17.mp4" autoplay muted playsinline preload="auto"></video><span class="vs-brand">SAMSUNG</span></div>
@@ -494,21 +494,21 @@ drawTabs();render();
 </script>
 <script>
 (function(){var l=document.getElementById("ld");if(!l)return;
-var t0=Date.now(),fin=false,blocked=false,hold=0;
+var t0=Date.now(),fin=false,ready=false,started=false,loaded=document.readyState==="complete";
 var snd=new Audio("Sound.mp3");snd.preload="auto";snd.volume=.9;
 var ev=["touchend","pointerup","click","keydown"];
 function bind(){ev.forEach(function(e){window.addEventListener(e,tap,true)})}
 function unbind(){ev.forEach(function(e){window.removeEventListener(e,tap,true)})}
-function tap(){if(fin)return;var p=snd.play();
- if(p&&p.then)p.then(function(){ok()}).catch(function(){});else ok()}
-function ok(){unbind();blocked=false;l.classList.remove("ask");clearTimeout(hold);setTimeout(done,1700)}
 function done(){if(fin)return;fin=true;unbind();l.classList.add("done");setTimeout(function(){l.remove()},900)}
-function playSnd(){var p=snd.play();if(p&&p.catch)p.catch(function(){blocked=true;bind();if(Date.now()-t0>=3000)ask()})}
-function ask(){if(blocked&&!fin)done()}
-function go(){setTimeout(function(){if(blocked)ask();else done()},Math.max(0,3000-(Date.now()-t0)))}
-playSnd();
-if(document.readyState==="complete")go();else window.addEventListener("load",go);
-setTimeout(function(){if(!blocked)done()},7000);
+function ok(){unbind();setTimeout(done,1700)}
+function tap(){if(fin)return;var p=snd.play();if(p&&p.then)p.then(ok).catch(function(){});else ok()}
+function start(){if(started||fin)return;started=true;
+ var p=snd.play();
+ if(p&&p.then)p.then(ok).catch(function(){bind();setTimeout(done,2500)});else ok()}
+function tryStart(){if(loaded&&ready)start()}
+setTimeout(function(){ready=true;tryStart()},Math.max(0,3000-(Date.now()-t0)));
+if(loaded)tryStart();else window.addEventListener("load",function(){loaded=true;tryStart()});
+setTimeout(function(){loaded=true;ready=true;start()},9000);
 })();
 </script>
 </body>
