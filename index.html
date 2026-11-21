@@ -46,11 +46,11 @@ nav a,.tb a{white-space:nowrap;padding:8px 0 11px;border-bottom:2px solid transp
 .sec{margin:44px 0}.sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}.sh h2{margin:0;font-size:23px;font-weight:800}.sh small{display:block;color:var(--gold);letter-spacing:.2em;font-size:11px;font-weight:700;margin-bottom:4px}.sh a{color:var(--brand);font-weight:600;font-size:14px}
 .fs{background:radial-gradient(circle at top right,#4b78ff18,transparent 45%),linear-gradient(180deg,#0f1d42,#0a1226);border:1px solid #2c3f6b;border-radius:20px;padding:24px}
 .cd{display:flex;gap:6px;align-items:center;font-weight:700;color:var(--gold)}.cd span{background:#0a1020;border:1px solid var(--gold);border-radius:8px;padding:5px 10px;min-width:40px;text-align:center;box-shadow:0 4px 12px #0004}
-.row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;scrollbar-width:thin}
+.fs-wrap{position:relative}.row{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none;-ms-overflow-style:none}.row::-webkit-scrollbar{display:none}.fs-wrap .vs-arr{z-index:12;background:#0a1020dd;border-color:#ffffff33}.fs-wrap .vs-arr.l{left:-12px}.fs-wrap .vs-arr.r{right:-12px}@media(max-width:720px){.fs-wrap .vs-arr.l{left:4px}.fs-wrap .vs-arr.r{right:4px}}
 .pc{flex:0 0 218px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
 .pc:hover{border-color:#5374ba;transform:translateY(-4px);box-shadow:0 14px 30px #0006}
-.pt{aspect-ratio:1/1;background:#fff;position:relative;cursor:pointer;overflow:hidden;padding:12px;display:grid;place-items:center}
-.pt img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .35s ease}
+.pt{aspect-ratio:1/1;background:#fff;position:relative;cursor:pointer;overflow:hidden;padding:16px;display:flex;align-items:center;justify-content:center}
+.pt img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;display:block;transition:transform .35s ease}
 .pc:hover .pt img{transform:scale(1.05)}
 .pt svg{width:64%;height:84%}
 .pt b{position:absolute;left:10px;top:10px;z-index:3;background:#0a1020eb;color:var(--gold);border:1px solid var(--gold);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px}
@@ -176,8 +176,8 @@ html:has(.ld:not(.done)){overflow:hidden}
 .gx{z-index:4;background:#0008;color:#fff;border-radius:50%;width:36px;height:36px;font-size:22px;line-height:1;top:10px;right:10px;display:grid;place-items:center;padding:0;transition:background .2s}.gx:hover{background:#000c}
 .gv{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;background:#fff}
 .gt{display:flex;transition:transform .55s cubic-bezier(.65,0,.35,1)}
-.gs{flex:0 0 100%;aspect-ratio:1/1;display:grid;place-items:center;position:relative;overflow:hidden;min-height:0;padding:20px;transform:scale(.85);opacity:.25;transition:transform .55s cubic-bezier(.65,0,.35,1),opacity .55s}.gs.on{transform:none;opacity:1}
-.gs svg{width:76%;height:76%;filter:drop-shadow(0 18px 16px #0003)}.gs img{width:100%;height:100%;object-fit:contain;-webkit-user-drag:none}
+.gs{flex:0 0 100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:0;padding:22px;transform:scale(.85);opacity:.25;transition:transform .55s cubic-bezier(.65,0,.35,1),opacity .55s}.gs.on{transform:none;opacity:1}
+.gs svg{width:76%;height:76%;filter:drop-shadow(0 18px 16px #0003)}.gs img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;-webkit-user-drag:none}
 .gl,.gc{position:absolute;background:#0a1020cc;color:#fff;font-size:12px;font-weight:600;border-radius:99px;padding:4px 12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:2}.gl{left:12px;bottom:12px}.gc{left:12px;top:12px}
 .gth{display:flex;gap:8px;padding:12px 16px 0}.gth button{width:64px;aspect-ratio:1;display:grid;place-items:center;padding:4px;border:2px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;opacity:.6;transition:opacity .3s,border-color .3s,transform .3s}
 .gth button.on{opacity:1;border-color:var(--brand);transform:translateY(-2px)}.gth svg,.gth img{width:100%;height:100%;border-radius:8px;object-fit:contain;display:block}
@@ -274,7 +274,7 @@ window.addEventListener("beforeunload", function () {
 <div class="vs-bot"><p class="vs-note" id="vp"></p><div class="vs-dots" id="vd"></div><a class="btn" id="vc" target="_blank" rel="noopener" href="#">Tanya produk ini</a></div>
 </section>
 
-<section class="sec fs" id="flash"><div class="sh"><div><small>PENAWARAN TERBATAS</small><h2>Flash Sale Hari Ini</h2></div><div class="cd"><span id="h">00</span>:<span id="m">00</span>:<span id="s">00</span></div></div><div class="row" id="row"></div></section>
+<section class="sec fs" id="flash"><div class="sh"><div><small>PENAWARAN TERBATAS</small><h2>Flash Sale Hari Ini</h2></div><div class="cd"><span id="h">00</span>:<span id="m">00</span>:<span id="s">00</span></div></div><div class="fs-wrap"><button type="button" class="vs-arr l" id="fsPrev" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><div class="row" id="row"></div><button type="button" class="vs-arr r" id="fsNext" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></section>
 
 <section class="sec" id="produk"><div class="sh"><div><small>KATALOG</small><h2>Semua Produk</h2></div><span class="em" id="pcn"></span></div>
 <div class="tb" id="tabs"><a data-t="all" onclick="tab('all')">Semua</a><a data-t="HP" onclick="tab('HP')">Smartphone</a><a data-t="Laptop" onclick="tab('Laptop')">Laptop</a><a data-t="Aksesoris" onclick="tab('Aksesoris')">Aksesori</a></div>
@@ -332,7 +332,7 @@ var P=[
 {n:"realme C75 8/256",c:"HP",pr:2899000,o:3199000,t:"phone",col:["#d6a21c","#fff3c4"],b:"realme",im:["realme-realme-c75-8-256-1.jpg","realme-realme-c75-8-256-2.jpg","realme-realme-c75-8-256-3.jpg"]},
 {n:"Infinix Hot 50 8/128",c:"HP",pr:1999000,o:2299000,t:"phone",col:["#0b6b6b","#68e6d9"],b:"Infinix",im:["infinix-infinix-hot-50-8-128-1.jpg","infinix-infinix-hot-50-8-128-2.jpg","infinix-infinix-hot-50-8-128-3.jpg"]},
 {n:"Tecno Spark 30 8/256",c:"HP",pr:2099000,o:2399000,t:"phone",col:["#1f4fd1","#a7c0ff"],b:"Tecno",im:["tecno-tecno-spark-30-8-256-1.jpg","tecno-tecno-spark-30-8-256-2.jpg","tecno-tecno-spark-30-8-256-3.jpg"]},
-{n:"MacBook Air M3 13\" 8/256",c:"Laptop",pr:15999000,o:17499000,t:"laptop",col:["#9aa3b2","#dfe4ee"],b:"Apple",im:["apple-macbook-air-m3-13-8-256-1.jpg","apple-macbook-air-m3-13-8-256-2.jpg","apple-macbook-air-m3-13-8-256-3.jpg"]},
+{n:"MacBook Air M3 13" 8/256",c:"Laptop",pr:15999000,o:17499000,t:"laptop",col:["#9aa3b2","#dfe4ee"],b:"Apple",im:["apple-macbook-air-m3-13-8-256-1.jpg","apple-macbook-air-m3-13-8-256-2.jpg","apple-macbook-air-m3-13-8-256-3.jpg"]},
 {n:"ASUS Vivobook 14 Core i5",c:"Laptop",pr:8499000,o:9299000,t:"laptop",col:["#2b6cb0","#9cc7ff"],b:"ASUS",im:["asus-asus-vivobook-14-core-i5-1.jpg","asus-asus-vivobook-14-core-i5-2.jpg","asus-asus-vivobook-14-core-i5-3.jpg"]},
 {n:"Lenovo IdeaPad Slim 3 Ryzen 5",c:"Laptop",pr:7299000,o:7899000,t:"laptop",col:["#3a3f4b","#a9b2c3"],b:"Lenovo",im:["lenovo-lenovo-ideapad-slim-3-ryzen-5-1.jpg","lenovo-lenovo-ideapad-slim-3-ryzen-5-2.jpg","lenovo-lenovo-ideapad-slim-3-ryzen-5-3.jpg"]},
 {n:"Acer Aspire 5 Core i7",c:"Laptop",pr:10999000,o:11999000,t:"laptop",col:["#2f7d5b","#a8e6c8"],b:"Acer",im:["acer-acer-aspire-5-core-i7-1.jpg","acer-acer-aspire-5-core-i7-2.jpg","acer-acer-aspire-5-core-i7-3.jpg"]},
@@ -435,10 +435,10 @@ function saveCart(){try{localStorage.setItem("ags_cart",JSON.stringify(cart))}ca
 saveCart();
 
 function lg(e,n,s){var k=+e.dataset.k||0;e.dataset.k=k+1;if(k==0)e.src="https://cdn.simpleicons.org/"+s+"/ffffff";else e.replaceWith(document.createTextNode(n))}
-document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(\''+b[0]+'\')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,\''+b[0]+'\',\''+b[1]+'\')"></a>'}).join("");
+document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(''+b[0]+'')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,''+b[0]+'',''+b[1]+'')"></a>'}).join("");
 function disc(p){return Math.round((1-p.pr/p.o)*100)}
 function card(p,i,fl){var s=45+(i*17)%50;return'<article class="pc"><div class="pt" onclick="openG('+i+')"><b>-'+disc(p)+'%</b><span class="ph">3 foto</span>'+ph(p,0)+'</div><div class="pb"><small>'+p.b+'</small><h3 onclick="openG('+i+')">'+p.n+'</h3><span class="old">'+rp(p.o)+'</span><span class="pr">'+rp(p.pr)+'</span><span class="cc">Cicilan '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>'+(fl?'<div class="bar"><i style="width:'+s+'%"></i></div><span class="s">Terjual '+s+'%</span>':'')+'<button onclick="add('+i+')">+ Keranjang</button></div></article>'}
-function drawFlash(){var ix=P.map(function(p,i){return i}).sort(function(a,b){return disc(P[b])-disc(P[a])}).slice(0,8);document.getElementById("row").innerHTML=ix.map(function(i){return card(P[i],i,1)}).join("")}
+function drawFlash(){var ix=P.map(function(p,i){return i}).sort(function(a,b){return disc(P[b])-disc(P[a])}).slice(0,8);var r=document.getElementById("row");r.innerHTML=ix.concat(ix).map(function(i){return card(P[i],i,1)}).join("");if(r.dataset.slInit)return;r.dataset.slInit="1";var paused=false,ptm=null;function pauseTmp(ms){paused=true;clearTimeout(ptm);ptm=setTimeout(function(){paused=false},ms)}r.addEventListener("mouseenter",function(){paused=true});r.addEventListener("mouseleave",function(){paused=false});r.addEventListener("touchstart",function(){paused=true},{passive:true});r.addEventListener("touchend",function(){pauseTmp(1500)});r.addEventListener("wheel",function(){pauseTmp(1500)},{passive:true});var prev=document.getElementById("fsPrev"),next=document.getElementById("fsNext");if(prev)prev.addEventListener("click",function(){pauseTmp(1400);var half=r.scrollWidth/2;if(r.scrollLeft<=10)r.scrollLeft=half;r.scrollBy({left:-232,behavior:"smooth"})});if(next)next.addEventListener("click",function(){pauseTmp(1400);r.scrollBy({left:232,behavior:"smooth"})});function tick(){if(!paused&&r.offsetParent!==null){var half=r.scrollWidth/2;if(half>r.clientWidth){r.scrollLeft+=0.55;if(r.scrollLeft>=half)r.scrollLeft-=half}}requestAnimationFrame(tick)}requestAnimationFrame(tick)}
 function drawGrid(){var q=Q.toLowerCase(),h="",c=0;P.forEach(function(p,i){if(TB!="all"&&p.c!=TB)return;if(q&&(p.b+" "+p.n).toLowerCase().indexOf(q)<0)return;c++;h+=card(p,i,0)});
  document.getElementById("gp").innerHTML=h||'<p class="em">Produk tidak ditemukan. Coba kata kunci lain atau tanya via WhatsApp.</p>';document.getElementById("pcn").textContent=c+" produk";
  [].forEach.call(document.querySelectorAll("#tabs a"),function(a){a.classList.toggle("k",a.dataset.t==TB)})}
@@ -480,8 +480,12 @@ function chk(){
  if(!cart.length){toast("Keranjang masih kosong");return}
  var counts={},order=[],t=0;
  cart.forEach(function(idx){if(!counts[idx]){counts[idx]=0;order.push(idx)}counts[idx]++});
- var l=order.map(function(i){var sub=P[i].pr*counts[i];t+=sub;return"- "+P[i].n+" ("+counts[i]+"x) = "+rp(sub)}).join("\n");
- window.open(wa("Halo Al Ghifari Solution, saya mau pesan:\n"+l+"\nTotal: "+rp(t)+"\nApakah unitnya ready?"),"_blank");
+ var l=order.map(function(i){var sub=P[i].pr*counts[i];t+=sub;return"- "+P[i].n+" ("+counts[i]+"x) = "+rp(sub)}).join("
+");
+ window.open(wa("Halo Al Ghifari Solution, saya mau pesan:
+"+l+"
+Total: "+rp(t)+"
+Apakah unitnya ready?"),"_blank");
 }
 
 var ht=document.getElementById("ht"),dots=document.getElementById("dots");
@@ -495,40 +499,41 @@ setInterval(function(){var r=Math.max(0,end-Date.now()),z=function(v){return Str
 drawFlash();drawGrid();show(0);
 
 var VS=[{t:"Galaxy A17 5G, AI untuk Semua",p:"HP 5G terbaru dari Samsung dengan fitur AI yang bikin aktivitas harian lebih mudah. Cek stok dan harga terbaiknya di Al Ghifari Solution.",q:"Samsung Galaxy A17 5G"},{t:"Xiaomi 18 Pro Series",p:"Lihat seri flagship terbaru Xiaomi lewat iklan resminya. Mau tahu harga dan ketersediaannya? Tanya langsung ke kami.",q:"Xiaomi 18 Pro"},{t:"OPPO Find X9 Ultra",p:"Flagship terbaru OPPO yang siap bikin kamu penasaran. Hubungi kami untuk info pre-order dan promo.",q:"OPPO Find X9 Ultra"}];
-var vi=0,vsnd=false,vvis=true,vg=false,vids=document.querySelectorAll("#vtk video"),vsl=document.querySelectorAll("#vtk .vs-s"),vdt;
+var vi=0,vsnd=true,vvis=true,vuserMute=false,vunlockBound=false,vids=document.querySelectorAll("#vtk video"),vsl=document.querySelectorAll("#vtk .vs-s"),vdt;
 document.getElementById("vd").innerHTML=VS.map(function(s,k){return '<button onclick="vShow('+k+')" aria-label="Video '+(k+1)+'"><i></i></button>'}).join("");
 vdt=document.querySelectorAll("#vd button");
 function vIcon(){document.getElementById("vsi").innerHTML=vsnd?'<path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/>':'<path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9l5 6M21 9l-5 6"/>';document.getElementById("vsn").classList.toggle("hint",!vsnd);document.getElementById("vtp").classList.toggle("off",vsnd)}
 function ldOn(){var e=document.getElementById("ld");return !!e&&!e.classList.contains("done")}
-window.vResume=function(){if(vvis&&vids[vi].paused)vPlay()};
-function vPlay(){if(ldOn())return;var v=vids[vi];v.muted=!vsnd;var p=v.play();if(p&&p.catch)p.catch(function(){if(vsnd){vsnd=false;vIcon()}v.muted=true;v.play().catch(function(){})})}
-function vSet(on){vsnd=on;vids[vi].muted=!on;vIcon();if(on&&vvis&&vids[vi].paused)vPlay()}
+function bindAudioUnlock(){if(vunlockBound)return;vunlockBound=true;var u=function(){vunlockBound=false;if(vvis&&!vuserMute&&!ldOn()){vSet(true)}};["pointerdown","touchstart","keydown"].forEach(function(ev){document.addEventListener(ev,u,{once:true,passive:true})})}
+window.vResume=function(){if(vvis){if(!vuserMute)vSet(true);else if(vids[vi].paused)vPlay()}};
+function vPlay(){if(ldOn()||!vvis)return;var v=vids[vi];v.muted=!vsnd;var p=v.play();if(p&&p.catch)p.catch(function(){if(vsnd){vsnd=false;vIcon();bindAudioUnlock()}v.muted=true;v.play().catch(function(){})})}
+function vSet(on){vsnd=on;vids.forEach(function(v,k){v.muted=!(on&&k==vi)});vIcon();if(on&&vvis)vPlay()}
+function vStopAll(){vids.forEach(function(v){v.muted=true;v.pause()});vsnd=false;vIcon()}
 function vShow(i){
  vi=(i+VS.length)%VS.length;
  document.getElementById("vtk").style.transform="translateX(-"+vi*100+"%)";
  vsl.forEach(function(s,k){s.classList.toggle("on",k==vi)});
- vids.forEach(function(v,k){if(k!=vi){v.pause();v.currentTime=0}});
+ vids.forEach(function(v,k){if(k!=vi){v.muted=true;v.pause();v.currentTime=0}});
  vdt.forEach(function(b,k){b.classList.toggle("on",k==vi);b.firstChild.style.width="0"});
  vids[(vi+1)%VS.length].preload="auto";
  var t=document.getElementById("vt"),p=document.getElementById("vp");
  t.textContent=VS[vi].t;p.textContent=VS[vi].p;document.getElementById("vn").textContent="0"+(vi+1);
  [t,p].forEach(function(e){e.classList.remove("sw");void e.offsetWidth;e.classList.add("sw")});
  document.getElementById("vc").href=wa("Halo Al Ghifari Solution, saya tertarik dengan "+VS[vi].q+". Apakah ready?");
- vids[vi].currentTime=0;if(vvis)vPlay();
+ vids[vi].currentTime=0;if(vvis){vsnd=!vuserMute;vIcon();vPlay()}
 }
 function vgo(d){vShow(vi+d)}
 vids.forEach(function(v,k){
  v.addEventListener("ended",function(){if(k==vi)vShow(vi+1)});
  v.addEventListener("timeupdate",function(){if(k==vi&&v.duration)vdt[k].firstChild.style.width=(v.currentTime/v.duration*100)+"%"});
 });
-document.getElementById("vsn").addEventListener("click",function(){vSet(!vsnd)});
-document.addEventListener("click",function(e){if(ldOn()||vg)return;vg=true;if(e.target.closest&&e.target.closest("#vsn"))return;vSet(true)},true);
-new IntersectionObserver(function(e){vvis=e[0].isIntersecting;if(vvis)vPlay();else vids.forEach(function(v){v.pause()})},{threshold:.5}).observe(document.getElementById("vview"));
-document.addEventListener("visibilitychange",function(){if(document.hidden)vids.forEach(function(v){v.pause()});else if(vvis)vPlay()});
+document.getElementById("vsn").addEventListener("click",function(e){e.stopPropagation();var next=!vsnd;vuserMute=!next;vSet(next)});
+new IntersectionObserver(function(e){vvis=e[0].isIntersecting&&e[0].intersectionRatio>=0.45;if(vvis){if(!vuserMute)vSet(true);else{vsnd=false;vIcon();vPlay()}}else{vStopAll()}},{threshold:[0,0.45]}).observe(document.getElementById("vview"));
+document.addEventListener("visibilitychange",function(){if(document.hidden)vStopAll();else if(vvis){if(!vuserMute)vSet(true);else vPlay()}});
 var vx=0;document.getElementById("vview").addEventListener("touchstart",function(e){vx=e.touches[0].clientX},{passive:true});
 document.getElementById("vview").addEventListener("touchend",function(e){var d=e.changedTouches[0].clientX-vx;if(Math.abs(d)>50)vgo(d<0?1:-1)});
 vIcon();vShow(0);
-window.addEventListener("load",function(){window.scrollTo(0,0);if(vvis&&vids[vi].paused)vPlay()});
+window.addEventListener("load",function(){window.scrollTo(0,0);if(vvis&&!ldOn()){if(!vuserMute)vSet(true);else if(vids[vi].paused)vPlay()}});
 </script>
 
 <script>(function(){var l=document.getElementById("ld");if(!l)return;

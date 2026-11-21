@@ -1,0 +1,75 @@
+/* Perbaikan bingkai gambar produk agar utuh & tidak terpotong */
+.pt, .gs {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #ffffff !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.pt img, .gs img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Hilangkan scrollbar jadul pada Flash Sale */
+#row {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  scroll-snap-type: none !important;
+  scroll-behavior: auto !important;
+}
+
+#row::-webkit-scrollbar {
+  display: none !important;
+}
+
+.ags-row-wrap {
+  position: relative;
+}
+
+/* Tombol navigasi kiri & kanan Flash Sale */
+.ags-row-arr {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(10, 16, 32, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ags-row-arr:hover {
+  background: #4b78ff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.ags-row-arr.l { left: -12px; }
+.ags-row-arr.r { right: -12px; }
+
+@media (max-width: 640px) {
+  .ags-row-arr {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+  .ags-row-arr.l { left: 4px; }
+  .ags-row-arr.r { right: 4px; }
+}
