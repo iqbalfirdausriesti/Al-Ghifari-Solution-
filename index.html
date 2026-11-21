@@ -3,61 +3,108 @@
 <title>Al Ghifari Solution – Lifestyle Gadget Terpercaya</title>
 <meta name="description" content="Smartphone, laptop, dan aksesori bergaransi resmi. Cicilan 0% sampai 24x, free ongkir.">
 <style>
-:root{--bg:#0a1020;--card:#111a30;--ink:#eaf0ff;--mute:#9aa9c8;--line:#22304f;--brand:#4b78ff;--brand2:#0b2a8f;--acc:#ff6a1a;--gold:#d8b46a;color-scheme:dark;box-sizing:border-box}
+:root{--bg:#0a1020;--card:#111a30;--card2:#16223e;--ink:#eaf0ff;--mute:#9aa9c8;--line:#22304f;--brand:#4b78ff;--brand2:#0b2a8f;--acc:#ff6a1a;--gold:#d8b46a;--wa:#25d366;color-scheme:dark;box-sizing:border-box}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none;cursor:pointer}button{font:inherit;cursor:pointer;color:inherit}
 .w{max-width:1200px;margin:0 auto;padding:0 16px}
 .ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .top{background:#070c1a;color:var(--mute);font-size:12.5px;border-bottom:1px solid var(--line)}.top .w{display:flex;justify-content:space-between;gap:12px;padding:8px 16px;flex-wrap:wrap}.top b{color:var(--gold);font-weight:600}
-header{position:sticky;top:0;z-index:20;background:#0a1020ee;border-bottom:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+header{position:sticky;top:0;z-index:20;background:#0a1020f0;border-bottom:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .hd{display:flex;align-items:center;gap:16px;padding:14px 0}
-.logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:18px;line-height:1}.logo i{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff}.logo small{display:block;font-size:10px;letter-spacing:.34em;color:var(--gold);margin-top:4px;font-weight:600}
-.sb{flex:1;display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}.sb:focus-within{border-color:var(--brand)}
-.sb input{flex:1;border:0;padding:11px 14px;font:inherit;background:none;color:var(--ink);outline:0;min-width:0}.sb button{border:0;background:var(--brand);color:#fff;padding:0 20px;font-weight:600}
-.cart{position:relative;display:flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 14px;font-weight:600;white-space:nowrap}.cart b{position:absolute;top:-8px;right:-6px;background:var(--gold);color:#0a1020;font-size:11px;min-width:20px;height:20px;border-radius:99px;display:grid;place-items:center}
+.logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:18px;line-height:1}.logo i{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px #4b78ff44}.logo small{display:block;font-size:10px;letter-spacing:.34em;color:var(--gold);margin-top:4px;font-weight:600}
+.sb{flex:1;display:flex;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s}.sb:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px #4b78ff28}
+.sb input{flex:1;border:0;padding:11px 14px;font:inherit;background:none;color:var(--ink);outline:0;min-width:0}.sb button{border:0;background:linear-gradient(135deg,var(--brand),#3563eb);color:#fff;padding:0 22px;font-weight:600;transition:opacity .2s}.sb button:hover{opacity:.92}
+.cart{position:relative;display:flex;gap:8px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 14px;font-weight:600;white-space:nowrap;transition:border-color .2s,transform .15s}.cart:hover{border-color:var(--gold);transform:translateY(-1px)}.cart b{position:absolute;top:-8px;right:-6px;background:var(--gold);color:#0a1020;font-size:11px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;display:grid;place-items:center;font-weight:800;box-shadow:0 2px 8px #0006}
 nav,.tb{display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}nav{padding:0}nav::-webkit-scrollbar,.tb::-webkit-scrollbar{display:none}
-nav a,.tb a{white-space:nowrap;padding:8px 0 11px;border-bottom:2px solid transparent;color:var(--mute);font-size:14px;font-weight:600}nav a:hover,nav a.k,.tb a:hover,.tb a.k{color:#fff;border-color:var(--gold)}
-.hero{position:relative;margin-top:20px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
-.ht{display:flex;transition:transform .6s ease}
-.hs{flex:0 0 100%;min-height:360px;padding:44px 52px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:24px;color:#fff}
-.hs:nth-child(1){background:linear-gradient(120deg,#0b2a8f,#08143f 70%)}.hs:nth-child(2){background:linear-gradient(120deg,#16206b,#0a0f33 70%)}.hs:nth-child(3){background:linear-gradient(120deg,#0b3a8f,#071c45 70%)}
-.hs em{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--gold)}
-.hs h1{margin:12px 0;font-size:clamp(28px,4.4vw,48px);line-height:1.1;letter-spacing:-.015em;font-weight:700}
-.hs p{margin:0 0 24px;max-width:440px;color:#ffffffc4}
-.btn{display:inline-block;background:var(--gold);color:#0a1020;font-weight:700;border:0;border-radius:10px;padding:13px 26px}
-.pn{justify-self:center;width:min(290px,72%);aspect-ratio:1;border-radius:24px;background:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:0 30px 60px #0006}.pn img{width:100%;height:100%;object-fit:contain}.pn svg{width:68%;height:80%}
-.ar{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid #ffffff44;background:#0a102088;color:#fff;font-size:20px;z-index:3}.ar.l{left:12px}.ar.r{right:12px}
-.dots{position:absolute;left:52px;bottom:20px;display:flex;gap:8px;z-index:3}.dots button{width:8px;height:8px;border-radius:99px;border:0;background:#ffffff55;padding:0}.dots button.on{width:28px;background:var(--gold)}
+nav a,.tb a{white-space:nowrap;padding:8px 0 11px;border-bottom:2px solid transparent;color:var(--mute);font-size:14px;font-weight:600;transition:color .2s,border-color .2s}nav a:hover,nav a.k,.tb a:hover,.tb a.k{color:#fff;border-color:var(--gold)}
+
+/* Hero Banner */
+.hero{position:relative;margin-top:20px;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 50px #0005}
+.ht{display:flex;transition:transform .6s cubic-bezier(.25,.8,.25,1)}
+.hs{flex:0 0 100%;min-height:360px;padding:44px 56px;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:24px;color:#fff;position:relative}
+.hs:nth-child(1){background:radial-gradient(circle at 80% 20%,#2454e844,transparent 50%),linear-gradient(125deg,#0b2a8f,#08143f 72%)}
+.hs:nth-child(2){background:radial-gradient(circle at 80% 20%,#6b4fd844,transparent 50%),linear-gradient(125deg,#182475,#0a0f33 72%)}
+.hs:nth-child(3){background:radial-gradient(circle at 80% 20%,#0e8a6a44,transparent 50%),linear-gradient(125deg,#0b3d8f,#071c45 72%)}
+.hs em{display:inline-block;font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.2em;color:var(--gold);background:#d8b46a18;border:1px solid #d8b46a44;padding:4px 12px;border-radius:99px}
+.hs h1{margin:14px 0 12px;font-size:clamp(28px,4.2vw,46px);line-height:1.12;letter-spacing:-.015em;font-weight:800}
+.hs p{margin:0 0 26px;max-width:460px;color:#d6e0f5;font-size:15.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#e5c278,#cfa44e);color:#0a1020;font-weight:700;border:0;border-radius:12px;padding:13px 26px;box-shadow:0 8px 20px #d8b46a33;transition:transform .2s,box-shadow .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px #d8b46a4d;filter:brightness(1.05)}
+.pn{justify-self:center;width:min(280px,74%);aspect-ratio:1;border-radius:26px;background:#fff;padding:18px;display:grid;place-items:center;overflow:hidden;box-shadow:0 28px 60px #0007;transition:transform .35s ease}
+.pn:hover{transform:scale(1.03) rotate(-1deg)}
+.pn img{width:100%;height:100%;object-fit:contain}.pn svg{width:70%;height:82%}
+.ar{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid #ffffff33;background:#0a102099;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;font-size:20px;z-index:3;transition:background .2s,transform .2s}.ar:hover{background:var(--brand);transform:translateY(-50%) scale(1.08)}.ar.l{left:14px}.ar.r{right:14px}
+.dots{position:absolute;left:56px;bottom:22px;display:flex;gap:8px;z-index:3}.dots button{width:8px;height:8px;border-radius:99px;border:0;background:#ffffff55;padding:0;transition:width .3s,background .3s}.dots button.on{width:28px;background:var(--gold)}
+
+/* Quick Links */
 .qk{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin:22px 0}
-.qk a{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 4px;border:1px solid var(--line);border-radius:14px;background:var(--card);font-size:12.5px;font-weight:600;text-align:center}.qk a:hover{border-color:var(--gold)}.qk .ic{width:26px;height:26px;color:var(--gold)}
-.sec{margin:40px 0}.sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}.sh h2{margin:0;font-size:22px;font-weight:700}.sh small{display:block;color:var(--gold);letter-spacing:.2em;font-size:11px;font-weight:700;margin-bottom:4px}.sh a{color:var(--brand);font-weight:600;font-size:14px}
-.fs{background:linear-gradient(180deg,#0e1a3d,#0a1226);border:1px solid var(--line);border-radius:18px;padding:22px}
-.cd{display:flex;gap:6px;align-items:center;font-weight:700;color:var(--gold)}.cd span{border:1px solid var(--gold);border-radius:8px;padding:4px 9px;min-width:38px;text-align:center}
-.row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
-.pc{flex:0 0 210px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}.pc:hover{border-color:#3a4d7a}
-.pt{aspect-ratio:1/1;background:#fff;position:relative;cursor:pointer;overflow:hidden}.pt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.pt svg{position:absolute;inset:0;margin:auto;width:62%;height:88%}
-.pt b{position:absolute;left:10px;top:10px;z-index:3;background:#0a1020dd;color:var(--gold);border:1px solid var(--gold);font-size:11.5px;border-radius:99px;padding:2px 9px}
-.pb{padding:12px 14px 14px;display:flex;flex-direction:column;gap:3px;flex:1}.pb small{color:var(--mute)}.pb h3{margin:0;font-size:14.5px;line-height:1.3;min-height:38px;cursor:pointer}.old{text-decoration:line-through;color:var(--mute);font-size:12px}.pr{font-size:19px;font-weight:700}.cc{font-size:12px;color:#8fb0ff}
-.bar{height:4px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--gold)}.pb .s{font-size:11.5px;color:var(--mute)}
-.pb button{margin-top:10px;border:1px solid #3a4d7a;background:none;font-weight:600;border-radius:10px;padding:9px}.pb button:hover{background:var(--brand);border-color:var(--brand);color:#fff}
-.gp{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}.gp .pc{flex:none}.em{color:var(--mute)}.tb{margin-bottom:16px;border-bottom:1px solid var(--line)}
-.br{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.br a{height:68px;border:1px solid var(--line);background:var(--card);border-radius:14px;display:grid;place-items:center;color:var(--mute);font-weight:700;letter-spacing:.06em;font-size:13px}.br a:hover{border-color:var(--gold);color:#fff}.br img{height:26px;max-width:72%;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}.br a:hover img{opacity:1}
+.qk a{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 6px;border:1px solid var(--line);border-radius:16px;background:var(--card);font-size:12.5px;font-weight:600;text-align:center;transition:transform .2s,border-color .2s,background .2s}
+.qk a:hover{border-color:var(--gold);background:var(--card2);transform:translateY(-3px)}.qk .ic{width:26px;height:26px;color:var(--gold)}
+
+/* Sections & Product Cards */
+.sec{margin:44px 0}.sh{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}.sh h2{margin:0;font-size:23px;font-weight:800}.sh small{display:block;color:var(--gold);letter-spacing:.2em;font-size:11px;font-weight:700;margin-bottom:4px}.sh a{color:var(--brand);font-weight:600;font-size:14px}
+.fs{background:radial-gradient(circle at top right,#4b78ff18,transparent 45%),linear-gradient(180deg,#0f1d42,#0a1226);border:1px solid #2c3f6b;border-radius:20px;padding:24px}
+.cd{display:flex;gap:6px;align-items:center;font-weight:700;color:var(--gold)}.cd span{background:#0a1020;border:1px solid var(--gold);border-radius:8px;padding:5px 10px;min-width:40px;text-align:center;box-shadow:0 4px 12px #0004}
+.row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;scrollbar-width:thin}
+.pc{flex:0 0 218px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.pc:hover{border-color:#5374ba;transform:translateY(-4px);box-shadow:0 14px 30px #0006}
+.pt{aspect-ratio:1/1;background:#fff;position:relative;cursor:pointer;overflow:hidden;padding:12px;display:grid;place-items:center}
+.pt img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .35s ease}
+.pc:hover .pt img{transform:scale(1.05)}
+.pt svg{width:64%;height:84%}
+.pt b{position:absolute;left:10px;top:10px;z-index:3;background:#0a1020eb;color:var(--gold);border:1px solid var(--gold);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px}
+.pb{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}.pb small{color:var(--mute);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}.pb h3{margin:0;font-size:14.5px;line-height:1.35;min-height:39px;cursor:pointer;transition:color .2s}.pb h3:hover{color:var(--gold)}.old{text-decoration:line-through;color:var(--mute);font-size:12px}.pr{font-size:19px;font-weight:800;color:#fff}.cc{font-size:12px;color:#8fb0ff}
+.bar{height:5px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--acc))}.pb .s{font-size:11.5px;color:var(--mute)}
+.pb button{margin-top:auto;padding-top:9px;padding-bottom:9px;border:1px solid #3a4d7a;background:#16223e66;font-weight:600;border-radius:11px;transition:background .2s,border-color .2s,color .2s}.pb button:hover{background:var(--brand);border-color:var(--brand);color:#fff}
+
+.gp{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}.gp .pc{flex:none}.em{color:var(--mute);font-weight:600}.tb{margin-bottom:18px;border-bottom:1px solid var(--line)}
+.br{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.br a{height:68px;border:1px solid var(--line);background:var(--card);border-radius:14px;display:grid;place-items:center;color:var(--mute);font-weight:700;letter-spacing:.06em;font-size:13px;transition:transform .2s,border-color .2s,background .2s}.br a:hover{border-color:var(--gold);background:var(--card2);color:#fff;transform:translateY(-2px)}.br img{height:26px;max-width:72%;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}.br a:hover img{opacity:1}
+
 .pm,.wy{display:grid;gap:14px}.pm{grid-template-columns:repeat(3,1fr)}.wy{grid-template-columns:repeat(4,1fr)}
-.pm div,.wy div{border:1px solid var(--line);border-radius:16px;padding:24px;background:linear-gradient(160deg,#0f1a3a,#0b1329)}.pm .ic,.wy .ic,.ct .ic{width:30px;height:30px;color:var(--gold);margin-bottom:12px}
+.pm div,.wy div{border:1px solid var(--line);border-radius:18px;padding:24px;background:linear-gradient(160deg,#111d42,#0b1329);transition:border-color .2s,transform .2s}.pm div:hover,.wy div:hover{border-color:#3a528a;transform:translateY(-2px)}.pm .ic,.wy .ic,.ct .ic{width:30px;height:30px;color:var(--gold);margin-bottom:12px}
 .pm h3{margin:0 0 6px;font-size:19px}.pm p,.wy p{margin:0;color:var(--mute);font-size:13.5px}.wy h4{margin:0 0 4px;font-size:16px}
-.ct{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.ct a{border:1px solid var(--line);border-radius:16px;padding:24px;min-height:140px;background:linear-gradient(160deg,#122252,#0b1329);display:flex;flex-direction:column;justify-content:flex-end;font-weight:700;font-size:17px}.ct a:hover{border-color:var(--gold)}.ct small{font-weight:500;color:var(--mute);font-size:13px}
-footer{background:#070c1a;border-top:1px solid var(--line);color:var(--mute);margin-top:50px;padding:36px 0 28px}footer .w{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}footer h4{color:var(--gold);margin:0 0 10px;letter-spacing:.14em;font-size:12px}footer a{display:block;padding:3px 0}footer a:hover{color:#fff}footer p{margin:0}.cp{text-align:center;font-size:12.5px;margin-top:24px;opacity:.7}
-.wab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px #0006;z-index:25}.wab .ic{width:28px;height:28px}
-#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:99px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}#toast.on{opacity:1}
-.x{position:absolute;right:12px;top:8px;border:0;background:none;font-size:26px}.btn.wab2{background:#25d366;color:#fff}
-.gi .price{font-size:22px;font-weight:700}.gi .old,.gi .cic{color:var(--mute)}.gbt .btn{background:var(--gold);color:#0a1020}.gbt .btn.wab{position:static;width:auto;height:auto;border-radius:10px;background:#25d366;color:#fff;box-shadow:none;display:block;padding:13px 26px}
-@media(max-width:860px){.hs{grid-template-columns:1fr;padding:30px 24px 56px;min-height:420px}.pn{order:-1;width:150px}.dots{left:24px}.qk{grid-template-columns:repeat(4,1fr)}.br{grid-template-columns:repeat(4,1fr)}.pm,.wy{grid-template-columns:1fr}.ct{grid-template-columns:repeat(2,1fr)}footer .w{grid-template-columns:1fr}.hd{flex-wrap:wrap}.sb{order:3;flex:1 0 100%}.top .w>span:last-child{display:none}.ar{display:none}.gp{grid-template-columns:repeat(2,1fr);gap:10px}.pb{padding:10px}.pb h3{font-size:13px;min-height:34px}.pr{font-size:16px}.pb button{padding:8px;font-size:13px}.pc{flex-basis:168px}.pt b{font-size:10.5px;left:6px;top:6px}.pt .ph{display:none}}
-.vs{margin-top:16px}.vs-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
+.ct{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.ct a{border:1px solid var(--line);border-radius:18px;padding:24px;min-height:140px;background:linear-gradient(160deg,#122252,#0b1329);display:flex;flex-direction:column;justify-content:flex-end;font-weight:700;font-size:17px;transition:transform .2s,border-color .2s}.ct a:hover{border-color:var(--gold);transform:translateY(-3px)}.ct small{font-weight:500;color:var(--mute);font-size:13px}
+
+footer{background:#070c1a;border-top:1px solid var(--line);color:var(--mute);margin-top:54px;padding:40px 0 30px}footer .w{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}footer h4{color:var(--gold);margin:0 0 10px;letter-spacing:.14em;font-size:12px}footer a{display:block;padding:4px 0;transition:color .2s}footer a:hover{color:#fff}footer p{margin:0}.cp{text-align:center;font-size:12.5px;margin-top:28px;opacity:.75}
+
+/* Floating WhatsApp Button */
+.wab-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));height:56px;min-width:56px;padding:0 16px;border-radius:99px;background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 26px #25d36655;z-index:25;font-weight:700;font-size:14px;animation:waPulse 2.4s infinite;transition:transform .2s}
+.wab-float:hover{transform:scale(1.05)}
+.wab-float svg{width:28px;height:28px;fill:currentColor;flex:none}
+.wab-float span{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .35s ease,opacity .25s ease}
+.wab-float:hover span{max-width:120px;opacity:1}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 #25d36688}70%{box-shadow:0 0 0 15px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
+
+#toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:#0f1933f5;border:1px solid var(--gold);color:var(--gold);padding:11px 22px;border-radius:99px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:60;box-shadow:0 10px 25px #0008}#toast.on{opacity:1;transform:translate(-50%,-4px)}
+
+/* Modals (Gallery & Cart) */
+.x{position:absolute;right:12px;top:10px;border:0;background:none;font-size:26px}
+.gi .price{font-size:22px;font-weight:800}.gi .old,.gi .cic{color:var(--mute)}
+.gbt .btn{background:linear-gradient(135deg,#e5c278,#cfa44e);color:#0a1020}
+.gbt .btn.wa-btn{background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff;box-shadow:0 8px 20px #25d36633}
+.gbt .btn.wa-btn svg{width:19px;height:19px;fill:currentColor}
+
+/* Cart Drawer / Modal */
+#cartModal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:40;padding:14px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+#cartModal.on{display:flex;animation:fade .2s}
+.cbox{position:relative;background:var(--card);border:1px solid var(--line);width:100%;max-width:460px;max-height:88vh;border-radius:22px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px #0009;animation:up .3s cubic-bezier(.2,.8,.2,1)}
+.chead{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.chead h3{margin:0;font-size:18px}
+.cbody{padding:16px 20px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:12px}
+.citem{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);padding:10px 12px;border-radius:14px}
+.citem-info{flex:1;min-width:0}.citem-info h4{margin:0 0 3px;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.citem-info span{color:var(--gold);font-weight:700;font-size:13.5px}
+.cqty{display:flex;align-items:center;gap:6px}.cqty button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-weight:700;display:grid;place-items:center}.cqty button:hover{border-color:var(--gold)}
+.cfoot{padding:16px 20px;border-top:1px solid var(--line);background:#0c1428}
+.ctot{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:15px}.ctot b{font-size:20px;color:var(--gold)}
+
+@media(max-width:860px){.hs{grid-template-columns:1fr;padding:30px 24px 56px;min-height:420px}.pn{order:-1;width:160px;padding:12px}.dots{left:24px}.qk{grid-template-columns:repeat(4,1fr)}.br{grid-template-columns:repeat(4,1fr)}.pm,.wy{grid-template-columns:1fr}.ct{grid-template-columns:repeat(2,1fr)}footer .w{grid-template-columns:1fr}.hd{flex-wrap:wrap}.sb{order:3;flex:1 0 100%}.top .w>span:last-child{display:none}.ar{display:none}.gp{grid-template-columns:repeat(2,1fr);gap:10px}.pb{padding:11px}.pb h3{font-size:13px;min-height:35px}.pr{font-size:16px}.pb button{padding:8px;font-size:13px}.pc{flex-basis:172px}.pt{padding:8px}.pt b{font-size:10.5px;left:6px;top:6px}.pt .ph{display:none}.wab-float{padding:0;width:54px;height:54px}.wab-float span{display:none}}
+
+/* Video Slider */
+.vs{margin-top:20px}.vs-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
 .vs-k{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--acc);margin-bottom:4px}
 .vs h2{margin:0;font-size:clamp(18px,3vw,26px);line-height:1.2}
 .vs-cnt{font-weight:800;font-size:13px;color:var(--mute);white-space:nowrap}.vs-cnt b{color:var(--ink);font-size:22px}
-.vs-view{position:relative;overflow:hidden;border-radius:22px;background:#000;box-shadow:0 18px 40px #0b2a8f33;touch-action:pan-y}
+.vs-view{position:relative;overflow:hidden;border-radius:22px;background:#000;border:1px solid var(--line);box-shadow:0 18px 40px #0b2a8f33;touch-action:pan-y}
 .vs-track{display:flex;transition:transform .9s cubic-bezier(.65,0,.35,1)}
 .vs-s{flex:0 0 100%;aspect-ratio:16/9;position:relative;transform:scale(.9);opacity:.3;filter:blur(3px);transition:transform .9s cubic-bezier(.65,0,.35,1),opacity .9s,filter .9s}
 .vs-s.on{transform:none;opacity:1;filter:none}
@@ -77,16 +124,11 @@ footer{background:#070c1a;border-top:1px solid var(--line);color:var(--mute);mar
 .sw{animation:fadeUp .55s ease backwards}
 @keyframes pulse2{0%{box-shadow:0 0 0 0 #ffffffaa}70%{box-shadow:0 0 0 14px #fff0}100%{box-shadow:0 0 0 0 #fff0}}
 @media(max-width:720px){.vs-view{border-radius:16px}.vs-arr{width:34px;height:34px}.vs-arr.l{left:6px}.vs-arr.r{right:6px}.vs-tip{font-size:11px;right:60px}}
-@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-@keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,24px) scale(1.2)}}
-@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(1.5deg)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}}
-@keyframes shine{to{background-position:200% center}}
 @keyframes up{from{transform:translateY(40px);opacity:0}}
 @keyframes fade{from{opacity:0}}
-@keyframes pulse{0%{box-shadow:0 0 0 0 #25d36699}70%{box-shadow:0 0 0 16px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
-@keyframes mq{to{transform:translateX(-50%)}}
-@keyframes pop{40%{transform:scale(1.6)}}
+
+/* Splash / Loading Screen */
 .ld{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;background:var(--bg);transition:opacity .55s ease,transform .7s cubic-bezier(.2,.7,.2,1),visibility 0s .6s}
 .ld::before,.ld::after{content:"";position:absolute;width:62vmax;height:62vmax;border-radius:50%;filter:blur(70px);opacity:.38;pointer-events:none}
 .ld::before{background:var(--brand);left:-22vmax;top:-18vmax;animation:ldDrift 7s ease-in-out infinite alternate}
@@ -110,7 +152,6 @@ footer{background:#070c1a;border-top:1px solid var(--line);color:var(--mute);mar
 .ld-dots b:nth-child(1){left:12%;animation-duration:5.2s}.ld-dots b:nth-child(2){left:27%;animation-duration:6.4s;animation-delay:.8s}
 .ld-dots b:nth-child(3){left:41%;animation-duration:4.8s;animation-delay:.3s}.ld-dots b:nth-child(4){left:58%;animation-duration:6s;animation-delay:1.2s}
 .ld-dots b:nth-child(5){left:73%;animation-duration:5.5s;animation-delay:.5s}.ld-dots b:nth-child(6){left:88%;animation-duration:6.8s;animation-delay:1.6s}
-@keyframes ldRipple{0%{transform:scale(.75);opacity:.9}100%{transform:scale(1.5);opacity:0}}
 .ld.done{opacity:0;visibility:hidden;transform:scale(1.06)}
 .ld.done .ld-in{transform:scale(.92);transition:transform .6s ease}
 html:has(.ld:not(.done)){overflow:hidden}
@@ -127,30 +168,64 @@ html:has(.ld:not(.done)){overflow:hidden}
 @keyframes ldDrift{to{transform:translate(8vmax,6vmax) scale(1.1)}}
 @keyframes ldUp{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.8}100%{transform:translateY(-105vh) scale(1.3);opacity:0}}
 @media (prefers-reduced-motion:reduce){.ld-ring,.ld-halo,.ld-ico,.ld-spark,.ld-dots b,.ld::before,.ld::after{animation:none}.ld-ico{animation:ldPop .5s ease backwards}}
-.p .img{position:relative;cursor:pointer;overflow:hidden}.p .img img{width:100%;height:100%;object-fit:cover;display:block}.p h3{cursor:pointer}
-.ph{position:absolute;right:8px;bottom:8px;background:#0007;color:#fff;font-size:11px;font-weight:700;border-radius:99px;padding:2px 8px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.grid[data-v=compact] .ph{display:none}
-#gal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:30;padding:12px}#gal.on{display:flex;animation:fade .25s}
-.gbox{position:relative;background:var(--card);width:100%;max-width:520px;max-height:96vh;overflow:auto;border-radius:20px;animation:up .35s cubic-bezier(.2,.8,.2,1)}
-.gx{z-index:4;background:#0007;color:#fff;border-radius:50%;width:36px;height:36px;font-size:22px;line-height:1;top:10px;right:10px;display:grid;place-items:center;padding:0}
-.gv{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;background:linear-gradient(160deg,var(--bg),var(--line))}
+
+/* Product Gallery Modal */
+.ph{position:absolute;right:8px;bottom:8px;background:#0a1020cc;color:#fff;font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#gal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:35;padding:12px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}#gal.on{display:flex;animation:fade .25s}
+.gbox{position:relative;background:var(--card);border:1px solid var(--line);width:100%;max-width:520px;max-height:94vh;overflow:auto;border-radius:22px;animation:up .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 24px 60px #0009}
+.gx{z-index:4;background:#0008;color:#fff;border-radius:50%;width:36px;height:36px;font-size:22px;line-height:1;top:10px;right:10px;display:grid;place-items:center;padding:0;transition:background .2s}.gx:hover{background:#000c}
+.gv{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;background:#fff}
 .gt{display:flex;transition:transform .55s cubic-bezier(.65,0,.35,1)}
-.gs{flex:0 0 100%;aspect-ratio:1/1;display:grid;place-items:center;position:relative;transform:scale(.82);opacity:.25;transition:transform .55s cubic-bezier(.65,0,.35,1),opacity .55s}.gs.on{transform:none;opacity:1}
-.gs svg{width:78%;height:78%;filter:drop-shadow(0 18px 16px #0003)}.gs img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
-.gl,.gc{position:absolute;background:#0007;color:#fff;font-size:12px;font-weight:600;border-radius:99px;padding:4px 12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:2}.gl{left:12px;bottom:12px}.gc{left:12px;top:12px}
-.gth{display:flex;gap:8px;padding:10px 14px 0}.gth button{width:62px;aspect-ratio:1;display:grid;place-items:center;padding:4px;border:2px solid var(--line);background:var(--bg);border-radius:12px;cursor:pointer;opacity:.6;transition:opacity .3s,border-color .3s,transform .3s}
-.gth button.on{opacity:1;border-color:var(--brand);transform:translateY(-2px)}.gth svg,.gth img{width:100%;height:100%;border-radius:8px;object-fit:cover}
-.gi{padding:12px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:4px}.gi h3{margin:0;font-size:18px}.gi .price{font-size:22px}
-.gbt{display:flex;gap:8px;margin-top:10px}.gbt .btn{flex:1;text-align:center;margin:0}
+.gs{flex:0 0 100%;aspect-ratio:1/1;display:grid;place-items:center;position:relative;overflow:hidden;min-height:0;padding:20px;transform:scale(.85);opacity:.25;transition:transform .55s cubic-bezier(.65,0,.35,1),opacity .55s}.gs.on{transform:none;opacity:1}
+.gs svg{width:76%;height:76%;filter:drop-shadow(0 18px 16px #0003)}.gs img{width:100%;height:100%;object-fit:contain;-webkit-user-drag:none}
+.gl,.gc{position:absolute;background:#0a1020cc;color:#fff;font-size:12px;font-weight:600;border-radius:99px;padding:4px 12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:2}.gl{left:12px;bottom:12px}.gc{left:12px;top:12px}
+.gth{display:flex;gap:8px;padding:12px 16px 0}.gth button{width:64px;aspect-ratio:1;display:grid;place-items:center;padding:4px;border:2px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;opacity:.6;transition:opacity .3s,border-color .3s,transform .3s}
+.gth button.on{opacity:1;border-color:var(--brand);transform:translateY(-2px)}.gth svg,.gth img{width:100%;height:100%;border-radius:8px;object-fit:contain;display:block}
+.gi{padding:14px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:4px}.gi small{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:11.5px;letter-spacing:.05em}.gi h3{margin:0;font-size:19px}
+.gbt{display:flex;gap:10px;margin-top:12px}.gbt .btn{flex:1;text-align:center;margin:0}
 .pt .ph{right:8px;bottom:8px;z-index:3}
-.gs{overflow:hidden;min-height:0}.gs img{position:absolute;inset:0}.gth img{display:block}
 .ld-hint{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 48px);text-align:center;z-index:3;font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);opacity:0;transition:opacity .5s;margin:0}.ld.ask .ld-hint{opacity:1}
 .sec,.vs{scroll-margin-top:150px}
 .ct a span{margin-top:0}
 .ar,.vs-snd,.vs-arr{cursor:pointer}
-.wab.btn{position:static}
-</style></head><body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1-2.1-.2-4 2-6 .5 2.500 2 4.900 4 6.500 2 1.600 3 3.500 3 5.500a7 7 0 1 1-14 0c0-1.150.4-2.300 1-3a2.500 2.500 0 0 0 2.500 2.500z"/></symbol><symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5M3 9v11h18V9M3 9c0 1.500 1.300 2.500 3 2.500S9 10.500 9 9c0 1.500 1.300 2.500 3 2.500s3-1 3-2.500c0 1.500 1.300 2.500 3 2.500s3-1 3-2.500M9 20v-6h6v6"/></symbol><symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.600 13.400l-7.200 7.200a2 2 0 0 1-2.800 0L3 13V3h10l7.600 7.600a2 2 0 0 1 0 2.800zM7.500 7.500h.01"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 10h18M7 15h3"/></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.700 6.300a4 4 0 0 0-5 5L3 18l3 3 6.700-6.700a4 4 0 0 0 5-5l-2.700 2.700-2.300-.7-.7-2.300z"/></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5M9 7h6"/></symbol><symbol id="i-gift" viewBox="0 0 24 24"><path d="M3 8h18v4H3zM12 8v13M5 12v9h14v-9M12 8c-2 0-4-1-4-2.500S9.500 3 12 8c2.500-5 4-3.500 4-2.500S14 8 12 8z"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6zM9 12l2 2 4-4"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7M7 19a1.500 1.500 0 1 0 0 .01M17 19a1.500 1.500 0 1 0 0 .01"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><path d="M7 2h10v20H7zM11 18h2"/></symbol><symbol id="i-laptop" viewBox="0 0 24 24"><path d="M4 5h16v11H4zM2 19h20"/></symbol><symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol><symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 12h11l2-8H6M9 20a1 1 0 1 0 0 .01M17 20a1 1 0 1 0 0 .01"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.500 6.500L21 12l-6.500 2.500L12 21l-2.500-6.500L3 12l6.500-2.500z"/></symbol></defs></svg>
+</style>
+<script>
+// Paksa kembali ke halaman utama (paling atas) setiap kali halaman di-refresh
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+if (window.location.hash) {
+  history.replaceState(null, "", window.location.pathname + window.location.search);
+}
+window.scrollTo(0, 0);
+window.addEventListener("beforeunload", function () {
+  window.scrollTo(0, 0);
+});
+</script>
+</head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1-2.1-.2-4 2-6 .5 2.500 2 4.900 4 6.500 2 1.600 3 3.500 3 5.500a7 7 0 1 1-14 0c0-1.150.4-2.300 1-3a2.500 2.500 0 0 0 2.500 2.500z"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5M3 9v11h18V9M3 9c0 1.500 1.300 2.500 3 2.500S9 10.500 9 9c0 1.500 1.300 2.500 3 2.500s3-1 3-2.500c0 1.500 1.300 2.500 3 2.500s3-1 3-2.500M9 20v-6h6v6"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.600 13.400l-7.200 7.200a2 2 0 0 1-2.800 0L3 13V3h10l7.600 7.600a2 2 0 0 1 0 2.800zM7.500 7.500h.01"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 10h18M7 15h3"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.700 6.300a4 4 0 0 0-5 5L3 18l3 3 6.700-6.700a4 4 0 0 0 5-5l-2.700 2.700-2.300-.7-.7-2.300z"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5M9 7h6"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><path d="M3 8h18v4H3zM12 8v13M5 12v9h14v-9M12 8c-2 0-4-1-4-2.500S9.500 3 12 8c2.500-5 4-3.500 4-2.500S14 8 12 8z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6zM9 12l2 2 4-4"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.82 14.01c-.24.68-1.41 1.3-1.95 1.38-.5.07-1.13.1-1.82-.12-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.01-2.42.27-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.14.46.12.63-.07.17-.19.73-.85.92-1.14.19-.29.39-.24.66-.14.27.1 1.7.8 1.99.95.29.14.48.22.55.34.07.12.07.68-.17 1.36z"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7M7 19a1.500 1.500 0 1 0 0 .01M17 19a1.500 1.500 0 1 0 0 .01"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4L4 9M4 4v5h5M4 13a8 8 0 0 0 14 4l2-2M20 20v-5h-5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M7 2h10v20H7zM11 18h2"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><path d="M4 5h16v11H4zM2 19h20"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2 12h11l2-8H6M9 20a1 1 0 1 0 0 .01M17 20a1 1 0 1 0 0 .01"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.500 6.500L21 12l-6.500 2.500L12 21l-2.500-6.500L3 12l6.500-2.500z"/></symbol>
+</defs></svg>
+
 <div class="ld" id="ld" role="status" aria-label="Memuat">
 <div class="ld-grid"></div>
 <div class="ld-dots"><b></b><b></b><b></b><b></b><b></b><b></b></div>
@@ -166,20 +241,23 @@ html:has(.ld:not(.done)){overflow:hidden}
 </div>
 <noscript><style>.ld{display:none}</style></noscript>
 
-<div class="top"><div class="w"><span><b>Free ongkir</b> se-Indonesia &nbsp;•&nbsp; Cicilan <b>0% sampai 24x</b> &nbsp;•&nbsp; Garansi resmi</span><span>Bantuan: <a href="https://wa.me/6281574682460"><b>WhatsApp</b></a> &nbsp;•&nbsp; Setiap hari 09.00–21.00</span></div></div>
+<div class="top"><div class="w"><span><b>Free ongkir</b> se-Indonesia &nbsp;•&nbsp; Cicilan <b>0% sampai 24x</b> &nbsp;•&nbsp; Garansi resmi</span><span>Bantuan: <a href="https://wa.me/6281574682460" target="_blank" rel="noopener"><b>WhatsApp</b></a> &nbsp;•&nbsp; Setiap hari 09.00–21.00</span></div></div>
 <header><div class="w">
- <div class="hd"><a class="logo" href="#"><i><svg class="ic"><use href="#i-star"/></svg></i><span>Al Ghifari<small>SOLUTION</small></span></a>
+ <div class="hd"><a class="logo" href="#" onclick="resetHome(event)"><i><svg class="ic"><use href="#i-star"/></svg></i><span>Al Ghifari<small>SOLUTION</small></span></a>
  <div class="sb"><input id="q" placeholder="Cari iPhone, Samsung, laptop…" aria-label="Cari produk"><button onclick="srch()">Cari</button></div>
- <button class="cart" onclick="chk()"><svg class="ic"><use href="#i-cart"/></svg>Keranjang<b id="cn">0</b></button></div>
+ <button class="cart" onclick="openCart()"><svg class="ic"><use href="#i-cart"/></svg>Keranjang<b id="cn">0</b></button></div>
  <nav><a class="k" href="#flash">Flash Sale</a><a href="#produk" onclick="tab('HP')">Smartphone</a><a href="#produk" onclick="tab('Laptop')">Laptop</a><a href="#produk" onclick="tab('Aksesoris')">Aksesori</a><a href="#vs">Video</a><a href="#promo">Promo Bank</a><a href="#brand">Brand</a></nav>
 </div></header>
+
 <main class="w">
 <section class="hero" aria-label="Banner"><div class="ht" id="ht">
 <div class="hs"><div><em>TRENDING SEKARANG</em><h1>iPhone 16 Pro, titanium paling ringan</h1><p>Cicilan 0% sampai 24 bulan, gratis ongkir, dan bisa tukar tambah HP lama kamu.</p><a class="btn" href="#flash">Belanja Sekarang</a></div><div class="pn" data-k="iPhone 16 Pro"></div></div>
 <div class="hs"><div><em>LAPTOP PILIHAN</em><h1>Kerja, kuliah, dan gaming dalam satu pilihan</h1><p>ASUS, Lenovo, Acer, Dell, dan MSI. Semua unit baru bergaransi resmi.</p><a class="btn" href="#produk" onclick="tab('Laptop')">Lihat Laptop</a></div><div class="pn" data-k="@Laptop"></div></div>
 <div class="hs"><div><em>AKSESORI ORIGINAL</em><h1>Lengkapi gadget dengan aksesori terbaik</h1><p>Charger, power bank, kabel, dan earbuds dari brand terpercaya.</p><a class="btn" href="#produk" onclick="tab('Aksesoris')">Lihat Aksesori</a></div><div class="pn" data-k="@Aksesoris"></div></div>
 </div><button class="ar l" onclick="go(-1)" aria-label="Sebelumnya">‹</button><button class="ar r" onclick="go(1)" aria-label="Berikutnya">›</button><div class="dots" id="dots"></div></section>
-<section class="qk"><a href="#flash"><svg class="ic"><use href="#i-flame"/></svg>Promo</a><a href="#kontak"><svg class="ic"><use href="#i-store"/></svg>Ambil di Toko</a><a href="#brand"><svg class="ic"><use href="#i-tag"/></svg>Brand</a><a href="#promo"><svg class="ic"><use href="#i-card"/></svg>Cicilan 0%</a><a href="https://wa.me/6281574682460?text=Halo%2C%20saya%20mau%20tanya%20jasa%20service%20gadget"><svg class="ic"><use href="#i-wrench"/></svg>Service</a><a href="#produk"><svg class="ic"><use href="#i-scale"/></svg>Bandingkan</a><a href="#produk"><svg class="ic"><use href="#i-book"/></svg>E-Katalog</a><a href="#kontak"><svg class="ic"><use href="#i-gift"/></svg>Member</a></section>
+
+<section class="qk"><a href="#flash"><svg class="ic"><use href="#i-flame"/></svg>Promo</a><a href="#kontak"><svg class="ic"><use href="#i-store"/></svg>Ambil di Toko</a><a href="#brand"><svg class="ic"><use href="#i-tag"/></svg>Brand</a><a href="#promo"><svg class="ic"><use href="#i-card"/></svg>Cicilan 0%</a><a href="https://wa.me/6281574682460?text=Halo%20Al%20Ghifari%20Solution%2C%20saya%20mau%20tanya%20jasa%20service%20gadget" target="_blank" rel="noopener"><svg class="ic"><use href="#i-wrench"/></svg>Service</a><a href="#produk"><svg class="ic"><use href="#i-scale"/></svg>Bandingkan</a><a href="#produk"><svg class="ic"><use href="#i-book"/></svg>E-Katalog</a><a href="#kontak"><svg class="ic"><use href="#i-gift"/></svg>Member</a></section>
+
 <section class="vs" id="vs">
 <div class="vs-top"><div><span class="vs-k">TRENDING SEKARANG</span><h2 id="vt"></h2></div><div class="vs-cnt"><b id="vn">01</b> / 03</div></div>
 <div class="vs-view" id="vview">
@@ -197,21 +275,42 @@ html:has(.ld:not(.done)){overflow:hidden}
 </section>
 
 <section class="sec fs" id="flash"><div class="sh"><div><small>PENAWARAN TERBATAS</small><h2>Flash Sale Hari Ini</h2></div><div class="cd"><span id="h">00</span>:<span id="m">00</span>:<span id="s">00</span></div></div><div class="row" id="row"></div></section>
+
 <section class="sec" id="produk"><div class="sh"><div><small>KATALOG</small><h2>Semua Produk</h2></div><span class="em" id="pcn"></span></div>
 <div class="tb" id="tabs"><a data-t="all" onclick="tab('all')">Semua</a><a data-t="HP" onclick="tab('HP')">Smartphone</a><a data-t="Laptop" onclick="tab('Laptop')">Laptop</a><a data-t="Aksesoris" onclick="tab('Aksesoris')">Aksesori</a></div>
 <div class="gp" id="gp"></div></section>
+
 <section class="sec" id="brand"><div class="sh"><div><small>BRAND RESMI</small><h2>Belanja per Brand</h2></div></div><div class="br" id="br"></div></section>
+
 <section class="sec" id="promo"><div class="sh"><div><small>KEUNGGULAN</small><h2>Promo Bank &amp; Cicilan</h2></div></div><div class="pm"><div><svg class="ic"><use href="#i-card"/></svg><h3>Cicilan 0% sampai 24x</h3><p>Kartu kredit bank partner. Proses cepat dan tanpa ribet.</p></div><div><svg class="ic"><use href="#i-refresh"/></svg><h3>Tukar Tambah</h3><p>HP lama kamu dihargai tinggi, langsung potong harga baru.</p></div><div><svg class="ic"><use href="#i-truck"/></svg><h3>Gratis Ongkir</h3><p>Dikirim aman dengan packing tebal ke seluruh Indonesia.</p></div></div></section>
+
 <section class="sec"><div class="sh"><div><small>JELAJAHI</small><h2>Kategori Pilihan</h2></div></div><div class="ct"><a onclick="tab('HP');go2()"><svg class="ic"><use href="#i-phone"/></svg><span>Smartphone</span><small>Apple, Samsung, Xiaomi</small></a><a onclick="tab('Laptop');go2()"><svg class="ic"><use href="#i-laptop"/></svg><span>Laptop</span><small>Kerja, kuliah, gaming</small></a><a onclick="tab('Aksesoris');go2()"><svg class="ic"><use href="#i-plug"/></svg><span>Aksesori</span><small>Charger, earbuds, mouse</small></a><a onclick="tab('all');go2()"><svg class="ic"><use href="#i-grid"/></svg><span>Semua Produk</span><small>Lihat seluruh katalog</small></a></div></section>
+
 <section class="sec"><div class="sh"><div><small>JAMINAN</small><h2>Kenapa Al Ghifari Solution?</h2></div></div><div class="wy"><div><svg class="ic"><use href="#i-shield"/></svg><h4>Garansi Resmi</h4><p>Semua unit baru, segel, dan bergaransi resmi.</p></div><div><svg class="ic"><use href="#i-bolt"/></svg><h4>Proses Cepat</h4><p>Chat, konfirmasi stok, kirim di hari yang sama.</p></div><div><svg class="ic"><use href="#i-star"/></svg><h4>Terpercaya</h4><p>Cek fisik dan IMEI sebelum barang dikirim.</p></div><div><svg class="ic"><use href="#i-chat"/></svg><h4>Konsultasi Gratis</h4><p>Bingung memilih? Tim kami siap membantu.</p></div></div></section>
 </main>
+
 <footer id="kontak"><div class="w"><div><div class="logo"><i><svg class="ic"><use href="#i-star"/></svg></i><span>Al Ghifari<small>SOLUTION</small></span></div><p style="margin-top:12px">Solusi lifestyle gadget terpercaya. Belanja nyaman, harga bersahabat, garansi resmi.</p></div>
 <div><h4>BELANJA</h4><a href="#flash">Flash Sale</a><a href="#produk">Semua Produk</a><a href="#brand">Brand</a></div>
-<div><h4>BANTUAN</h4><a href="https://wa.me/6281574682460">WhatsApp 0815-7468-2460</a><a href="#kontak">Ambil di Toko</a><a href="#promo">Promo &amp; Cicilan</a></div></div>
+<div><h4>BANTUAN</h4><a href="https://wa.me/6281574682460" target="_blank" rel="noopener">WhatsApp 0815-7468-2460</a><a href="#kontak">Ambil di Toko</a><a href="#promo">Promo &amp; Cicilan</a></div></div>
 <div class="cp">© 2026 Al Ghifari Solution. Harga contoh, mohon konfirmasi stok.</div></footer>
-<a class="wab" href="https://wa.me/6281574682460?text=Halo%20Al%20Ghifari%20Solution" aria-label="Chat WhatsApp"><svg class="ic"><use href="#i-chat"/></svg></a>
+
+<a class="wab-float" href="https://wa.me/6281574682460?text=Halo%20Al%20Ghifari%20Solution%2C%20saya%20ingin%20tanya%20produk%20gadget" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>
+  <span>Chat Kami</span>
+</a>
+
 <div id="gal" onclick="if(event.target==this)closeG()"><div class="gbox" id="gb"></div></div>
+
+<div id="cartModal" onclick="if(event.target==this)closeCart()">
+  <div class="cbox">
+    <div class="chead"><h3>Keranjang Belanja</h3><button class="x" style="position:static" onclick="closeCart()" aria-label="Tutup">×</button></div>
+    <div class="cbody" id="cbody"></div>
+    <div class="cfoot" id="cfoot"></div>
+  </div>
+</div>
+
 <div id="toast"></div>
+
 <script>
 var WA="6281574682460";
 var P=[
@@ -255,9 +354,11 @@ var P=[
 {n:"Watch SE 2",c:"Aksesoris",pr:4299000,o:4699000,t:"watch",col:["#9aa3b2","#e6e9ef"],b:"Apple",im:["apple-watch-se-2-1.jpg","apple-watch-se-2-2.jpg","apple-watch-se-2-3.jpg"]},
 {n:"M331 Silent Mouse",c:"Aksesoris",pr:249000,o:299000,t:"mouse",col:["#2a2a2a","#4b78ff"],b:"Logitech",im:["logitech-m331-silent-mouse-1.jpg","logitech-m331-silent-mouse-2.jpg","logitech-m331-silent-mouse-3.jpg"]}
 ];
-var tab="Semua",cart=[];
+
 function rp(x){return "Rp"+x.toLocaleString("id-ID")}
 function wa(m){return "https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
+function resetHome(e){if(e)e.preventDefault();history.replaceState(null,"",location.pathname+location.search);window.scrollTo({top:0,behavior:"smooth"})}
+
 var GC=0;
 function art(p,v){
  v=v||0;var a=p.col[0],b=p.col[1],id="g"+(GC++),g='<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+a+'"/><stop offset="1" stop-color="'+b+'"/></linearGradient></defs>',f='url(#'+id+')',s='',j,k,
@@ -305,12 +406,13 @@ function art(p,v){
 var LB={phone:["Tampak depan","Tampak belakang","Dua sisi"],laptop:["Layar terbuka","Keyboard","Tertutup"],watch:["Tampak depan","Tampilan layar","Miring"],mouse:["Atas","Samping","Bawah"],plug:["Depan","Samping","Dengan kabel"],buds:["Case","Case terbuka","Earbud"]},gi=0;
 function fbImg(el,i,v){el.outerHTML=art(P[i],v)}
 function ph(p,v){var i=P.indexOf(p);return p.im&&p.im[v]?'<img src="'+p.im[v]+'" alt="'+p.n.replace(/"/g,'&quot;')+'" draggable="false" loading="lazy" onerror="fbImg(this,'+i+','+v+')">':art(p,v)}
+
 function openG(i){
  var p=P[i],L=LB[p.t]||["Depan","Samping","Detail"],h='<button class="x gx" onclick="closeG()" aria-label="Tutup">×</button><div class="gv" id="gv"><div class="gt" id="gt">',k;
  for(k=0;k<3;k++)h+='<div class="gs"><span class="gl">'+L[k]+'</span>'+ph(p,k)+'</div>';
  h+='</div><span class="gc" id="gc"></span><button class="vs-arr l" onclick="gg(-1)" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="vs-arr r" onclick="gg(1)" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div><div class="gth">';
  for(k=0;k<3;k++)h+='<button onclick="gShow('+k+')" aria-label="Foto '+(k+1)+'">'+ph(p,k)+'</button>';
- h+='</div><div class="gi"><small>'+p.b+'</small><h3>'+p.n+'</h3><div><span class="old">'+rp(p.o)+'</span> <span class="price">'+rp(p.pr)+'</span></div><span class="cic">Cicilan mulai '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span><div class="gbt"><button class="btn" onclick="add('+i+')">+ Keranjang</button><a class="btn wab" target="_blank" rel="noopener" href="'+wa("Halo Al Ghifari Solution, saya tertarik dengan "+p.n+". Apakah ready?")+'">Tanya via WhatsApp</a></div></div>';
+ h+='</div><div class="gi"><small>'+p.b+'</small><h3>'+p.n+'</h3><div><span class="old">'+rp(p.o)+'</span> <span class="price">'+rp(p.pr)+'</span></div><span class="cic">Cicilan mulai '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span><div class="gbt"><button class="btn" onclick="add('+i+')">+ Keranjang</button><a class="btn wa-btn" target="_blank" rel="noopener" href="'+wa("Halo Al Ghifari Solution, saya tertarik dengan "+p.n+". Apakah ready?")+'"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Tanya WhatsApp</a></div></div>';
  document.getElementById("gb").innerHTML=h;document.getElementById("gal").classList.add("on");document.body.style.overflow="hidden";gShow(0);
  var v=document.getElementById("gv"),x0=0;
  v.addEventListener("pointerdown",function(e){x0=e.clientX});
@@ -322,10 +424,16 @@ function gShow(k){gi=(k+3)%3;document.getElementById("gt").style.transform="tran
  document.getElementById("gc").textContent=(gi+1)+" / 3"}
 function gg(d){gShow(gi+d)}
 function closeG(){document.getElementById("gal").classList.remove("on");document.body.style.overflow=""}
-document.addEventListener("keydown",function(e){if(!document.getElementById("gal").classList.contains("on"))return;if(e.key=="ArrowRight")gg(1);else if(e.key=="ArrowLeft")gg(-1);else if(e.key=="Escape")closeG()});
-function setTab(t){tab=t;drawTabs();render();document.getElementById("produk").scrollIntoView()}
+document.addEventListener("keydown",function(e){
+ if(document.getElementById("gal").classList.contains("on")){if(e.key=="ArrowRight")gg(1);else if(e.key=="ArrowLeft")gg(-1);else if(e.key=="Escape")closeG()}
+ if(document.getElementById("cartModal").classList.contains("on")&&e.key=="Escape")closeCart();
+});
 
 var cart=[],cur=0,TB="all",Q="",tm,BR=[["Apple","apple"],["Samsung","samsung"],["Xiaomi","xiaomi"],["OPPO","oppo"],["vivo","vivo"],["realme","realme"],["Google","google"],["POCO","poco"],["ASUS","asus"],["Lenovo","lenovo"],["Acer","acer"],["HP","hp"],["Dell","dell"],["MSI","msi"],["Anker","anker"],["Logitech","logitech"]];
+try{cart=JSON.parse(localStorage.getItem("ags_cart")||"[]")}catch(e){cart=[]}
+function saveCart(){try{localStorage.setItem("ags_cart",JSON.stringify(cart))}catch(e){}document.getElementById("cn").textContent=cart.length}
+saveCart();
+
 function lg(e,n,s){var k=+e.dataset.k||0;e.dataset.k=k+1;if(k==0)e.src="https://cdn.simpleicons.org/"+s+"/ffffff";else e.replaceWith(document.createTextNode(n))}
 document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(\''+b[0]+'\')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,\''+b[0]+'\',\''+b[1]+'\')"></a>'}).join("");
 function disc(p){return Math.round((1-p.pr/p.o)*100)}
@@ -339,9 +447,43 @@ function go2(){document.getElementById("produk").scrollIntoView({behavior:"smoot
 function srch(){Q=document.getElementById("q").value;TB="all";drawGrid();go2()}
 function qs(t){document.getElementById("q").value=t;srch()}
 document.getElementById("q").addEventListener("keydown",function(e){if(e.key=="Enter")srch()});
+
 function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e.t);e.t=setTimeout(function(){e.classList.remove("on")},1800)}
-function add(i){cart.push(i);document.getElementById("cn").textContent=cart.length;toast(P[i].n+" masuk keranjang")}
-function chk(){if(!cart.length){toast("Keranjang masih kosong");return}var t=0,l=cart.map(function(i){t+=P[i].pr;return"- "+P[i].n+" ("+rp(P[i].pr)+")"}).join("\n");window.open(wa("Halo Al Ghifari Solution, saya mau pesan:\n"+l+"\nTotal: "+rp(t)+"\nApakah ready?"),"_blank")}
+function add(i){cart.push(i);saveCart();toast(P[i].n+" masuk keranjang")}
+
+function openCart(){
+ var cb=document.getElementById("cbody"),cf=document.getElementById("cfoot");
+ if(!cart.length){
+  cb.innerHTML='<p class="em" style="text-align:center;padding:30px 10px">Keranjang belanja kamu masih kosong.<br>Yuk pilih gadget impianmu dulu!</p>';
+  cf.innerHTML='<button class="btn" style="width:100%" onclick="closeCart()">Mulai Belanja</button>';
+ }else{
+  var counts={},order=[];
+  cart.forEach(function(idx){if(!counts[idx]){counts[idx]=0;order.push(idx)}counts[idx]++});
+  var total=0,html="";
+  order.forEach(function(idx){
+   var p=P[idx],q=counts[idx],sub=p.pr*q;total+=sub;
+   html+='<div class="citem"><div class="citem-info"><h4>'+p.n+'</h4><span>'+rp(p.pr)+' × '+q+'</span></div><div class="cqty"><button onclick="modCart('+idx+',-1)" aria-label="Kurangi">−</button><b>'+q+'</b><button onclick="modCart('+idx+',1)" aria-label="Tambah">+</button></div></div>';
+  });
+  cb.innerHTML=html;
+  cf.innerHTML='<div class="ctot"><span>Total Estimasi</span><b>'+rp(total)+'</b></div><button class="btn wa-btn" style="width:100%;background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff" onclick="chk()"><svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Pesan Sekarang via WhatsApp</button>';
+ }
+ document.getElementById("cartModal").classList.add("on");
+ document.body.style.overflow="hidden";
+}
+function modCart(idx,delta){
+ if(delta>0)cart.push(idx);
+ else{var pos=cart.indexOf(idx);if(pos>-1)cart.splice(pos,1)}
+ saveCart();openCart();
+}
+function closeCart(){document.getElementById("cartModal").classList.remove("on");document.body.style.overflow=""}
+function chk(){
+ if(!cart.length){toast("Keranjang masih kosong");return}
+ var counts={},order=[],t=0;
+ cart.forEach(function(idx){if(!counts[idx]){counts[idx]=0;order.push(idx)}counts[idx]++});
+ var l=order.map(function(i){var sub=P[i].pr*counts[i];t+=sub;return"- "+P[i].n+" ("+counts[i]+"x) = "+rp(sub)}).join("\n");
+ window.open(wa("Halo Al Ghifari Solution, saya mau pesan:\n"+l+"\nTotal: "+rp(t)+"\nApakah unitnya ready?"),"_blank");
+}
+
 var ht=document.getElementById("ht"),dots=document.getElementById("dots");
 for(var k=0;k<3;k++){var b=document.createElement("button");b.setAttribute("aria-label","Banner "+(k+1));b.onclick=(function(k){return function(){show(k)}})(k);dots.appendChild(b)}
 function show(i){cur=(i+3)%3;ht.style.transform="translateX(-"+cur*100+"%)";[].forEach.call(dots.children,function(d,j){d.classList.toggle("on",j==cur)});clearInterval(tm);tm=setInterval(function(){show(cur+1)},6000)}
@@ -351,6 +493,7 @@ var x0=0;ht.addEventListener("pointerdown",function(e){x0=e.clientX});ht.addEven
 var end=Date.now()+6*3600*1000;
 setInterval(function(){var r=Math.max(0,end-Date.now()),z=function(v){return String(v).padStart(2,"0")};document.getElementById("h").textContent=z(Math.floor(r/3600000));document.getElementById("m").textContent=z(Math.floor(r/60000)%60);document.getElementById("s").textContent=z(Math.floor(r/1000)%60)},1000);
 drawFlash();drawGrid();show(0);
+
 var VS=[{t:"Galaxy A17 5G, AI untuk Semua",p:"HP 5G terbaru dari Samsung dengan fitur AI yang bikin aktivitas harian lebih mudah. Cek stok dan harga terbaiknya di Al Ghifari Solution.",q:"Samsung Galaxy A17 5G"},{t:"Xiaomi 18 Pro Series",p:"Lihat seri flagship terbaru Xiaomi lewat iklan resminya. Mau tahu harga dan ketersediaannya? Tanya langsung ke kami.",q:"Xiaomi 18 Pro"},{t:"OPPO Find X9 Ultra",p:"Flagship terbaru OPPO yang siap bikin kamu penasaran. Hubungi kami untuk info pre-order dan promo.",q:"OPPO Find X9 Ultra"}];
 var vi=0,vsnd=false,vvis=true,vg=false,vids=document.querySelectorAll("#vtk video"),vsl=document.querySelectorAll("#vtk .vs-s"),vdt;
 document.getElementById("vd").innerHTML=VS.map(function(s,k){return '<button onclick="vShow('+k+')" aria-label="Video '+(k+1)+'"><i></i></button>'}).join("");
@@ -385,16 +528,16 @@ document.addEventListener("visibilitychange",function(){if(document.hidden)vids.
 var vx=0;document.getElementById("vview").addEventListener("touchstart",function(e){vx=e.touches[0].clientX},{passive:true});
 document.getElementById("vview").addEventListener("touchend",function(e){var d=e.changedTouches[0].clientX-vx;if(Math.abs(d)>50)vgo(d<0?1:-1)});
 vIcon();vShow(0);
-window.addEventListener("load",function(){if(vvis&&vids[vi].paused)vPlay()});
-
+window.addEventListener("load",function(){window.scrollTo(0,0);if(vvis&&vids[vi].paused)vPlay()});
 </script>
+
 <script>(function(){var l=document.getElementById("ld");if(!l)return;
 var t0=Date.now(),fin=false,ready=false,started=false,loaded=document.readyState==="complete",wait;
 var snd=new Audio("Sound.mp3");snd.preload="auto";snd.volume=.9;
 var ev=["pointerup","touchend","click","keydown"];
 function bind(){ev.forEach(function(e){window.addEventListener(e,tap,true)})}
 function unbind(){ev.forEach(function(e){window.removeEventListener(e,tap,true)})}
-function done(){if(fin)return;fin=true;unbind();clearTimeout(wait);l.classList.add("done");if(window.vResume)window.vResume();setTimeout(function(){l.remove()},900)}
+function done(){if(fin)return;fin=true;unbind();clearTimeout(wait);l.classList.add("done");window.scrollTo(0,0);if(window.vResume)window.vResume();setTimeout(function(){l.remove()},900)}
 function ok(){unbind();clearTimeout(wait);l.classList.remove("ask");setTimeout(done,1700)}
 function tap(){if(fin||!started)return;var p=snd.play();if(p&&p.then)p.then(ok).catch(function(){});else ok()}
 function ask(){l.classList.add("ask");clearTimeout(wait);wait=setTimeout(done,12000)}
