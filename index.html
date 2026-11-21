@@ -225,9 +225,9 @@ html:has(.ld:not(.done)){overflow:hidden}
 <div class="vs-top"><div><span class="vs-k">TRENDING SEKARANG</span><h2 id="vt"></h2></div><div class="vs-cnt"><b id="vn">01</b> / 03</div></div>
 <div class="vs-view" id="vview">
 <div class="vs-track" id="vtk">
-<div class="vs-s"><video src="samsung-a17.mp4" autoplay muted playsinline preload="auto"></video><span class="vs-brand">SAMSUNG</span></div>
-<div class="vs-s"><video src="xiaomi-18-pro.mp4" autoplay muted playsinline preload="auto"></video><span class="vs-brand">XIAOMI</span></div>
-<div class="vs-s"><video src="oppo-find-x9.mp4" autoplay muted playsinline preload="auto"></video><span class="vs-brand">OPPO</span></div>
+<div class="vs-s"><video src="samsung-a17.mp4" muted playsinline preload="auto"></video><span class="vs-brand">SAMSUNG</span></div>
+<div class="vs-s"><video src="xiaomi-18-pro.mp4" muted playsinline preload="auto"></video><span class="vs-brand">XIAOMI</span></div>
+<div class="vs-s"><video src="oppo-find-x9.mp4" muted playsinline preload="auto"></video><span class="vs-brand">OPPO</span></div>
 </div>
 <span class="vs-tip" id="vtp">Ketuk untuk suara</span>
 <button class="vs-snd hint" id="vsn" aria-label="Suara"><svg viewBox="0 0 24 24" id="vsi"></svg></button>
@@ -459,7 +459,9 @@ var vi=0,vsnd=false,vvis=true,vg=false,vids=document.querySelectorAll("#vtk vide
 document.getElementById("vd").innerHTML=VS.map(function(s,k){return '<button onclick="vShow('+k+')" aria-label="Video '+(k+1)+'"><i></i></button>'}).join("");
 vdt=document.querySelectorAll("#vd button");
 function vIcon(){document.getElementById("vsi").innerHTML=vsnd?'<path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/>':'<path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9l5 6M21 9l-5 6"/>';document.getElementById("vsn").classList.toggle("hint",!vsnd);document.getElementById("vtp").classList.toggle("off",vsnd)}
-function vPlay(){var v=vids[vi];v.muted=!vsnd;var p=v.play();if(p&&p.catch)p.catch(function(){if(vsnd){vsnd=false;vIcon()}v.muted=true;v.play().catch(function(){})})}
+function ldOn(){var e=document.getElementById("ld");return !!e&&!e.classList.contains("done")}
+window.vResume=function(){if(vvis&&vids[vi].paused)vPlay()};
+function vPlay(){if(ldOn())return;var v=vids[vi];v.muted=!vsnd;var p=v.play();if(p&&p.catch)p.catch(function(){if(vsnd){vsnd=false;vIcon()}v.muted=true;v.play().catch(function(){})})}
 function vSet(on){vsnd=on;vids[vi].muted=!on;vIcon();if(on&&vvis&&vids[vi].paused)vPlay()}
 function vShow(i){
  vi=(i+VS.length)%VS.length;
@@ -480,7 +482,7 @@ vids.forEach(function(v,k){
  v.addEventListener("timeupdate",function(){if(k==vi&&v.duration)vdt[k].firstChild.style.width=(v.currentTime/v.duration*100)+"%"});
 });
 document.getElementById("vsn").addEventListener("click",function(){vSet(!vsnd)});
-document.addEventListener("click",function(e){if(vg)return;vg=true;if(e.target.closest&&e.target.closest("#vsn"))return;vSet(true)},true);
+document.addEventListener("click",function(e){if(ldOn()||vg)return;vg=true;if(e.target.closest&&e.target.closest("#vsn"))return;vSet(true)},true);
 new IntersectionObserver(function(e){vvis=e[0].isIntersecting;if(vvis)vPlay();else vids.forEach(function(v){v.pause()})},{threshold:.5}).observe(document.getElementById("vview"));
 document.addEventListener("visibilitychange",function(){if(document.hidden)vids.forEach(function(v){v.pause()});else if(vvis)vPlay()});
 var vx=0;document.getElementById("vview").addEventListener("touchstart",function(e){vx=e.touches[0].clientX},{passive:true});
@@ -499,7 +501,7 @@ var snd=new Audio("Sound.mp3");snd.preload="auto";snd.volume=.9;
 var ev=["touchend","pointerup","click","keydown"];
 function bind(){ev.forEach(function(e){window.addEventListener(e,tap,true)})}
 function unbind(){ev.forEach(function(e){window.removeEventListener(e,tap,true)})}
-function done(){if(fin)return;fin=true;unbind();l.classList.add("done");setTimeout(function(){l.remove()},900)}
+function done(){if(fin)return;fin=true;unbind();l.classList.add("done");if(window.vResume)window.vResume();setTimeout(function(){l.remove()},900)}
 function ok(){unbind();setTimeout(done,1700)}
 function tap(){if(fin)return;var p=snd.play();if(p&&p.then)p.then(ok).catch(function(){});else ok()}
 function start(){if(started||fin)return;started=true;
