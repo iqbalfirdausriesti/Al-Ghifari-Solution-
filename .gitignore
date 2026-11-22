@@ -1,3 +1,12 @@
 __pycache__/
 *.pyc
 
+# Script sementara / utilitas lokal
+fix_*.ps1
+commit_push.ps1
+organize_images*.ps1
+update_paths.ps1
+*.py
+*.csv
+*.xlsx
+
