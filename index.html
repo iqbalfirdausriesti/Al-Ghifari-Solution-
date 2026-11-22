@@ -560,7 +560,7 @@ function saveCart(){try{localStorage.setItem("ags_cart",JSON.stringify(cart))}ca
 saveCart();
 
 function lg(e,n,s){var k=+e.dataset.k||0;e.dataset.k=k+1;if(k==0)e.src="https://cdn.simpleicons.org/"+s+"/ffffff";else e.replaceWith(document.createTextNode(n))}
-document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(''+b[0]+'')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,''+b[0]+'',''+b[1]+'')"></a>'}).join("");
+document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(\''+b[0]+'\')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,\''+b[0]+'\',\''+b[1]+'\')"></a>'}).join("");
 function disc(p){return Math.round((1-p.pr/p.o)*100)}
 function card(p,i,fl){var s=45+(i*17)%50;return'<article class="pc"><div class="pt" onclick="openG('+i+')"><b>-'+disc(p)+'%</b><span class="ph">3 foto</span>'+ph(p,0)+'</div><div class="pb"><small>'+p.b+'</small><h3 onclick="openG('+i+')">'+p.n+'</h3><span class="old">'+rp(p.o)+'</span><span class="pr">'+rp(p.pr)+'</span><span class="cc">Cicilan '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>'+(fl?'<div class="bar"><i style="width:'+s+'%"></i></div><span class="s">Terjual '+s+'%</span>':'')+'<button onclick="add('+i+')">+ Keranjang</button></div></article>'}
 function drawFlash(){var ix=P.map(function(p,i){return i}).sort(function(a,b){return disc(P[b])-disc(P[a])}).slice(0,8);var r=document.getElementById("row");r.innerHTML=ix.concat(ix).map(function(i){return card(P[i],i,1)}).join("");if(r.dataset.slInit)return;r.dataset.slInit="1";var paused=false,ptm=null;function pauseTmp(ms){paused=true;clearTimeout(ptm);ptm=setTimeout(function(){paused=false},ms)}r.addEventListener("mouseenter",function(){paused=true});r.addEventListener("mouseleave",function(){paused=false});r.addEventListener("touchstart",function(){paused=true},{passive:true});r.addEventListener("touchend",function(){pauseTmp(1500)});r.addEventListener("wheel",function(){pauseTmp(1500)},{passive:true});var prev=document.getElementById("fsPrev"),next=document.getElementById("fsNext");if(prev)prev.addEventListener("click",function(){pauseTmp(1400);var half=r.scrollWidth/2;if(r.scrollLeft<=10)r.scrollLeft=half;r.scrollBy({left:-232,behavior:"smooth"})});if(next)next.addEventListener("click",function(){pauseTmp(1400);r.scrollBy({left:232,behavior:"smooth"})});function tick(){if(!paused&&r.offsetParent!==null){var half=r.scrollWidth/2;if(half>r.clientWidth){r.scrollLeft+=0.55;if(r.scrollLeft>=half)r.scrollLeft-=half}}requestAnimationFrame(tick)}requestAnimationFrame(tick)}
@@ -605,12 +605,8 @@ function chk(){
  if(!cart.length){toast("Keranjang masih kosong");return}
  var counts={},order=[],t=0;
  cart.forEach(function(idx){if(!counts[idx]){counts[idx]=0;order.push(idx)}counts[idx]++});
- var l=order.map(function(i){var sub=P[i].pr*counts[i];t+=sub;return"- "+P[i].n+" ("+counts[i]+"x) = "+rp(sub)}).join("
-");
- window.open(wa("Halo Al Ghifari Solution, saya mau pesan:
-"+l+"
-Total: "+rp(t)+"
-Apakah unitnya ready?"),"_blank");
+ var l=order.map(function(i){var sub=P[i].pr*counts[i];t+=sub;return"- "+P[i].n+" ("+counts[i]+"x) = "+rp(sub)}).join("\n");
+ window.open(wa("Halo Al Ghifari Solution, saya mau pesan:\n"+l+"\nTotal: "+rp(t)+"\nApakah unitnya ready?"),"_blank");
 }
 
 var ht=document.getElementById("ht"),dots=document.getElementById("dots");
