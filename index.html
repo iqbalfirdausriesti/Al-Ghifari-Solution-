@@ -59,7 +59,7 @@ nav a,.tb a{white-space:nowrap;padding:8px 0 11px;border-bottom:2px solid transp
 .pb button{margin-top:auto;padding-top:9px;padding-bottom:9px;border:1px solid #3a4d7a;background:#16223e66;font-weight:600;border-radius:11px;transition:background .2s,border-color .2s,color .2s}.pb button:hover{background:var(--brand);border-color:var(--brand);color:#fff}
 
 .gp{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}.gp .pc{flex:none}.em{color:var(--mute);font-weight:600}.tb{margin-bottom:18px;border-bottom:1px solid var(--line)}
-.br{display:grid;grid-template-columns:repeat(auto-fit, minmax(80px,1fr));gap:10px}.br a{height:68px;border:1px solid var(--line);background:var(--card);border-radius:14px;display:grid;place-items:center;color:var(--mute);font-weight:700;letter-spacing:.06em;font-size:13px;transition:transform .2s,border-color .2s,background .2s}.br a:hover{border-color:var(--gold);background:var(--card2);color:#fff;transform:translateY(-2px)}.br img{height:48px;width:auto;max-width:100%;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}.br a:hover img{opacity:1}
+.br{display:grid;grid-template-columns:repeat(auto-fit, minmax(80px,1fr));gap:10px}.br a{height:68px;border:1px solid var(--line);background:var(--card);border-radius:14px;display:grid;place-items:center;color:var(--mute);font-weight:700;letter-spacing:.06em;font-size:13px;transition:transform .2s,border-color .2s,background .2s}.br a:hover{border-color:var(--gold);background:var(--card2);color:#fff;transform:translateY(-2px)}.br img{height:36px;width:auto;max-width:78%;object-fit:contain;filter:brightness(0) invert(1);opacity:.88;transition:opacity .2s,transform .2s}.br a:hover img{opacity:1;transform:scale(1.05)}
 
 .pm,.wy{display:grid;gap:14px}.pm{grid-template-columns:repeat(3,1fr)}.wy{grid-template-columns:repeat(4,1fr)}
 .pm div,.wy div{border:1px solid var(--line);border-radius:18px;padding:24px;background:linear-gradient(160deg,#111d42,#0b1329);transition:border-color .2s,transform .2s}.pm div:hover,.wy div:hover{border-color:#3a528a;transform:translateY(-2px)}.pm .ic,.wy .ic,.ct .ic{width:30px;height:30px;color:var(--gold);margin-bottom:12px}
@@ -262,9 +262,9 @@ window.addEventListener("beforeunload", function () {
 <div class="vs-top"><div><span class="vs-k">TRENDING SEKARANG</span><h2 id="vt"></h2></div><div class="vs-cnt"><b id="vn">01</b> / 03</div></div>
 <div class="vs-view" id="vview">
 <div class="vs-track" id="vtk">
-<div class="vs-s"><video src="samsung-a17.mp4" muted playsinline preload="auto"></video><span class="vs-brand">SAMSUNG</span></div>
-<div class="vs-s"><video src="xiaomi-18-pro.mp4" muted playsinline preload="auto"></video><span class="vs-brand">XIAOMI</span></div>
-<div class="vs-s"><video src="oppo-find-x9.mp4" muted playsinline preload="auto"></video><span class="vs-brand">OPPO</span></div>
+<div class="vs-s"><video src="samsung-a17.mp4" poster="assets/samsung/samsung-galaxy-a55-5g-8-256-1.jpg" muted playsinline preload="metadata"></video><span class="vs-brand">SAMSUNG</span></div>
+<div class="vs-s"><video src="xiaomi-18-pro.mp4" poster="assets/xiaomi/xiaomi-14t-pro-12-512-1.jpg" muted playsinline preload="none"></video><span class="vs-brand">XIAOMI</span></div>
+<div class="vs-s"><video src="oppo-find-x9.mp4" poster="assets/oppo/oppo-a79-5g-1.jpg" muted playsinline preload="none"></video><span class="vs-brand">OPPO</span></div>
 </div>
 <span class="vs-tip" id="vtp">Ketuk untuk suara</span>
 <button class="vs-snd hint" id="vsn" aria-label="Suara"><svg viewBox="0 0 24 24" id="vsi"></svg></button>
