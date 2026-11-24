@@ -757,15 +757,19 @@ saveCart();
 
 function lg(e,n,s){var k=+e.dataset.k||0;e.dataset.k=k+1;if(k==0)e.src="https://cdn.simpleicons.org/"+s+"/ffffff";else e.replaceWith(document.createTextNode(n))}
 function renderBrands(){
- var seen={},list=[],slugMap={};
- BR.forEach(function(b){slugMap[b[0].toLowerCase()]=b[1];seen[b[0].toLowerCase()]=true;list.push(b)});
+ var seen={},list=[];
+ BR.forEach(function(b){seen[b[0].toLowerCase()]=true;list.push(b)});
  P.forEach(function(p){
   var b=String(p.b||"").trim();
   if(!b)return;
   var low=b.toLowerCase();
-  if(!seen[low]){seen[low]=true;list.push([b,slugMap[low]||low.replace(/[^a-z0-9]+/g,"")])}
+  if(!seen[low]){seen[low]=true;list.push([b,""])}
  });
- document.getElementById("br").innerHTML=list.map(function(b){return'<a onclick="qs(\''+b[0].replace(/'/g,"\\'")+'\')"><img src="logos/'+b[1]+'.svg" alt="'+escH(b[0])+'" loading="lazy" onerror="lg(this,\''+b[0].replace(/'/g,"\\'")+'\',\''+b[1]+'\')"></a>'}).join("");
+ document.getElementById("br").innerHTML=list.map(function(b){
+  var q=b[0].replace(/'/g,"\\'");
+  if(b[1])return'<a onclick="qs(\''+q+'\')"><img src="logos/'+b[1]+'.svg" alt="'+escH(b[0])+'" loading="lazy" onerror="lg(this,\''+q+'\',\''+b[1]+'\')"></a>';
+  return'<a onclick="qs(\''+q+'\')">'+escH(b[0])+'</a>';
+ }).join("");
 }
 var CAT_LABELS={HP:"Smartphone",Laptop:"Laptop",Aksesoris:"Aksesori"};
 function renderTabs(){
