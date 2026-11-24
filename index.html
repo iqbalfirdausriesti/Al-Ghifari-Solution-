@@ -434,7 +434,7 @@ html:has(.ld:not(.done)){overflow:hidden}
 <div id="toast"></div>
 
 <script>
-var PANEL_API_URL=""; // Tempel URL Web App Google Apps Script (/exec) di sini setelah Deploy
+var PANEL_API_URL="https://script.google.com/macros/s/AKfycbwqRG78WG0DwY7Qx2np14oOB-il7aciJwjs6FGDPNgi1UatLlORsz9cQjoaQCPdaprz/exec"; // Terhubung ke Google Panel Al Ghifari Solution
 (function(){try{var qp=new URLSearchParams(location.search).get("panel");if(qp&&qp.indexOf("https://script.google.com/macros/s/")===0)PANEL_API_URL=qp}catch(e){}})();
 var WA="6281574682460";
 function escH(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
