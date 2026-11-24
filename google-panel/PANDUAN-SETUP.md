@@ -13,9 +13,10 @@ Dengan **Google Panel** ini, Anda bisa mengelola seluruh isi website **langsung 
 1. Buka Google Drive dan buat **Google Spreadsheet (Google Sheets)** baru, beri nama misalnya `Panel Toko Al Ghifari Solution`.
 2. Klik menu **Ekstensi (Extensions)** -> **Apps Script**.
 3. Hapus seluruh teks bawaan di file `Code.gs`, lalu **salin dan tempel seluruh isi** file [Code.gs](Code.gs).
-4. Tekan **Simpan (`Ctrl + S`)**.
-5. Kembali ke tab Google Sheets lalu **Muat ulang halaman (`F5`)**. Tunggu ~5 detik hingga muncul menu baru bernama **`⚡ Al Ghifari Panel`** di bar atas.
-6. Klik **`⚡ Al Ghifari Panel`** -> **`🚀 Setup Awal (Buat Sheet & Import Katalog)`**.
+4. Tambahkan file HTML baru lewat tombol **`+` (Add a file)** -> **HTML**, beri nama **`Panel`**, lalu hapus isinya dan tempel seluruh isi [Panel.html](Panel.html).
+5. Tekan **Simpan (`Ctrl + S`)**.
+6. Kembali ke tab Google Sheets lalu **Muat ulang halaman (`F5`)**. Tunggu ~5 detik hingga muncul menu baru bernama **`⚡ Al Ghifari Panel`** di bar atas.
+7. Klik **`⚡ Al Ghifari Panel`** -> **`🚀 Setup Awal (Buat Sheet & Import Katalog)`**.
    - Saat pertama kali berjalan, Google akan meminta izin akses -> pilih akun Google Anda -> klik **Lanjutan (Advanced)** -> **Buka ... (tidak aman)** -> **Izinkan (Allow)**.
    - Script otomatis membuat 6 sheet rapi sekaligus mengimpor seluruh 164 produk, 3 banner hero, dan 3 video dari website Anda!
 
@@ -28,12 +29,10 @@ Dengan **Google Panel** ini, Anda bisa mengelola seluruh isi website **langsung 
    - **Description**: `Al Ghifari Panel API v1`
    - **Execute as**: `Me (email Anda)`
    - **Who has access**: **`Anyone`** *(wajib Anyone agar website pengunjung dapat membaca data katalog)*
-4. Klik **Deploy**, lalu salin **Web app URL** (berakhiran `/exec`).
-5. Buka [index.html](../index.html), cari baris:
-   ```javascript
-   var PANEL_API_URL="";
-   ```
-   Tempel URL tersebut di dalam tanda kutip, lalu commit & push ke GitHub!
+4. Klik **Deploy**, lalu salin **Web app URL** (berakhiran `/exec`):
+   - **Buka URL `/exec` langsung di browser** -> membuka **Web Admin Panel Visual** (tampilan dark dashboard untuk kelola produk, Flash Sale, banner, video, dan **upload foto/video ke Google Drive**).
+   - **Tambahkan `?api=1`** di belakang URL (`.../exec?api=1`) untuk **JSON API** yang dipasang ke website.
+5. Buka [index.html](../index.html), pastikan baris `PANEL_API_URL` berisi URL `.../exec?api=1`, lalu commit & push ke GitHub!
 
 > [!TIP]
 > Anda juga bisa menguji URL Panel tanpa mengubah kode lebih dulu dengan membuka link website Anda sambil menambahkan `?panel=URL_WEB_APP_ANDA` di belakang alamat browser!

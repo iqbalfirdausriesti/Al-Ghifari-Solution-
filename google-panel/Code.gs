@@ -8,7 +8,7 @@
  * 3. Muat ulang (F5) Google Sheets -> klik menu "⚡ Al Ghifari Panel"
  * 4. Klik "🚀 Setup Awal (Buat Sheet & Import Katalog)"
  * 5. Deploy -> New deployment -> Web app (Execute as: Me, Who has access: Anyone)
- * 6. Salin URL Web App (/exec) ke variabel PANEL_API_URL di index.html
+ * 6. Buka URL Web App (/exec) untuk Admin Panel Visual, atau tambah ?api=1 untuk JSON
  * ============================================================================
  */
 
@@ -45,6 +45,7 @@ function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu("⚡ Al Ghifari Panel")
     .addItem("🚀 Setup Awal (Buat Sheet & Import Katalog)", "setupAwal")
+    .addItem("🖥 Buka Admin Panel (Panduan Web App)", "tampilkanPanduanApi")
     .addSeparator()
     .addItem("💰 Sesuaikan Harga per Merk / Kategori", "bukaDialogHarga")
     .addItem("🔄 Update Video Trending Otomatis", "updateVideoTrendingOtomatis")
@@ -53,7 +54,6 @@ function onOpen() {
     .addItem("⏹ Matikan Auto-Update Video", "matikanTriggerHarian")
     .addSeparator()
     .addItem("🔥 Ringkasan Flash Sale & Statistik", "ringkasanPanel")
-    .addItem("🔗 Cara Hubungkan ke Website", "tampilkanPanduanApi")
     .addToUi();
 }
 
@@ -224,7 +224,7 @@ function setupAwal() {
     shV.getRange(2, 10, vRows.length, 1).insertCheckboxes();
   }
   var tipeVideoRule = SpreadsheetApp.newDataValidation()
-    .requireValueInList(["mp4", "youtube"], true)
+    .requireValueInList(["mp4", "youtube", "gdrive"], true)
     .setAllowInvalid(false)
     .build();
   shV.getRange(2, 7, 100, 1).setDataValidation(tipeVideoRule);
@@ -316,11 +316,17 @@ function extractYouTubeId_(url) {
   return m ? m[1] : "";
 }
 
-/**
- * Web App Endpoint GET -> Dibaca oleh website (index.html).
- * Gunakan fetch(PANEL_API_URL) polos di browser agar bebas preflight CORS.
- */
-function doGet(e) {
+function extractDriveId_(url) {
+  if (!url) return "";
+  var s = String(url).trim();
+  var m =
+    s.match(/\/file\/d\/([a-zA-Z0-9_-]{15,})/) ||
+    s.match(/[?&]id=([a-zA-Z0-9_-]{15,})/) ||
+    s.match(/\/d\/([a-zA-Z0-9_-]{15,})/);
+  return m ? m[1] : "";
+}
+
+function buildPublicPayload_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   // Pengaturan
@@ -396,9 +402,13 @@ function doGet(e) {
       var videoUrl = String(r.video_url || "").trim();
       var tipeRaw = String(r.tipe || "").trim().toLowerCase();
       var ytId = extractYouTubeId_(videoUrl);
-      var tipe = tipeRaw === "youtube" || (ytId && tipeRaw !== "mp4") ? "youtube" : "mp4";
+      var driveId = extractDriveId_(videoUrl);
+      var tipe = "mp4";
+      if (tipeRaw === "youtube" || (ytId && tipeRaw !== "mp4" && tipeRaw !== "gdrive")) tipe = "youtube";
+      else if (tipeRaw === "gdrive" || (driveId && tipeRaw !== "mp4" && tipeRaw !== "youtube")) tipe = "gdrive";
       var poster = String(r.poster_url || "").trim();
       if (!poster && ytId) poster = "https://i.ytimg.com/vi/" + ytId + "/hqdefault.jpg";
+      if (!poster && driveId) poster = "https://lh3.googleusercontent.com/d/" + driveId + "=w1200";
       return {
         brand: String(r.brand || "").trim().toUpperCase(),
         t: String(r.judul || "").trim(),
@@ -407,11 +417,12 @@ function doGet(e) {
         tipe: tipe,
         url: videoUrl,
         ytId: ytId,
+        driveId: driveId,
         poster: poster
       };
     });
 
-  var payload = {
+  return {
     ok: true,
     updatedAt: new Date().toISOString(),
     settings: settings,
@@ -419,10 +430,23 @@ function doGet(e) {
     videos: videos,
     products: products
   };
+}
 
-  return ContentService
-    .createTextOutput(JSON.stringify(payload))
-    .setMimeType(ContentService.MimeType.JSON);
+/**
+ * Web App Endpoint GET (Dual-mode):
+ * - ?api=1 atau ?format=json -> JSON Katalog untuk website (index.html)
+ * - Tanpa parameter api -> Tampilan Web Admin Panel (Panel.html)
+ */
+function doGet(e) {
+  var p = (e && e.parameter) || {};
+  if (p.api === "1" || p.format === "json") {
+    return ContentService
+      .createTextOutput(JSON.stringify(buildPublicPayload_()))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  return HtmlService.createHtmlOutputFromFile("Panel")
+    .setTitle("Al Ghifari Solution — Admin Panel")
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 /* ============================================================================
@@ -764,7 +788,7 @@ function updateVideoTrendingOtomatis(silent) {
     shVid.getRange(2, 10, allRows.length, 1).insertCheckboxes();
   }
   var tipeVideoRule = SpreadsheetApp.newDataValidation()
-    .requireValueInList(["mp4", "youtube"], true)
+    .requireValueInList(["mp4", "youtube", "gdrive"], true)
     .setAllowInvalid(false)
     .build();
   shVid.getRange(2, 7, 100, 1).setDataValidation(tipeVideoRule);
@@ -830,7 +854,465 @@ function tampilkanPanduanApi() {
   var serviceUrl = "";
   try { serviceUrl = ScriptApp.getService().getUrl() || ""; } catch (e) {}
   var msg = serviceUrl
-    ? "URL Web App terdeteksi:\n" + serviceUrl + "\n\nSalin URL di atas ke variabel PANEL_API_URL di dalam file index.html."
-    : "Belum di-deploy sebagai Web App.\n\nLangkah cepat:\n1. Klik Deploy -> New deployment\n2. Pilih Type: Web app\n3. Execute as: Me | Who has access: Anyone\n4. Klik Deploy, salin URL Web App (/exec)\n5. Tempel URL tersebut ke variabel PANEL_API_URL di index.html.";
-  SpreadsheetApp.getUi().alert("Hubungkan Google Panel ke Website", msg, SpreadsheetApp.getUi().ButtonSet.OK);
+    ? "URL Admin Panel Visual:\n" + serviceUrl + "\n\nURL JSON API Website (untuk PANEL_API_URL di index.html):\n" + serviceUrl + "?api=1"
+    : "Belum di-deploy sebagai Web App.\n\nLangkah cepat:\n1. Klik Deploy -> New deployment\n2. Pilih Type: Web app\n3. Execute as: Me | Who has access: Anyone\n4. Klik Deploy\n5. Buka URL Web App untuk Admin Panel, dan gunakan URL + '?api=1' untuk PANEL_API_URL di index.html.";
+  SpreadsheetApp.getUi().alert("Admin Panel & API Website", msg, SpreadsheetApp.getUi().ButtonSet.OK);
+}
+
+/* ============================================================================
+ * WEB ADMIN PANEL API (Panel.html) & UPLOAD MEDIA GOOGLE DRIVE
+ * ============================================================================ */
+
+function safeStr_(v, ss) {
+  if (v === null || v === undefined) return "";
+  if (Object.prototype.toString.call(v) === "[object Date]" && !isNaN(v.getTime())) {
+    return Utilities.formatDate(v, ss ? ss.getSpreadsheetTimeZone() : "Asia/Jakarta", "yyyy-MM-dd HH:mm");
+  }
+  return String(v);
+}
+
+function getHeaderMap_(sh) {
+  var headers = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  var map = {};
+  headers.forEach(function (h, idx) {
+    var k = String(h || "").trim();
+    if (k) map[k] = idx + 1;
+  });
+  return map;
+}
+
+function readSheetWithRow_(sh, ss) {
+  if (!sh || sh.getLastRow() < 2) return [];
+  var data = sh.getDataRange().getValues();
+  var headers = data[0].map(function (h) { return String(h || "").trim(); });
+  var out = [];
+  for (var r = 1; r < data.length; r++) {
+    var row = data[r];
+    var hasAny = false;
+    var obj = { rowIndex: r + 1 };
+    for (var c = 0; c < headers.length; c++) {
+      if (headers[c]) {
+        var val = row[c];
+        if (Object.prototype.toString.call(val) === "[object Date]") {
+          val = safeStr_(val, ss);
+        }
+        obj[headers[c]] = val;
+        if (val !== "" && val !== null && val !== false) hasAny = true;
+      }
+    }
+    if (hasAny) out.push(obj);
+  }
+  return out;
+}
+
+function hasDailyVideoTrigger_() {
+  try {
+    return ScriptApp.getProjectTriggers().some(function (t) {
+      return t.getHandlerFunction() === "updateVideoTrendingOtomatis";
+    });
+  } catch (e) {
+    return false;
+  }
+}
+
+function getDashboardState() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var email = "";
+  try { email = Session.getActiveUser().getEmail() || ""; } catch (e) {}
+  var serviceUrl = "";
+  try { serviceUrl = ScriptApp.getService().getUrl() || ""; } catch (e) {}
+
+  var pRaw = readSheetWithRow_(ss.getSheetByName(SHEET_NAMES.PRODUK), ss);
+  var products = pRaw.map(function (r) {
+    var pr = Number(r.harga_promo) || 0;
+    var o = Number(r.harga_normal) || pr;
+    return {
+      rowIndex: r.rowIndex,
+      aktif: toBool_(r.aktif, true),
+      brand: safeStr_(r.brand, ss).trim(),
+      kategori: safeStr_(r.kategori || "HP", ss).trim(),
+      nama: safeStr_(r.nama, ss).trim(),
+      harga_promo: pr,
+      harga_normal: o,
+      diskon: o > 0 ? Math.round((1 - pr / o) * 100) : 0,
+      flash_sale: toBool_(r.flash_sale, false),
+      urutan_flash: r.urutan_flash === "" || r.urutan_flash === null ? "" : Number(r.urutan_flash),
+      terjual_persen: r.terjual_persen === "" || r.terjual_persen === null ? 50 : Number(r.terjual_persen),
+      tipe_ikon: safeStr_(r.tipe_ikon || "phone", ss).trim(),
+      warna_1: safeStr_(r.warna_1 || "#1c2d4f", ss).trim(),
+      warna_2: safeStr_(r.warna_2 || "#4b78ff", ss).trim(),
+      glb_3d: safeStr_(r.glb_3d, ss).trim(),
+      foto_1: safeStr_(r.foto_1, ss).trim(),
+      foto_2: safeStr_(r.foto_2, ss).trim(),
+      foto_3: safeStr_(r.foto_3, ss).trim()
+    };
+  });
+
+  var hero = readSheetWithRow_(ss.getSheetByName(SHEET_NAMES.HERO), ss).map(function (r) {
+    return {
+      rowIndex: r.rowIndex,
+      aktif: toBool_(r.aktif, true),
+      urutan: Number(r.urutan) || 1,
+      label: safeStr_(r.label, ss).trim(),
+      judul: safeStr_(r.judul, ss).trim(),
+      deskripsi: safeStr_(r.deskripsi, ss).trim(),
+      tombol_teks: safeStr_(r.tombol_teks, ss).trim(),
+      tombol_link: safeStr_(r.tombol_link, ss).trim(),
+      produk_terkait: safeStr_(r.produk_terkait, ss).trim(),
+      gambar_custom: safeStr_(r.gambar_custom, ss).trim(),
+      glb_custom: safeStr_(r.glb_custom, ss).trim()
+    };
+  }).sort(function (a, b) { return a.urutan - b.urutan; });
+
+  var videos = readSheetWithRow_(ss.getSheetByName(SHEET_NAMES.VIDEO), ss).map(function (r) {
+    var videoUrl = safeStr_(r.video_url, ss).trim();
+    var tipeRaw = safeStr_(r.tipe, ss).trim().toLowerCase();
+    var ytId = extractYouTubeId_(videoUrl);
+    var driveId = extractDriveId_(videoUrl);
+    var tipe = tipeRaw || (ytId ? "youtube" : driveId ? "gdrive" : "mp4");
+    return {
+      rowIndex: r.rowIndex,
+      aktif: toBool_(r.aktif, true),
+      urutan: Number(r.urutan) || 1,
+      brand: safeStr_(r.brand, ss).trim().toUpperCase(),
+      judul: safeStr_(r.judul, ss).trim(),
+      deskripsi: safeStr_(r.deskripsi, ss).trim(),
+      nama_produk_wa: safeStr_(r.nama_produk_wa, ss).trim(),
+      tipe: tipe,
+      video_url: videoUrl,
+      poster_url: safeStr_(r.poster_url, ss).trim(),
+      ytId: ytId,
+      driveId: driveId,
+      kunci_manual: toBool_(r.kunci_manual, false),
+      terakhir_update: safeStr_(r.terakhir_update, ss)
+    };
+  }).sort(function (a, b) { return a.urutan - b.urutan; });
+
+  var sources = readSheetWithRow_(ss.getSheetByName(SHEET_NAMES.SUMBER), ss).map(function (r) {
+    return {
+      rowIndex: r.rowIndex,
+      aktif: toBool_(r.aktif, true),
+      brand: safeStr_(r.brand, ss).trim(),
+      channel_id: safeStr_(r.channel_id, ss).trim(),
+      max_video: Number(r.max_video) || 1,
+      kata_kunci_filter: safeStr_(r.kata_kunci_filter, ss).trim(),
+      catatan: safeStr_(r.catatan, ss).trim()
+    };
+  });
+
+  var settings = { wa: "6281574682460", flash_hours: 6, auto_video_limit: 8, catatan_toko: "" };
+  readSheetWithRow_(ss.getSheetByName(SHEET_NAMES.SETTING), ss).forEach(function (r) {
+    var k = safeStr_(r.kunci, ss).trim();
+    if (k) settings[k] = safeStr_(r.nilai, ss).trim();
+  });
+
+  var logs = readSheetWithRow_(ss.getSheetByName(SHEET_NAMES.LOG), ss).slice(-30).reverse();
+
+  return {
+    ok: true,
+    userEmail: email || "Admin",
+    updatedAt: Utilities.formatDate(new Date(), ss.getSpreadsheetTimeZone(), "HH:mm:ss"),
+    sheetUrl: ss.getUrl(),
+    apiUrl: serviceUrl ? serviceUrl + "?api=1" : "",
+    siteUrl: "https://iqbalfirdausriesti.github.io/Al-Ghifari-Solution-/",
+    hasDailyTrigger: hasDailyVideoTrigger_(),
+    settings: settings,
+    products: products,
+    hero: hero,
+    videos: videos,
+    sources: sources,
+    logs: logs
+  };
+}
+
+function toggleProductField(rowIndex, field, value) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.PRODUK);
+  if (!sh) return { ok: false, message: "Sheet Produk tidak ditemukan" };
+  var row = Number(rowIndex);
+  if (row < 2 || row > sh.getLastRow()) return { ok: false, message: "Baris produk tidak valid" };
+  if (field !== "aktif" && field !== "flash_sale") return { ok: false, message: "Field tidak diizinkan" };
+
+  var map = getHeaderMap_(sh);
+  if (!map[field]) return { ok: false, message: "Kolom tidak ditemukan: " + field };
+  sh.getRange(row, map[field]).setValue(!!value);
+  return { ok: true };
+}
+
+function saveProduct(item) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.PRODUK);
+  if (!sh) return { ok: false, message: "Sheet Produk tidak ditemukan" };
+
+  var nama = String(item.nama || "").trim();
+  var brand = String(item.brand || "").trim();
+  if (!nama || !brand) return { ok: false, message: "Nama produk dan Merk wajib diisi." };
+
+  var pr = Number(item.harga_promo) || 0;
+  var o = Number(item.harga_normal) || pr;
+  if (pr <= 0) return { ok: false, message: "Harga promo harus lebih besar dari 0." };
+  if (o < pr) o = pr;
+
+  var rIdx = Number(item.rowIndex || 0);
+  var isNew = rIdx < 2 || rIdx > sh.getLastRow();
+  var targetRow = isNew ? sh.getLastRow() + 1 : rIdx;
+
+  var rowValues = [
+    item.aktif !== false,
+    brand,
+    String(item.kategori || "HP").trim(),
+    nama,
+    pr,
+    o,
+    "=IF(F" + targetRow + ">0,ROUND((1-E" + targetRow + "/F" + targetRow + ")*100,0),0)",
+    !!item.flash_sale,
+    item.urutan_flash !== "" && item.urutan_flash !== undefined && item.urutan_flash !== null ? Number(item.urutan_flash) : "",
+    item.terjual_persen !== "" && item.terjual_persen !== undefined && item.terjual_persen !== null ? Number(item.terjual_persen) : 50,
+    String(item.tipe_ikon || "phone").trim(),
+    String(item.warna_1 || "#1c2d4f").trim(),
+    String(item.warna_2 || "#4b78ff").trim(),
+    String(item.glb_3d || "").trim(),
+    String(item.foto_1 || "").trim(),
+    String(item.foto_2 || "").trim(),
+    String(item.foto_3 || "").trim()
+  ];
+
+  sh.getRange(targetRow, 1, 1, rowValues.length).setValues([rowValues]);
+  if (isNew) {
+    sh.getRange(targetRow, 1).insertCheckboxes();
+    sh.getRange(targetRow, 8).insertCheckboxes();
+    sh.getRange(targetRow, 5, 1, 2).setNumberFormat('"Rp"#,##0');
+    sh.getRange(targetRow, 7).setNumberFormat('0"%"');
+    sh.getRange(targetRow, 10).setNumberFormat('0"%"');
+  }
+  return { ok: true, rowIndex: targetRow };
+}
+
+function deleteProduct(rowIndex) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.PRODUK);
+  var r = Number(rowIndex);
+  if (!sh || r < 2 || r > sh.getLastRow()) return { ok: false, message: "Baris tidak valid" };
+  sh.deleteRow(r);
+  return { ok: true };
+}
+
+function saveBanner(item) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.HERO);
+  if (!sh) return { ok: false, message: "Sheet Banner_Hero tidak ditemukan" };
+
+  var judul = String(item.judul || "").trim();
+  if (!judul) return { ok: false, message: "Judul banner wajib diisi." };
+
+  var rIdx = Number(item.rowIndex || 0);
+  var isNew = rIdx < 2 || rIdx > sh.getLastRow();
+  var targetRow = isNew ? sh.getLastRow() + 1 : rIdx;
+
+  var rowValues = [
+    item.aktif !== false,
+    Number(item.urutan) || targetRow - 1,
+    String(item.label || "TRENDING SEKARANG").trim(),
+    judul,
+    String(item.deskripsi || "").trim(),
+    String(item.tombol_teks || "Belanja Sekarang").trim(),
+    String(item.tombol_link || "#flash").trim(),
+    String(item.produk_terkait || "").trim(),
+    String(item.gambar_custom || "").trim(),
+    String(item.glb_custom || "").trim()
+  ];
+
+  sh.getRange(targetRow, 1, 1, rowValues.length).setValues([rowValues]);
+  if (isNew) sh.getRange(targetRow, 1).insertCheckboxes();
+  return { ok: true, rowIndex: targetRow };
+}
+
+function deleteBanner(rowIndex) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.HERO);
+  var r = Number(rowIndex);
+  if (!sh || r < 2 || r > sh.getLastRow()) return { ok: false, message: "Baris tidak valid" };
+  sh.deleteRow(r);
+  return { ok: true };
+}
+
+function saveVideo(item) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.VIDEO);
+  if (!sh) return { ok: false, message: "Sheet Video_Trending tidak ditemukan" };
+
+  var judul = String(item.judul || "").trim();
+  if (!judul) return { ok: false, message: "Judul video wajib diisi." };
+
+  var videoUrl = String(item.video_url || "").trim();
+  var ytId = extractYouTubeId_(videoUrl);
+  var driveId = extractDriveId_(videoUrl);
+  var tipe = String(item.tipe || "").trim().toLowerCase();
+  if (!tipe) tipe = ytId ? "youtube" : driveId ? "gdrive" : "mp4";
+
+  var poster = String(item.poster_url || "").trim();
+  if (!poster && ytId) poster = "https://i.ytimg.com/vi/" + ytId + "/hqdefault.jpg";
+  if (!poster && driveId) poster = "https://lh3.googleusercontent.com/d/" + driveId + "=w1200";
+
+  var rIdx = Number(item.rowIndex || 0);
+  var isNew = rIdx < 2 || rIdx > sh.getLastRow();
+  var targetRow = isNew ? sh.getLastRow() + 1 : rIdx;
+  var nowStr = Utilities.formatDate(new Date(), ss.getSpreadsheetTimeZone(), "yyyy-MM-dd HH:mm");
+
+  var rowValues = [
+    item.aktif !== false,
+    Number(item.urutan) || targetRow - 1,
+    String(item.brand || "").trim().toUpperCase(),
+    judul,
+    String(item.deskripsi || "").trim(),
+    String(item.nama_produk_wa || judul).trim(),
+    tipe,
+    videoUrl,
+    poster,
+    item.kunci_manual !== false,
+    nowStr
+  ];
+
+  // Pastikan data validation menerima 'gdrive'
+  var tipeRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(["mp4", "youtube", "gdrive"], true)
+    .setAllowInvalid(false)
+    .build();
+  sh.getRange(2, 7, Math.max(100, targetRow), 1).setDataValidation(tipeRule);
+
+  sh.getRange(targetRow, 1, 1, rowValues.length).setValues([rowValues]);
+  if (isNew) {
+    sh.getRange(targetRow, 1).insertCheckboxes();
+    sh.getRange(targetRow, 10).insertCheckboxes();
+  }
+  return { ok: true, rowIndex: targetRow };
+}
+
+function deleteVideo(rowIndex) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.VIDEO);
+  var r = Number(rowIndex);
+  if (!sh || r < 2 || r > sh.getLastRow()) return { ok: false, message: "Baris tidak valid" };
+  sh.deleteRow(r);
+  return { ok: true };
+}
+
+function saveSource(item) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.SUMBER);
+  if (!sh) return { ok: false, message: "Sheet Sumber_Trending tidak ditemukan" };
+
+  var brand = String(item.brand || "").trim();
+  var cid = String(item.channel_id || "").trim();
+  if (!brand || !cid) return { ok: false, message: "Merk dan Channel ID / @handle wajib diisi." };
+
+  var rIdx = Number(item.rowIndex || 0);
+  var isNew = rIdx < 2 || rIdx > sh.getLastRow();
+  var targetRow = isNew ? sh.getLastRow() + 1 : rIdx;
+
+  var rowValues = [
+    item.aktif !== false,
+    brand,
+    cid,
+    Math.max(1, Number(item.max_video) || 1),
+    String(item.kata_kunci_filter || "").trim(),
+    String(item.catatan || "").trim()
+  ];
+  sh.getRange(targetRow, 1, 1, rowValues.length).setValues([rowValues]);
+  if (isNew) sh.getRange(targetRow, 1).insertCheckboxes();
+  return { ok: true, rowIndex: targetRow };
+}
+
+function deleteSource(rowIndex) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.SUMBER);
+  var r = Number(rowIndex);
+  if (!sh || r < 2 || r > sh.getLastRow()) return { ok: false, message: "Baris tidak valid" };
+  sh.deleteRow(r);
+  return { ok: true };
+}
+
+function saveSettings(obj) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_NAMES.SETTING);
+  if (!sh) return { ok: false, message: "Sheet Pengaturan tidak ditemukan" };
+
+  var data = sh.getDataRange().getValues();
+  var updated = {};
+  for (var r = 1; r < data.length; r++) {
+    var k = String(data[r][0] || "").trim();
+    if (k && Object.prototype.hasOwnProperty.call(obj, k)) {
+      sh.getRange(r + 1, 2).setValue(obj[k]);
+      updated[k] = true;
+    }
+  }
+  Object.keys(obj).forEach(function (k) {
+    if (!updated[k]) sh.appendRow([k, obj[k], ""]);
+  });
+  return { ok: true };
+}
+
+function toggleDailyTrigger(enable) {
+  matikanTriggerHarian(true);
+  if (enable) {
+    ScriptApp.newTrigger("updateVideoTrendingOtomatis")
+      .timeBased()
+      .everyDays(1)
+      .atHour(8)
+      .create();
+  }
+  return { ok: true, hasDailyTrigger: !!enable };
+}
+
+function updateVideoTrendingFromWeb() {
+  updateVideoTrendingOtomatis(true);
+  return getDashboardState();
+}
+
+function getOrCreateFolder_(parent, name) {
+  var it = parent.getFoldersByName(name);
+  if (it.hasNext()) return it.next();
+  return parent.createFolder(name);
+}
+
+/**
+ * Upload foto atau video dari browser Admin Panel langsung ke Google Drive.
+ * Folder tujuan: Google Drive / Al Ghifari Solution Media / {Produk|Banner|Video|3D}
+ */
+function uploadMediaToDrive(payload) {
+  if (!payload || !payload.base64) {
+    return { ok: false, message: "Data file kosong." };
+  }
+  var root = getOrCreateFolder_(DriveApp.getRootFolder(), "Al Ghifari Solution Media");
+  var subName = String(payload.folderType || "Produk").trim();
+  if (["Produk", "Banner", "Video", "3D"].indexOf(subName) < 0) subName = "Produk";
+  var folder = getOrCreateFolder_(root, subName);
+
+  var bytes = Utilities.base64Decode(payload.base64);
+  var mime = String(payload.mimeType || "application/octet-stream");
+  var origName = String(payload.fileName || "media").replace(/[^\w.\-]+/g, "_");
+  var stamp = Utilities.formatDate(new Date(), "Asia/Jakarta", "yyyyMMdd_HHmmss");
+  var fileName = stamp + "_" + origName;
+
+  var blob = Utilities.newBlob(bytes, mime, fileName);
+  var file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  var id = file.getId();
+
+  var isImg = mime.indexOf("image/") === 0;
+  var isVid = mime.indexOf("video/") === 0;
+  var url = isImg
+    ? "https://lh3.googleusercontent.com/d/" + id + "=w1200"
+    : isVid
+      ? "https://drive.google.com/file/d/" + id + "/preview"
+      : "https://drive.google.com/uc?export=download&id=" + id;
+
+  return {
+    ok: true,
+    fileId: id,
+    fileName: fileName,
+    url: url,
+    tipe: isVid ? "gdrive" : isImg ? "image" : "file",
+    driveId: id
+  };
 }

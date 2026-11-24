@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Al Ghifari Solution — Admin Panel</title>
+<style>
+:root{
+  --bg:#0b0e14;
+  --panel:#12161f;
+  --card:#171c28;
+  --card2:#1c2231;
+  --line:#242b3a;
+  --line2:#313b50;
+  --ink:#e9eef8;
+  --mute:#8d98b0;
+  --brand:#4b78ff;
+  --green:#24d18f;
+  --green-dim:#24d18f26;
+  --orange:#ff6a1a;
+  --gold:#d8b46a;
+  --red:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+
+.app{display:flex;flex-direction:column;height:100vh}
+
+/* Top Navigation Bar (referensi style) */
+.topbar{height:54px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 16px;flex:none}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#2b60ff,#ff6a1a);display:grid;place-items:center;color:#fff;font-size:14px;font-weight:900}
+.brand small{font-size:12px;font-weight:600;color:var(--mute);margin-left:4px}
+
+.navtabs{display:flex;align-items:center;gap:4px;margin-left:8px}
+.navtabs button{background:transparent;border:0;color:var(--mute);padding:7px 11px;border-radius:8px;font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;transition:all .15s;white-space:nowrap}
+.navtabs button:hover{color:var(--ink);background:#ffffff08}
+.navtabs button.active{color:#fff;background:var(--card2)}
+.navtabs .pill{background:#2a3245;color:var(--ink);font-size:10.5px;padding:1px 6px;border-radius:99px;font-weight:700}
+.navtabs .pill.hot{background:var(--orange);color:#fff}
+
+.search-wrap{flex:1;max-width:360px;min-width:150px}
+.search-wrap input{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:12.5px;outline:0;transition:border-color .15s}
+.search-wrap input:focus{border-color:var(--brand)}
+
+.top-right{margin-left:auto;display:flex;align-items:center;gap:12px;white-space:nowrap}
+.live-pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--mute)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #24d18f33}
+.btn-reload{background:var(--card2);border:1px solid var(--line2);color:var(--ink);padding:6px 11px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+.btn-reload:hover{border-color:var(--green);color:#fff}
+
+/* Main Workspace */
+.main{flex:1;display:flex;min-height:0;overflow:hidden}
+.sidebar{width:236px;flex:none;background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow-y:auto;padding:10px 8px}
+.sb-sec{margin-bottom:14px}
+.sb-title{font-size:10.5px;font-weight:700;letter-spacing:.09em;color:var(--mute);padding:4px 10px 6px;text-transform:uppercase}
+.sb-item{width:100%;border:0;background:transparent;text-align:left;padding:7px 10px;border-radius:8px;display:flex;align-items:center;gap:8px;color:#b8c2d6;font-size:12.5px;font-weight:500;transition:background .12s,color .12s}
+.sb-item:hover{background:#ffffff08;color:#fff}
+.sb-item.active{background:var(--card2);color:#fff;font-weight:700}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+.sb-dot.dim{background:#475569}
+.sb-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-cnt{font-size:11.5px;font-weight:700;color:var(--mute)}
+.sb-item.active .sb-cnt{color:var(--green)}
+
+.content{flex:1;overflow-y:auto;padding:16px 20px;min-width:0}
+
+/* Right Content Header & Boxes */
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.panel-head-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.panel-head h2{margin:0;font-size:17px;font-weight:800}
+.stat-meta{font-size:12px;color:var(--mute)}
+.badge-ok{background:#12382b;border:1px solid #24d18f55;color:var(--green);font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px}
+.badge-warn{background:#3b2012;border:1px solid #ff6a1a55;color:#ff9b66;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px}
+
+.head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn{background:var(--card2);border:1px solid var(--line2);color:var(--ink);padding:7px 12px;border-radius:8px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.btn:hover{border-color:#64748b;color:#fff}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#4b78ff);border-color:#4b78ff;color:#fff}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-green{background:#12382b;border-color:#24d18f66;color:var(--green)}
+.btn-green:hover{background:#184938}
+.btn-danger{background:#3b161b;border-color:#ef444466;color:#fca5a5}
+.btn-danger:hover{background:#521c24}
+
+/* Config / Bulk Box */
+.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.box-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;align-items:end}
+.fg label{display:block;font-size:11px;color:var(--mute);margin-bottom:4px;font-weight:600}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:7px 10px;font-size:12.5px;outline:0}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--brand)}
+.preview-box{margin-top:10px;padding:9px 11px;border-radius:8px;background:var(--bg);border:1px solid var(--line2);font-size:12px;display:none}
+
+/* Table */
+.tbl-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th{text-align:left;font-size:11px;font-weight:700;color:var(--mute);padding:10px 12px;border-bottom:1px solid var(--line);background:#10141d;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #1e2534;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tr:hover td{background:#ffffff04}
+
+.thumb{width:42px;height:42px;border-radius:8px;background:#fff;padding:3px;object-fit:contain;display:block;border:1px solid var(--line2);cursor:pointer}
+.thumb-vid{width:74px;height:42px;border-radius:8px;background:#000;object-fit:cover;display:block;border:1px solid var(--line2)}
+.p-name{font-weight:700;font-size:13px;color:#fff}
+.p-sub{font-size:11px;color:var(--mute);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag-3d{background:#2d2412;color:var(--gold);border:1px solid #d8b46a55;padding:1px 6px;border-radius:5px;font-size:10px;font-weight:700}
+.tag-type{background:#1b263d;color:#93c5fd;border:1px solid #3b82f655;padding:1px 6px;border-radius:5px;font-size:10px;font-weight:700;text-transform:uppercase}
+.price-pr{font-weight:700;color:#fff;white-space:nowrap}
+.price-old{font-size:11px;color:var(--mute);text-decoration:line-through;white-space:nowrap}
+
+/* Toggle Switch (Referensi hijau terang) */
+.sw{position:relative;display:inline-flex;align-items:center;width:40px;height:22px;vertical-align:middle}
+.sw input{opacity:0;width:0;height:0;position:absolute}
+.sw i{position:absolute;inset:0;border-radius:99px;background:#333d52;transition:.18s;cursor:pointer}
+.sw i::after{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.18s;box-shadow:0 1px 4px #0006}
+.sw input:checked + i{background:#26c987}
+.sw.fs input:checked + i{background:var(--orange)}
+.sw input:checked + i::after{transform:translateX(18px)}
+.sw input:disabled + i{opacity:.45;cursor:wait}
+
+/* Cards grid for Banner & Media */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.mcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.mcard-media{height:165px;background:#0a0d14;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.mcard-media img{max-width:100%;max-height:100%;object-fit:contain}
+.mcard-media.cover img{width:100%;height:100%;object-fit:cover}
+.mcard-badge{position:absolute;left:10px;top:10px;background:#0b0e14dd;border:1px solid var(--line2);padding:2px 8px;border-radius:6px;font-size:10.5px;font-weight:700;color:var(--gold)}
+.mcard-body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mcard-body h3{margin:0;font-size:14px;color:#fff}
+.mcard-body p{margin:0;font-size:12px;color:var(--mute);line-height:1.45}
+.mcard-foot{padding:10px 14px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;background:#10141d}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:50;padding:14px;backdrop-filter:blur(4px)}
+.modal-bg.on{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line2);border-radius:14px;width:100%;max-width:650px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px #000b}
+.modal-hd{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.modal-hd h3{margin:0;font-size:15px}
+.modal-bd{padding:16px 18px;overflow-y:auto;display:grid;gap:12px}
+.modal-ft{padding:12px 18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;background:#10141d}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* Upload Row */
+.up-row{display:flex;align-items:center;gap:8px}
+.up-row input[type=text]{flex:1}
+.up-preview{width:42px;height:42px;border-radius:8px;background:#fff;object-fit:contain;border:1px solid var(--line2);flex:none;padding:2px}
+.btn-up{background:#18243b;border:1px solid #3b82f666;color:#93c5fd;padding:7px 10px;border-radius:8px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.btn-up:hover{background:#213152;color:#fff}
+.btn-up:disabled{opacity:.5;cursor:wait}
+
+.toast{position:fixed;right:18px;bottom:18px;background:#141a26;border:1px solid var(--green);color:#fff;padding:10px 16px;border-radius:10px;font-size:12.5px;font-weight:600;z-index:80;box-shadow:0 12px 28px #000a;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}
+.toast.on{opacity:1;transform:none}
+.toast.err{border-color:var(--red)}
+
+.loading-mask{position:fixed;inset:0;background:#0b0e14dd;z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.spinner{width:30px;height:30px;border:3px solid var(--line2);border-top-color:var(--green);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media(max-width:840px){
+  .topbar{height:auto;flex-wrap:wrap;padding:10px}
+  .search-wrap{order:4;max-width:none;flex:1 0 100%}
+  .main{flex-direction:column}
+  .sidebar{width:100%;height:auto;max-height:150px;border-right:0;border-bottom:1px solid var(--line);flex-direction:row;gap:8px;overflow-x:auto}
+  .sb-sec{display:flex;align-items:center;gap:4px;margin:0}
+  .sb-title{display:none}
+  .sb-item{width:auto;white-space:nowrap}
+  .grid2,.grid3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="loading-mask" id="loadingMask">
+  <div class="spinner"></div>
+  <div style="font-weight:600;color:#cbd5e1">Memuat Al Ghifari Admin Panel...</div>
+</div>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">A</div>
+      <span>Al Ghifari <small>Admin Panel</small></span>
+    </div>
+    <nav class="navtabs" id="navTabs">
+      <button class="active" data-tab="produk" onclick="switchTab('produk')">Produk <span class="pill" id="cntProd">0</span></button>
+      <button data-tab="flash" onclick="switchTab('flash')">Flash Sale <span class="pill hot" id="cntFlash">0</span></button>
+      <button data-tab="video" onclick="switchTab('video')">Video Trending <span class="pill" id="cntVid">0</span></button>
+      <button data-tab="banner" onclick="switchTab('banner')">Banner Hero <span class="pill" id="cntHero">0</span></button>
+      <button data-tab="setting" onclick="switchTab('setting')">Pengaturan</button>
+      <button data-tab="log" onclick="switchTab('log')">Log Harga</button>
+    </nav>
+    <div class="search-wrap">
+      <input id="searchInput" placeholder="Cari produk, merk, kategori, video..." oninput="renderMain()">
+    </div>
+    <div class="top-right">
+      <span class="live-pill"><span class="live-dot"></span><span id="liveText">live</span></span>
+      <button class="btn-reload" onclick="refreshAll()">↻ Muat ulang</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <aside class="sidebar" id="sidebar"></aside>
+    <section class="content" id="contentArea"></section>
+  </div>
+</div>
+
+<!-- Modal Form Dinamis -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-hd">
+      <h3 id="modalTitle">Edit Data</h3>
+      <button class="btn" style="padding:4px 10px" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-bd" id="modalBody"></div>
+    <div class="modal-ft" id="modalFoot"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var STATE = {
+  userEmail: "",
+  updatedAt: "",
+  siteUrl: "https://iqbalfirdausriesti.github.io/Al-Ghifari-Solution-/",
+  apiUrl: "",
+  sheetUrl: "",
+  hasDailyTrigger: false,
+  settings: {},
+  products: [],
+  hero: [],
+  videos: [],
+  sources: [],
+  logs: []
+};
+var CUR_TAB = "produk";
+var FILTER_CAT = "ALL";
+var FILTER_BRAND = "ALL";
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function rp(n) {
+  return "Rp" + Number(n || 0).toLocaleString("id-ID");
+}
+function resolveMedia(u) {
+  u = String(u || "").trim();
+  if (!u) return "";
+  if (/^(https?:|data:|blob:)/i.test(u)) return u;
+  return (STATE.siteUrl || "") + u.replace(/^\/+/, "");
+}
+function toast(msg, isErr) {
+  var el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.toggle("err", !!isErr);
+  el.classList.add("on");
+  clearTimeout(el._t);
+  el._t = setTimeout(function(){ el.classList.remove("on"); }, 2800);
+}
+
+function refreshAll(silent) {
+  if (!silent) document.getElementById("loadingMask").style.display = "flex";
+  google.script.run
+    .withSuccessHandler(function(d) {
+      document.getElementById("loadingMask").style.display = "none";
+      if (!d || !d.ok) { toast("Gagal memuat data panel.", true); return; }
+      STATE = d;
+      updateCounts();
+      renderSidebar();
+      renderMain();
+      if (!silent) toast("Data tersinkron (" + d.updatedAt + ")");
+    })
+    .withFailureHandler(function(e) {
+      document.getElementById("loadingMask").style.display = "none";
+      toast("Error: " + (e && e.message ? e.message : e), true);
+    })
+    .getDashboardState();
+}
+
+function updateCounts() {
+  var activeProd = STATE.products.filter(function(p){ return p.aktif; }).length;
+  var flashCnt = STATE.products.filter(function(p){ return p.aktif && p.flash_sale; }).length;
+  var vidCnt = STATE.videos.filter(function(v){ return v.aktif; }).length;
+  var heroCnt = STATE.hero.filter(function(h){ return h.aktif; }).length;
+  document.getElementById("cntProd").textContent = activeProd;
+  document.getElementById("cntFlash").textContent = flashCnt;
+  document.getElementById("cntVid").textContent = vidCnt;
+  document.getElementById("cntHero").textContent = heroCnt;
+  document.getElementById("liveText").textContent = (STATE.userEmail ? STATE.userEmail + " • " : "") + "live • " + (STATE.updatedAt || "");
+}
+
+function switchTab(tab) {
+  CUR_TAB = tab;
+  [].forEach.call(document.querySelectorAll("#navTabs button"), function(b) {
+    b.classList.toggle("active", b.dataset.tab === tab);
+  });
+  renderSidebar();
+  renderMain();
+}
+
+function setFilter(cat, brand) {
+  FILTER_CAT = cat;
+  FILTER_BRAND = brand;
+  renderSidebar();
+  renderMain();
+}
+
+function renderSidebar() {
+  var sb = document.getElementById("sidebar");
+  if (CUR_TAB !== "produk" && CUR_TAB !== "flash") {
+    var html = '<div class="sb-sec"><div class="sb-title">NAVIGASI CEPAT</div>';
+    html += '<button class="sb-item ' + (CUR_TAB === "video" ? "active" : "") + '" onclick="switchTab(\'video\')"><span class="sb-dot"></span><span class="sb-name">Video Trending</span><span class="sb-cnt">' + STATE.videos.length + '</span></button>';
+    html += '<button class="sb-item ' + (CUR_TAB === "banner" ? "active" : "") + '" onclick="switchTab(\'banner\')"><span class="sb-dot"></span><span class="sb-name">Banner Hero</span><span class="sb-cnt">' + STATE.hero.length + '</span></button>';
+    html += '<button class="sb-item ' + (CUR_TAB === "setting" ? "active" : "") + '" onclick="switchTab(\'setting\')"><span class="sb-dot"></span><span class="sb-name">Pengaturan</span></button>';
+    html += '<button class="sb-item ' + (CUR_TAB === "log" ? "active" : "") + '" onclick="switchTab(\'log\')"><span class="sb-dot dim"></span><span class="sb-name">Log Perubahan Harga</span><span class="sb-cnt">' + STATE.logs.length + '</span></button>';
+    html += '</div>';
+    if (STATE.siteUrl) {
+      html += '<div class="sb-sec"><div class="sb-title">TAUTAN LANGSUNG</div>';
+      html += '<a class="sb-item" target="_blank" href="' + esc(STATE.siteUrl) + '"><span class="sb-dot"></span><span class="sb-name">Lihat Website Live ↗</span></a>';
+      if (STATE.sheetUrl) html += '<a class="sb-item" target="_blank" href="' + esc(STATE.sheetUrl) + '"><span class="sb-dot dim"></span><span class="sb-name">Buka Google Sheets ↗</span></a>';
+      html += '</div>';
+    }
+    sb.innerHTML = html;
+    return;
+  }
+
+  var sourceList = CUR_TAB === "flash" ? STATE.products.filter(function(p){ return p.flash_sale; }) : STATE.products;
+  var cats = {};
+  var brands = {};
+  sourceList.forEach(function(p) {
+    cats[p.kategori || "Lainnya"] = (cats[p.kategori || "Lainnya"] || 0) + 1;
+    if (p.brand) brands[p.brand] = (brands[p.brand] || 0) + 1;
+  });
+
+  var out = '<div class="sb-sec"><div class="sb-title">KATEGORI</div>';
+  out += '<button class="sb-item ' + (FILTER_CAT === "ALL" && FILTER_BRAND === "ALL" ? "active" : "") + '" onclick="setFilter(\'ALL\',\'ALL\')"><span class="sb-dot"></span><span class="sb-name">Semua Produk</span><span class="sb-cnt">' + sourceList.length + '</span></button>';
+  Object.keys(cats).sort().forEach(function(c) {
+    var active = (FILTER_CAT === c && FILTER_BRAND === "ALL");
+    out += '<button class="sb-item ' + (active ? "active" : "") + '" onclick="setFilter(\'' + esc(c).replace(/'/g,"\\'") + '\',\'ALL\')"><span class="sb-dot"></span><span class="sb-name">' + esc(c) + '</span><span class="sb-cnt">' + cats[c] + '</span></button>';
+  });
+  out += '</div>';
+
+  var brandKeys = Object.keys(brands).sort();
+  out += '<div class="sb-sec"><div class="sb-title">MERK (' + brandKeys.length + ')</div>';
+  brandKeys.forEach(function(b) {
+    var active = (FILTER_BRAND === b);
+    out += '<button class="sb-item ' + (active ? "active" : "") + '" onclick="setFilter(\'' + esc(FILTER_CAT).replace(/'/g,"\\'") + '\',\'' + esc(b).replace(/'/g,"\\'") + '\')"><span class="sb-dot"></span><span class="sb-name">' + esc(b) + '</span><span class="sb-cnt">' + brands[b] + '</span></button>';
+  });
+  out += '</div>';
+  sb.innerHTML = out;
+}
+
+function getFilteredProducts(onlyFlash) {
+  var q = (document.getElementById("searchInput").value || "").trim().toLowerCase();
+  return STATE.products.filter(function(p) {
+    if (onlyFlash && !p.flash_sale) return false;
+    if (FILTER_CAT !== "ALL" && p.kategori !== FILTER_CAT) return false;
+    if (FILTER_BRAND !== "ALL" && p.brand !== FILTER_BRAND) return false;
+    if (q && (p.nama + " " + p.brand + " " + p.kategori).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  });
+}
+
+function renderMain() {
+  var el = document.getElementById("contentArea");
+  if (CUR_TAB === "produk") { el.innerHTML = buildProdukView(false); return; }
+  if (CUR_TAB === "flash") { el.innerHTML = buildProdukView(true); return; }
+  if (CUR_TAB === "video") { el.innerHTML = buildVideoView(); return; }
+  if (CUR_TAB === "banner") { el.innerHTML = buildBannerView(); return; }
+  if (CUR_TAB === "setting") { el.innerHTML = buildSettingView(); return; }
+  if (CUR_TAB === "log") { el.innerHTML = buildLogView(); return; }
+}
+
+function buildProdukView(onlyFlash) {
+  var rows = getFilteredProducts(onlyFlash);
+  if (onlyFlash) rows.sort(function(a, b) { return (a.urutan_flash || 999) - (b.urutan_flash || 999); });
+  var title = onlyFlash ? "Flash Sale Hari Ini" : (FILTER_BRAND !== "ALL" ? FILTER_BRAND : (FILTER_CAT !== "ALL" ? "Kategori: " + FILTER_CAT : "Semua Produk"));
+  var activeCnt = rows.filter(function(p){ return p.aktif; }).length;
+  var fsCnt = rows.filter(function(p){ return p.flash_sale; }).length;
+
+  var h = '<div class="panel-head"><div class="panel-head-l">';
+  h += '<h2>' + esc(title) + '</h2>';
+  h += '<span class="stat-meta">' + rows.length + ' unit • ' + activeCnt + ' aktif • ' + fsCnt + ' Flash Sale</span>';
+  h += '<span class="badge-ok">Sinkron Sheets</span>';
+  h += '</div><div class="head-actions">';
+  if (FILTER_CAT !== "ALL" || FILTER_BRAND !== "ALL") h += '<button class="btn" onclick="setFilter(\'ALL\',\'ALL\')">Reset Filter</button>';
+  h += '<button class="btn btn-primary" onclick="openProductModal(-1)">+ Tambah Produk</button>';
+  h += '</div></div>';
+
+  // Bar Penyesuaian Harga Massal (mengikuti gaya form gelap referensi)
+  var targetLabel = (FILTER_BRAND === "ALL" ? "Semua Merk" : FILTER_BRAND) + " / " + (FILTER_CAT === "ALL" ? "Semua Kategori" : FILTER_CAT);
+  h += '<div class="box"><div class="box-grid">';
+  h += '<div class="fg"><label>Target Penyesuaian (' + esc(targetLabel) + ')</label><select id="bpTarget"><option value="both">Harga Promo & Normal</option><option value="promo">Hanya Harga Promo</option><option value="normal">Hanya Harga Normal</option></select></div>';
+  h += '<div class="fg"><label>Mode</label><select id="bpMode"><option value="percent">Persen (%)</option><option value="nominal">Nominal (Rp)</option></select></div>';
+  h += '<div class="fg"><label>Nilai (+ naik, - turun)</label><input id="bpNilai" type="number" placeholder="-5 atau 150000"></div>';
+  h += '<div class="fg"><label>Pembulatan</label><select id="bpBulat"><option value="1000">Rp1.000</option><option value="10000">Rp10.000</option><option value="50000">Rp50.000</option><option value="100000">Rp100.000</option><option value="9000">Akhiran 9.000</option></select></div>';
+  h += '<div style="display:flex;gap:6px"><button class="btn" onclick="runBulkPrice(true)">👁 Preview</button><button class="btn btn-green" onclick="runBulkPrice(false)">✅ Terapkan</button></div>';
+  h += '</div><div class="preview-box" id="bpPreview"></div></div>';
+
+  h += '<div class="tbl-wrap"><table><thead><tr>';
+  h += '<th style="width:56px">Foto</th><th>Produk</th><th>Harga</th>';
+  if (onlyFlash) h += '<th>Urutan</th><th>Terjual</th>';
+  h += '<th style="text-align:center">Aktif</th><th style="text-align:center">Flash Sale</th><th style="text-align:right">Aksi</th>';
+  h += '</tr></thead><tbody>';
+
+  if (!rows.length) {
+    h += '<tr><td colspan="' + (onlyFlash ? 8 : 6) + '" style="text-align:center;color:var(--mute);padding:26px">Tidak ada produk pada filter ini.</td></tr>';
+  } else {
+    rows.forEach(function(p) {
+      var img = resolveMedia(p.foto_1);
+      h += '<tr>';
+      h += '<td>' + (img ? '<img class="thumb" src="' + esc(img) + '" onclick="openProductModal(' + p.rowIndex + ')" onerror="this.style.opacity=.25">' : '<div class="thumb" onclick="openProductModal(' + p.rowIndex + ')" style="display:grid;place-items:center;color:#475569;font-size:10px">No Img</div>') + '</td>';
+      h += '<td><div class="p-name">' + esc(p.nama) + '</div><div class="p-sub">' + esc(p.brand) + ' • ' + esc(p.kategori) + (p.glb_3d ? ' <span class="tag-3d">✦ 3D</span>' : '') + '</div></td>';
+      h += '<td><div class="price-pr">' + rp(p.harga_promo) + '</div><div class="price-old">' + rp(p.harga_normal) + ' (-' + p.diskon + '%)</div></td>';
+      if (onlyFlash) {
+        h += '<td><b>' + (p.urutan_flash || "-") + '</b></td>';
+        h += '<td>' + (p.terjual_persen || 50) + '%</td>';
+      }
+      h += '<td style="text-align:center"><label class="sw"><input type="checkbox" ' + (p.aktif ? 'checked' : '') + ' onchange="toggleProd(' + p.rowIndex + ',\'aktif\',this)"><i></i></label></td>';
+      h += '<td style="text-align:center"><label class="sw fs"><input type="checkbox" ' + (p.flash_sale ? 'checked' : '') + ' onchange="toggleProd(' + p.rowIndex + ',\'flash_sale\',this)"><i></i></label></td>';
+      h += '<td style="text-align:right"><button class="btn" onclick="openProductModal(' + p.rowIndex + ')">Edit / Upload</button></td>';
+      h += '</tr>';
+    });
+  }
+  h += '</tbody></table></div>';
+  return h;
+}
+
+function toggleProd(rowIndex, field, inputEl) {
+  var val = !!inputEl.checked;
+  inputEl.disabled = true;
+  google.script.run
+    .withSuccessHandler(function(res) {
+      inputEl.disabled = false;
+      if (!res || !res.ok) { inputEl.checked = !val; toast((res && res.message) || "Gagal menyimpan toggle", true); return; }
+      var item = STATE.products.filter(function(p){ return p.rowIndex === rowIndex; })[0];
+      if (item) item[field] = val;
+      updateCounts();
+      toast((item ? item.nama : "Produk") + ": " + field + (val ? " ON" : " OFF"));
+    })
+    .withFailureHandler(function(e) {
+      inputEl.disabled = false;
+      inputEl.checked = !val;
+      toast("Error: " + e.message, true);
+    })
+    .toggleProductField(rowIndex, field, val);
+}
+
+function runBulkPrice(preview) {
+  var nilai = document.getElementById("bpNilai").value;
+  if (!nilai || Number(nilai) === 0) { toast("Isi nilai perubahan harga lebih dulu!", true); return; }
+  if (!preview && !confirm("Terapkan penyesuaian harga untuk filter " + (FILTER_BRAND === "ALL" ? "Semua Merk" : FILTER_BRAND) + " / " + (FILTER_CAT === "ALL" ? "Semua Kategori" : FILTER_CAT) + "?")) return;
+
+  var cfg = {
+    brand: FILTER_BRAND,
+    kategori: FILTER_CAT,
+    target: document.getElementById("bpTarget").value,
+    mode: document.getElementById("bpMode").value,
+    nilai: Number(nilai),
+    pembulatan: document.getElementById("bpBulat").value,
+    preview: !!preview
+  };
+  var box = document.getElementById("bpPreview");
+  box.style.display = "block";
+  box.innerHTML = "Memproses...";
+  google.script.run
+    .withSuccessHandler(function(res) {
+      if (!res || !res.ok) { box.innerHTML = '<span style="color:#fca5a5">' + esc((res && res.message) || "Gagal") + '</span>'; return; }
+      var txt = '<b>' + (res.preview ? "Preview: " : "Berhasil! ") + res.affected + ' produk terdampak.</b> ';
+      txt += (res.samples || []).map(function(s){ return esc(s.nama) + ': ' + rp(s.prOld) + ' → <b>' + rp(s.prNew) + '</b>'; }).join(" • ");
+      box.innerHTML = txt;
+      if (!res.preview) refreshAll(true);
+    })
+    .withFailureHandler(function(e) { box.innerHTML = '<span style="color:#fca5a5">' + esc(e.message) + '</span>'; })
+    .terapkanPenyesuaianHarga(cfg);
+}
+
+function buildVideoView() {
+  var q = (document.getElementById("searchInput").value || "").trim().toLowerCase();
+  var vids = STATE.videos.filter(function(v) {
+    return !q || (v.judul + " " + v.brand + " " + v.deskripsi).toLowerCase().indexOf(q) >= 0;
+  });
+
+  var h = '<div class="panel-head"><div class="panel-head-l">';
+  h += '<h2>Video Trending Sekarang</h2>';
+  h += '<span class="stat-meta">' + vids.length + ' video</span>';
+  h += '</div><div class="head-actions">';
+  h += '<label class="btn" style="gap:8px"><span>Auto Harian 08:00</span><span class="sw"><input type="checkbox" ' + (STATE.hasDailyTrigger ? 'checked' : '') + ' onchange="toggleDaily(this)"><i></i></span></label>';
+  h += '<button class="btn btn-green" id="btnAutoVid" onclick="runAutoVideos()">🔄 Update Video Lintas Merk</button>';
+  h += '<button class="btn btn-primary" onclick="openVideoModal(-1)">+ Tambah / Upload Video</button>';
+  h += '</div></div>';
+
+  h += '<div class="tbl-wrap" style="margin-bottom:18px"><table><thead><tr>';
+  h += '<th style="width:90px">Poster</th><th>Judul & Deskripsi</th><th>Merk & Tipe</th><th>Urutan</th><th style="text-align:center">Aktif</th><th style="text-align:center">Kunci Manual</th><th style="text-align:right">Aksi</th>';
+  h += '</tr></thead><tbody>';
+  vids.forEach(function(v) {
+    var pos = resolveMedia(v.poster_url) || (v.ytId ? "https://i.ytimg.com/vi/" + v.ytId + "/hqdefault.jpg" : "");
+    h += '<tr>';
+    h += '<td>' + (pos ? '<img class="thumb-vid" src="' + esc(pos) + '">' : '<div class="thumb-vid"></div>') + '</td>';
+    h += '<td><div class="p-name">' + esc(v.judul) + '</div><div class="p-sub">' + esc(v.deskripsi.slice(0, 85)) + (v.deskripsi.length > 85 ? "…" : "") + '</div></td>';
+    h += '<td><div><b>' + esc(v.brand) + '</b></div><span class="tag-type">' + esc(v.tipe) + '</span></td>';
+    h += '<td>' + v.urutan + '</td>';
+    h += '<td style="text-align:center"><label class="sw"><input type="checkbox" ' + (v.aktif ? 'checked' : '') + ' onchange="quickToggleVideo(' + v.rowIndex + ',\'aktif\',this)"><i></i></label></td>';
+    h += '<td style="text-align:center"><label class="sw fs"><input type="checkbox" ' + (v.kunci_manual ? 'checked' : '') + ' onchange="quickToggleVideo(' + v.rowIndex + ',\'kunci_manual\',this)"><i></i></label></td>';
+    h += '<td style="text-align:right"><button class="btn" onclick="openVideoModal(' + v.rowIndex + ')">Edit / Upload</button></td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // Sumber Channel YouTube Otomatis
+  h += '<div class="panel-head"><div class="panel-head-l"><h2>Sumber Channel YouTube Otomatis (Lintas Merk)</h2><span class="stat-meta">' + STATE.sources.length + ' merk</span></div>';
+  h += '<button class="btn" onclick="openSourceModal(-1)">+ Tambah Channel Merk</button></div>';
+  h += '<div class="tbl-wrap"><table><thead><tr><th>Merk</th><th>Channel ID / @handle</th><th>Max</th><th>Filter Kata Kunci</th><th style="text-align:center">Aktif</th><th style="text-align:right">Aksi</th></tr></thead><tbody>';
+  STATE.sources.forEach(function(s) {
+    h += '<tr><td><b>' + esc(s.brand) + '</b></td><td style="color:var(--mute)">' + esc(s.channel_id) + '</td><td>' + s.max_video + '</td><td>' + esc(s.kata_kunci_filter || "-") + '</td>';
+    h += '<td style="text-align:center"><label class="sw"><input type="checkbox" ' + (s.aktif ? 'checked' : '') + ' onchange="quickToggleSource(' + s.rowIndex + ',this)"><i></i></label></td>';
+    h += '<td style="text-align:right"><button class="btn" onclick="openSourceModal(' + s.rowIndex + ')">Edit</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+  return h;
+}
+
+function buildBannerView() {
+  var h = '<div class="panel-head"><div class="panel-head-l"><h2>Banner Hero ("TRENDING SEKARANG")</h2><span class="stat-meta">' + STATE.hero.length + ' slide</span></div>';
+  h += '<button class="btn btn-primary" onclick="openBannerModal(-1)">+ Tambah Slide Banner</button></div>';
+  h += '<div class="cards-grid">';
+  STATE.hero.forEach(function(b) {
+    var linked = STATE.products.filter(function(p){ return p.nama.toLowerCase() === (b.produk_terkait || "").toLowerCase(); })[0];
+    var img = resolveMedia(b.gambar_custom || (linked ? linked.foto_1 : ""));
+    h += '<div class="mcard">';
+    h += '<div class="mcard-media' + (b.gambar_custom ? ' cover' : '') + '"><span class="mcard-badge">Slide #' + b.urutan + ' • ' + esc(b.label) + '</span>';
+    h += (img ? '<img src="' + esc(img) + '">' : '<span style="color:var(--mute)">Belum ada gambar</span>') + '</div>';
+    h += '<div class="mcard-body"><h3>' + esc(b.judul) + '</h3><p>' + esc(b.deskripsi) + '</p>';
+    h += '<div class="p-sub">Produk terkait: <b>' + esc(b.produk_terkait || "-") + '</b>' + (linked && linked.glb_3d ? ' <span class="tag-3d">✦ 3D .glb</span>' : '') + '</div></div>';
+    h += '<div class="mcard-foot"><label class="sw"><input type="checkbox" ' + (b.aktif ? 'checked' : '') + ' onchange="quickToggleBanner(' + b.rowIndex + ',this)"><i></i></label>';
+    h += '<button class="btn" onclick="openBannerModal(' + b.rowIndex + ')">Edit / Upload Gambar</button></div>';
+    h += '</div>';
+  });
+  h += '</div>';
+  return h;
+}
+
+function buildSettingView() {
+  var s = STATE.settings || {};
+  var h = '<div class="panel-head"><div class="panel-head-l"><h2>Pengaturan Toko & Koneksi API</h2></div></div>';
+  h += '<div class="box"><div class="grid2">';
+  h += '<div class="fg"><label>Nomor WhatsApp Toko (awalan 62)</label><input id="stWa" value="' + esc(s.wa || "6281574682460") + '"></div>';
+  h += '<div class="fg"><label>Durasi Countdown Flash Sale (jam)</label><input id="stFsHours" type="number" value="' + esc(s.flash_hours || 6) + '"></div>';
+  h += '<div class="fg"><label>Batas Maksimal Video Trending Otomatis</label><input id="stVidLim" type="number" value="' + esc(s.auto_video_limit || 8) + '"></div>';
+  h += '<div class="fg"><label>Catatan Toko</label><input id="stNote" value="' + esc(s.catatan_toko || "") + '"></div>';
+  h += '</div><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" onclick="saveSettingsForm()">💾 Simpan Pengaturan</button>';
+  if (STATE.siteUrl) h += '<a class="btn btn-green" target="_blank" href="' + esc(STATE.siteUrl) + '">🌐 Buka Website Live ↗</a>';
+  h += '</div></div>';
+
+  h += '<div class="box"><div class="fg"><label>URL JSON API Website (?api=1)</label><input readonly value="' + esc(STATE.apiUrl || "Deploy sebagai Web App terlebih dahulu") + '" onclick="this.select()"></div>';
+  h += '<p style="margin:6px 0 0;color:var(--mute);font-size:11.5px">Media yang Anda upload lewat panel ini otomatis disimpan di Google Drive folder <b>Al Ghifari Solution Media</b> dan dibagikan publik (Siapa saja yang memiliki link) agar langsung tampil di website.</p></div>';
+  return h;
+}
+
+function buildLogView() {
+  var h = '<div class="panel-head"><div class="panel-head-l"><h2>Riwayat Penyesuaian Harga Massal</h2><span class="stat-meta">' + STATE.logs.length + ' entri terakhir</span></div></div>';
+  h += '<div class="tbl-wrap"><table><thead><tr><th>Waktu</th><th>Merk</th><th>Kategori</th><th>Target</th><th>Mode</th><th>Nilai</th><th>Pembulatan</th><th>Produk</th></tr></thead><tbody>';
+  if (!STATE.logs.length) h += '<tr><td colspan="8" style="text-align:center;color:var(--mute);padding:20px">Belum ada riwayat penyesuaian harga.</td></tr>';
+  STATE.logs.forEach(function(l) {
+    h += '<tr><td>' + esc(l.waktu) + '</td><td><b>' + esc(l.merk) + '</b></td><td>' + esc(l.kategori) + '</td><td>' + esc(l.target) + '</td><td>' + esc(l.mode) + '</td><td>' + esc(l.nilai) + '</td><td>' + esc(l.pembulatan) + '</td><td>' + esc(l.jumlah_produk) + '</td></tr>';
+  });
+  h += '</tbody></table></div>';
+  return h;
+}
+
+/* ==================== UPLOAD MEDIA KE GOOGLE DRIVE ==================== */
+function compressImageIfNeeded(file, cb) {
+  if (!file.type || file.type.indexOf("image/") !== 0 || file.size < 450000) {
+    var fr = new FileReader();
+    fr.onload = function(){ cb(String(fr.result).split(",")[1], file.type || "application/octet-stream"); };
+    fr.readAsDataURL(file);
+    return;
+  }
+  var img = new Image();
+  var url = URL.createObjectURL(file);
+  img.onload = function() {
+    URL.revokeObjectURL(url);
+    var maxW = 1400;
+    var w = img.width, h = img.height;
+    if (w > maxW || h > maxW) {
+      if (w >= h) { h = Math.round(h * maxW / w); w = maxW; }
+      else { w = Math.round(w * maxW / h); h = maxW; }
+    }
+    var cv = document.createElement("canvas");
+    cv.width = w; cv.height = h;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, w, h);
+    ctx.drawImage(img, 0, 0, w, h);
+    var outType = file.type === "image/png" ? "image/png" : "image/jpeg";
+    var dataUrl = cv.toDataURL(outType, 0.9);
+    cb(dataUrl.split(",")[1], outType);
+  };
+  img.onerror = function() {
+    URL.revokeObjectURL(url);
+    var fr = new FileReader();
+    fr.onload = function(){ cb(String(fr.result).split(",")[1], file.type || "image/jpeg"); };
+    fr.readAsDataURL(file);
+  };
+  img.src = url;
+}
+
+function triggerDriveUpload(inputId, previewId, folderType, acceptType, extraTypeSelectId) {
+  var fi = document.createElement("input");
+  fi.type = "file";
+  fi.accept = acceptType || "image/*";
+  fi.onchange = function() {
+    var file = fi.files && fi.files[0];
+    if (!file) return;
+    if (file.type && file.type.indexOf("video/") === 0 && file.size > 16 * 1024 * 1024) {
+      toast("Video > 16 MB terlalu besar untuk upload langsung. Upload manual ke Google Drive / YouTube lalu tempel linknya.", true);
+      return;
+    }
+    toast("Mengupload " + file.name + " ke Google Drive...");
+    var doneCb = function(base64, mimeType) {
+      google.script.run
+        .withSuccessHandler(function(res) {
+          if (!res || !res.ok) { toast("Upload gagal.", true); return; }
+          var inp = document.getElementById(inputId);
+          if (inp) inp.value = res.url;
+          if (previewId && res.tipe === "image") {
+            var pv = document.getElementById(previewId);
+            if (pv) pv.src = res.url;
+          }
+          if (extraTypeSelectId && res.tipe === "gdrive") {
+            var sel = document.getElementById(extraTypeSelectId);
+            if (sel) sel.value = "gdrive";
+          }
+          toast("Upload berhasil: " + res.fileName);
+        })
+        .withFailureHandler(function(e) {
+          toast("Upload error: " + (e && e.message ? e.message : e), true);
+        })
+        .uploadMediaToDrive({ base64: base64, mimeType: mimeType, fileName: file.name, folderType: folderType });
+    };
+
+    if (file.type && file.type.indexOf("image/") === 0) {
+      compressImageIfNeeded(file, doneCb);
+    } else {
+      var fr = new FileReader();
+      fr.onload = function(){ doneCb(String(fr.result).split(",")[1], file.type || "application/octet-stream"); };
+      fr.readAsDataURL(file);
+    }
+  };
+  fi.click();
+}
+
+/* ==================== MODAL & CRUD ==================== */
+function openModal(title, bodyHtml, footHtml) {
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalBody").innerHTML = bodyHtml;
+  document.getElementById("modalFoot").innerHTML = footHtml;
+  document.getElementById("modalBg").classList.add("on");
+}
+function closeModal() { document.getElementById("modalBg").classList.remove("on"); }
+
+function openProductModal(rowIndex) {
+  var p = rowIndex > 0 ? STATE.products.filter(function(x){ return x.rowIndex === rowIndex; })[0] : null;
+  p = p || {
+    rowIndex: 0, aktif: true,
+    brand: FILTER_BRAND !== "ALL" ? FILTER_BRAND : "",
+    kategori: FILTER_CAT !== "ALL" ? FILTER_CAT : "HP",
+    nama: "", harga_promo: "", harga_normal: "",
+    flash_sale: CUR_TAB === "flash", urutan_flash: "", terjual_persen: 50,
+    tipe_ikon: "phone", glb_3d: "", foto_1: "", foto_2: "", foto_3: ""
+  };
+
+  var b = '<datalist id="dlCats"><option value="HP"><option value="Laptop"><option value="Aksesoris"><option value="Tablet"><option value="Wearable"><option value="Audio"></datalist>';
+  b += '<div class="grid2"><div class="fg"><label>Merk / Brand</label><input id="mpBrand" value="' + esc(p.brand) + '" placeholder="Apple, Samsung..."></div>';
+  b += '<div class="fg"><label>Kategori (bisa ketik baru)</label><input id="mpKat" list="dlCats" value="' + esc(p.kategori) + '"></div></div>';
+  b += '<div class="fg"><label>Nama Produk Lengkap</label><input id="mpNama" value="' + esc(p.nama) + '" placeholder="iPhone 16 Pro 256GB"></div>';
+  b += '<div class="grid3"><div class="fg"><label>Harga Promo (Rp)</label><input id="mpPr" type="number" value="' + esc(p.harga_promo) + '"></div>';
+  b += '<div class="fg"><label>Harga Normal / Coret</label><input id="mpO" type="number" value="' + esc(p.harga_normal) + '"></div>';
+  b += '<div class="fg"><label>Tipe Ikon Fallback</label><select id="mpIkon">';
+  ["phone","laptop","watch","mouse","plug","buds","bank"].forEach(function(ic){ b += '<option value="'+ic+'"'+(p.tipe_ikon===ic?' selected':'')+'>'+ic+'</option>'; });
+  b += '</select></div></div>';
+
+  b += '<div class="grid3"><div class="fg"><label>Urutan Flash Sale</label><input id="mpFsOrd" type="number" value="' + esc(p.urutan_flash) + '" placeholder="1, 2..."></div>';
+  b += '<div class="fg"><label>Terjual (%)</label><input id="mpSold" type="number" value="' + esc(p.terjual_persen) + '"></div>';
+  b += '<div class="fg"><label>Aktif / Flash Sale</label><div style="display:flex;gap:14px;padding-top:6px"><label style="display:inline-flex;align-items:center;gap:6px;margin:0"><span class="sw"><input type="checkbox" id="mpAktif" '+(p.aktif?'checked':'')+'><i></i></span> Aktif</label><label style="display:inline-flex;align-items:center;gap:6px;margin:0"><span class="sw fs"><input type="checkbox" id="mpFs" '+(p.flash_sale?'checked':'')+'><i></i></span> Flash</label></div></div></div>';
+
+  [1, 2, 3].forEach(function(n) {
+    var val = p["foto_" + n] || "";
+    var pv = resolveMedia(val);
+    b += '<div class="fg"><label>Foto ' + n + (n === 1 ? ' (Foto Utama)' : '') + '</label><div class="up-row">';
+    b += '<img class="up-preview" id="pvFoto' + n + '" src="' + esc(pv) + '" onerror="this.src=\'\'">';
+    b += '<input type="text" id="mpFoto' + n + '" value="' + esc(val) + '" placeholder="URL foto atau upload dari komputer...">';
+    b += '<button type="button" class="btn-up" onclick="triggerDriveUpload(\'mpFoto' + n + '\',\'pvFoto' + n + '\',\'Produk\',\'image/*\')">📤 Upload Foto</button>';
+    b += '</div></div>';
+  });
+
+  b += '<div class="fg"><label>Model 3D (.glb) Opsional</label><div class="up-row"><input type="text" id="mpGlb" value="' + esc(p.glb_3d) + '" placeholder="assets/3d/...glb atau URL"><button type="button" class="btn-up" onclick="triggerDriveUpload(\'mpGlb\',null,\'3D\',\'.glb,.gltf\')">📤 Upload .glb</button></div></div>';
+
+  var f = '<div>' + (p.rowIndex ? '<button class="btn btn-danger" onclick="removeProduct(' + p.rowIndex + ')">Hapus Produk</button>' : '') + '</div>';
+  f += '<div style="display:flex;gap:8px"><button class="btn" onclick="closeModal()">Batal</button><button class="btn btn-primary" onclick="submitProduct(' + p.rowIndex + ')">💾 Simpan Produk</button></div>';
+  openModal(p.rowIndex ? "Edit & Upload Foto Produk" : "Tambah Produk Baru", b, f);
+}
+
+function submitProduct(rowIndex) {
+  var item = {
+    rowIndex: rowIndex,
+    aktif: document.getElementById("mpAktif").checked,
+    brand: document.getElementById("mpBrand").value.trim(),
+    kategori: document.getElementById("mpKat").value.trim(),
+    nama: document.getElementById("mpNama").value.trim(),
+    harga_promo: Number(document.getElementById("mpPr").value),
+    harga_normal: Number(document.getElementById("mpO").value),
+    flash_sale: document.getElementById("mpFs").checked,
+    urutan_flash: document.getElementById("mpFsOrd").value,
+    terjual_persen: document.getElementById("mpSold").value,
+    tipe_ikon: document.getElementById("mpIkon").value,
+    glb_3d: document.getElementById("mpGlb").value.trim(),
+    foto_1: document.getElementById("mpFoto1").value.trim(),
+    foto_2: document.getElementById("mpFoto2").value.trim(),
+    foto_3: document.getElementById("mpFoto3").value.trim()
+  };
+  google.script.run
+    .withSuccessHandler(function(res){
+      if (!res || !res.ok) { toast((res && res.message) || "Gagal menyimpan", true); return; }
+      closeModal(); refreshAll(true); toast("Produk berhasil disimpan!");
+    })
+    .withFailureHandler(function(e){ toast("Error: " + e.message, true); })
+    .saveProduct(item);
+}
+function removeProduct(rowIndex) {
+  if (!confirm("Hapus produk ini permanen dari Google Sheets?")) return;
+  google.script.run.withSuccessHandler(function(){ closeModal(); refreshAll(true); toast("Produk dihapus."); }).deleteProduct(rowIndex);
+}
+
+function openVideoModal(rowIndex) {
+  var v = rowIndex > 0 ? STATE.videos.filter(function(x){ return x.rowIndex === rowIndex; })[0] : null;
+  v = v || { rowIndex: 0, aktif: true, urutan: STATE.videos.length + 1, brand: "", judul: "", deskripsi: "", nama_produk_wa: "", tipe: "youtube", video_url: "", poster_url: "", kunci_manual: true };
+
+  var b = '<div class="grid3"><div class="fg"><label>Merk</label><input id="mvBrand" value="' + esc(v.brand) + '" placeholder="SAMSUNG, APPLE..."></div>';
+  b += '<div class="fg"><label>Urutan</label><input id="mvUrutan" type="number" value="' + esc(v.urutan) + '"></div>';
+  b += '<div class="fg"><label>Tipe Video</label><select id="mvTipe"><option value="youtube"'+(v.tipe==="youtube"?' selected':'')+'>YouTube</option><option value="gdrive"'+(v.tipe==="gdrive"?' selected':'')+'>Google Drive (Upload)</option><option value="mp4"'+(v.tipe==="mp4"?' selected':'')+'>MP4 Direct</option></select></div></div>';
+  b += '<div class="fg"><label>Judul Video Trending</label><input id="mvJudul" value="' + esc(v.judul) + '"></div>';
+  b += '<div class="fg"><label>Deskripsi / Bahasan di Website</label><textarea id="mvDesc" rows="3">' + esc(v.deskripsi) + '</textarea></div>';
+  b += '<div class="fg"><label>Nama Produk untuk Chat WhatsApp</label><input id="mvWa" value="' + esc(v.nama_produk_wa) + '"></div>';
+  b += '<div class="fg"><label>Link Video (YouTube / Google Drive) atau Upload MP4</label><div class="up-row"><input type="text" id="mvUrl" value="' + esc(v.video_url) + '" placeholder="https://youtube.com/watch?v=... atau upload file"><button type="button" class="btn-up" onclick="triggerDriveUpload(\'mvUrl\',null,\'Video\',\'video/*\',\'mvTipe\')">🎬 Upload Video</button></div><small style="color:var(--mute);font-size:11px">Upload langsung mendukung file <= 16 MB. Untuk video besar atau terbaru, tempel link YouTube/Drive.</small></div>';
+  b += '<div class="fg"><label>Gambar Poster / Thumbnail (opsional jika YouTube)</label><div class="up-row"><img class="up-preview" id="pvVidPos" src="' + esc(resolveMedia(v.poster_url)) + '" onerror="this.src=\'\'"><input type="text" id="mvPoster" value="' + esc(v.poster_url) + '"><button type="button" class="btn-up" onclick="triggerDriveUpload(\'mvPoster\',\'pvVidPos\',\'Video\',\'image/*\')">🖼 Upload Poster</button></div></div>';
+  b += '<div style="display:flex;gap:18px"><label style="display:inline-flex;align-items:center;gap:6px"><span class="sw"><input type="checkbox" id="mvAktif" '+(v.aktif?'checked':'')+'><i></i></span> Aktif Tampil</label><label style="display:inline-flex;align-items:center;gap:6px"><span class="sw fs"><input type="checkbox" id="mvKunci" '+(v.kunci_manual?'checked':'')+'><i></i></span> Kunci (jangan ditimpa auto-update)</label></div>';
+
+  var f = '<div>' + (v.rowIndex ? '<button class="btn btn-danger" onclick="removeVideo(' + v.rowIndex + ')">Hapus Video</button>' : '') + '</div>';
+  f += '<div style="display:flex;gap:8px"><button class="btn" onclick="closeModal()">Batal</button><button class="btn btn-primary" onclick="submitVideo(' + v.rowIndex + ')">💾 Simpan Video</button></div>';
+  openModal(v.rowIndex ? "Edit & Upload Video Trending" : "Tambah Video Trending Baru", b, f);
+}
+
+function submitVideo(rowIndex) {
+  var item = {
+    rowIndex: rowIndex,
+    aktif: document.getElementById("mvAktif").checked,
+    urutan: Number(document.getElementById("mvUrutan").value),
+    brand: document.getElementById("mvBrand").value.trim(),
+    judul: document.getElementById("mvJudul").value.trim(),
+    deskripsi: document.getElementById("mvDesc").value.trim(),
+    nama_produk_wa: document.getElementById("mvWa").value.trim(),
+    tipe: document.getElementById("mvTipe").value,
+    video_url: document.getElementById("mvUrl").value.trim(),
+    poster_url: document.getElementById("mvPoster").value.trim(),
+    kunci_manual: document.getElementById("mvKunci").checked
+  };
+  google.script.run
+    .withSuccessHandler(function(res){
+      if (!res || !res.ok) { toast((res && res.message) || "Gagal menyimpan", true); return; }
+      closeModal(); refreshAll(true); toast("Video tersimpan!");
+    })
+    .saveVideo(item);
+}
+function removeVideo(rowIndex) {
+  if (!confirm("Hapus video ini?")) return;
+  google.script.run.withSuccessHandler(function(){ closeModal(); refreshAll(true); toast("Video dihapus."); }).deleteVideo(rowIndex);
+}
+function quickToggleVideo(rowIndex, key, inp) {
+  var v = STATE.videos.filter(function(x){ return x.rowIndex === rowIndex; })[0];
+  if (!v) return;
+  var copy = Object.assign({}, v); copy[key] = !!inp.checked;
+  google.script.run.withSuccessHandler(function(){ v[key] = copy[key]; updateCounts(); toast("Video diperbarui."); }).saveVideo(copy);
+}
+
+function openSourceModal(rowIndex) {
+  var s = rowIndex > 0 ? STATE.sources.filter(function(x){ return x.rowIndex === rowIndex; })[0] : null;
+  s = s || { rowIndex: 0, aktif: true, brand: "", channel_id: "", max_video: 1, kata_kunci_filter: "", catatan: "" };
+  var b = '<div class="grid2"><div class="fg"><label>Merk</label><input id="msBrand" value="' + esc(s.brand) + '"></div>';
+  b += '<div class="fg"><label>Max Video / Merk</label><input id="msMax" type="number" value="' + esc(s.max_video) + '"></div></div>';
+  b += '<div class="fg"><label>YouTube Channel ID (UC...) atau @handle</label><input id="msCid" value="' + esc(s.channel_id) + '" placeholder="UCWwgaK7x0_FR1goeSRazfsQ atau @GadgetIn"></div>';
+  b += '<div class="fg"><label>Filter Kata Kunci Opsional (pisah koma)</label><input id="msKw" value="' + esc(s.kata_kunci_filter) + '" placeholder="Pro,Ultra,AI"></div>';
+  b += '<label style="display:inline-flex;align-items:center;gap:6px"><span class="sw"><input type="checkbox" id="msAktif" '+(s.aktif?'checked':'')+'><i></i></span> Aktif ditarik otomatis</label>';
+  var f = '<div>' + (s.rowIndex ? '<button class="btn btn-danger" onclick="removeSource(' + s.rowIndex + ')">Hapus</button>' : '') + '</div>';
+  f += '<div style="display:flex;gap:8px"><button class="btn" onclick="closeModal()">Batal</button><button class="btn btn-primary" onclick="submitSource(' + s.rowIndex + ')">Simpan Channel</button></div>';
+  openModal("Channel Auto-Trending YouTube", b, f);
+}
+function submitSource(rowIndex) {
+  google.script.run.withSuccessHandler(function(r){
+    if (!r || !r.ok) { toast((r && r.message) || "Gagal", true); return; }
+    closeModal(); refreshAll(true); toast("Sumber channel tersimpan!");
+  }).saveSource({
+    rowIndex: rowIndex,
+    aktif: document.getElementById("msAktif").checked,
+    brand: document.getElementById("msBrand").value.trim(),
+    channel_id: document.getElementById("msCid").value.trim(),
+    max_video: Number(document.getElementById("msMax").value),
+    kata_kunci_filter: document.getElementById("msKw").value.trim()
+  });
+}
+function removeSource(rowIndex) {
+  google.script.run.withSuccessHandler(function(){ closeModal(); refreshAll(true); toast("Channel dihapus."); }).deleteSource(rowIndex);
+}
+function quickToggleSource(rowIndex, inp) {
+  var s = STATE.sources.filter(function(x){ return x.rowIndex === rowIndex; })[0];
+  if (!s) return;
+  var copy = Object.assign({}, s, { aktif: !!inp.checked });
+  google.script.run.withSuccessHandler(function(){ s.aktif = copy.aktif; toast("Channel diperbarui."); }).saveSource(copy);
+}
+
+function runAutoVideos() {
+  var btn = document.getElementById("btnAutoVid");
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ Mengambil dari YouTube..."; }
+  google.script.run
+    .withSuccessHandler(function(d){
+      if (d && d.ok) { STATE = d; updateCounts(); renderSidebar(); renderMain(); toast("Video trending lintas merk berhasil diperbarui!"); }
+    })
+    .withFailureHandler(function(e){ if (btn) { btn.disabled = false; btn.textContent = "🔄 Update Video Lintas Merk"; } toast("Error: " + e.message, true); })
+    .updateVideoTrendingFromWeb();
+}
+function toggleDaily(inp) {
+  var on = !!inp.checked;
+  google.script.run.withSuccessHandler(function(r){
+    STATE.hasDailyTrigger = !!(r && r.hasDailyTrigger);
+    toast(STATE.hasDailyTrigger ? "Auto-update harian 08:00 AKTIF" : "Auto-update harian DIMATIKAN");
+  }).toggleDailyTrigger(on);
+}
+
+function openBannerModal(rowIndex) {
+  var h = rowIndex > 0 ? STATE.hero.filter(function(x){ return x.rowIndex === rowIndex; })[0] : null;
+  h = h || { rowIndex: 0, aktif: true, urutan: STATE.hero.length + 1, label: "TRENDING SEKARANG", judul: "", deskripsi: "", tombol_teks: "Belanja Sekarang", tombol_link: "#flash", produk_terkait: "", gambar_custom: "", glb_custom: "" };
+
+  var b = '<datalist id="dlProds">';
+  STATE.products.forEach(function(p){ b += '<option value="' + esc(p.nama) + '">'; });
+  b += '</datalist>';
+  b += '<div class="grid2"><div class="fg"><label>Label Atas</label><input id="mhLabel" value="' + esc(h.label) + '"></div>';
+  b += '<div class="fg"><label>Urutan Slide</label><input id="mhUrutan" type="number" value="' + esc(h.urutan) + '"></div></div>';
+  b += '<div class="fg"><label>Judul Utama Banner</label><input id="mhJudul" value="' + esc(h.judul) + '"></div>';
+  b += '<div class="fg"><label>Deskripsi Banner</label><textarea id="mhDesc" rows="2">' + esc(h.deskripsi) + '</textarea></div>';
+  b += '<div class="grid2"><div class="fg"><label>Teks Tombol</label><input id="mhBtn" value="' + esc(h.tombol_teks) + '"></div>';
+  b += '<div class="fg"><label>Link Tombol (#flash atau #produk:Laptop)</label><input id="mhLink" value="' + esc(h.tombol_link) + '"></div></div>';
+  b += '<div class="fg"><label>Produk Terkait (gambar/3D kanan mengikuti produk ini)</label><input id="mhProd" list="dlProds" value="' + esc(h.produk_terkait) + '" placeholder="Ketik / pilih nama produk di katalog..."></div>';
+  b += '<div class="fg"><label>Gambar Custom Banner (opsional, menimpa gambar produk)</label><div class="up-row"><img class="up-preview" id="pvHeroImg" src="' + esc(resolveMedia(h.gambar_custom)) + '" onerror="this.src=\'\'"><input type="text" id="mhImg" value="' + esc(h.gambar_custom) + '"><button type="button" class="btn-up" onclick="triggerDriveUpload(\'mhImg\',\'pvHeroImg\',\'Banner\',\'image/*\')">🖼 Upload Gambar</button></div></div>';
+  b += '<div class="fg"><label>GLB 3D Custom (opsional)</label><input id="mhGlb" value="' + esc(h.glb_custom) + '"></div>';
+  b += '<label style="display:inline-flex;align-items:center;gap:6px"><span class="sw"><input type="checkbox" id="mhAktif" '+(h.aktif?'checked':'')+'><i></i></span> Aktif Tampil di Website</label>';
+
+  var f = '<div>' + (h.rowIndex ? '<button class="btn btn-danger" onclick="removeBanner(' + h.rowIndex + ')">Hapus Slide</button>' : '') + '</div>';
+  f += '<div style="display:flex;gap:8px"><button class="btn" onclick="closeModal()">Batal</button><button class="btn btn-primary" onclick="submitBanner(' + h.rowIndex + ')">💾 Simpan Banner</button></div>';
+  openModal(h.rowIndex ? "Edit Banner Hero & Upload Gambar" : "Tambah Banner Hero Baru", b, f);
+}
+function submitBanner(rowIndex) {
+  google.script.run.withSuccessHandler(function(r){
+    if (!r || !r.ok) { toast((r && r.message) || "Gagal", true); return; }
+    closeModal(); refreshAll(true); toast("Banner Hero disimpan!");
+  }).saveBanner({
+    rowIndex: rowIndex,
+    aktif: document.getElementById("mhAktif").checked,
+    urutan: Number(document.getElementById("mhUrutan").value),
+    label: document.getElementById("mhLabel").value.trim(),
+    judul: document.getElementById("mhJudul").value.trim(),
+    deskripsi: document.getElementById("mhDesc").value.trim(),
+    tombol_teks: document.getElementById("mhBtn").value.trim(),
+    tombol_link: document.getElementById("mhLink").value.trim(),
+    produk_terkait: document.getElementById("mhProd").value.trim(),
+    gambar_custom: document.getElementById("mhImg").value.trim(),
+    glb_custom: document.getElementById("mhGlb").value.trim()
+  });
+}
+function removeBanner(rowIndex) {
+  if (!confirm("Hapus slide banner ini?")) return;
+  google.script.run.withSuccessHandler(function(){ closeModal(); refreshAll(true); toast("Banner dihapus."); }).deleteBanner(rowIndex);
+}
+function quickToggleBanner(rowIndex, inp) {
+  var h = STATE.hero.filter(function(x){ return x.rowIndex === rowIndex; })[0];
+  if (!h) return;
+  var copy = Object.assign({}, h, { aktif: !!inp.checked });
+  google.script.run.withSuccessHandler(function(){ h.aktif = copy.aktif; updateCounts(); toast("Banner diperbarui."); }).saveBanner(copy);
+}
+
+function saveSettingsForm() {
+  google.script.run.withSuccessHandler(function(){
+    refreshAll(true); toast("Pengaturan tersimpan!");
+  }).saveSettings({
+    wa: document.getElementById("stWa").value.trim(),
+    flash_hours: Number(document.getElementById("stFsHours").value) || 6,
+    auto_video_limit: Number(document.getElementById("stVidLim").value) || 8,
+    catatan_toko: document.getElementById("stNote").value.trim()
+  });
+}
+
+window.addEventListener("load", function(){ refreshAll(false); });
+</script>
+</body>
+</html>
