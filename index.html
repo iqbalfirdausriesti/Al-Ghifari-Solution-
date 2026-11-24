@@ -1208,8 +1208,7 @@ function vPlay(){
  var v=curVid();if(!v)return;
  v.muted=!vsnd;
  var p=v.play();
- if(p&&p.then)p.then(function(){if(vsnd)vAudioUnlocked=true});
- if(p&&p.catch)p.catch(function(){if(vsnd){vsnd=false;vIcon();bindAudioUnlock()}v.muted=true;v.play().catch(function(){})});
+ if(p&&p.then)p.then(function(){if(vsnd)vAudioUnlocked=true}).catch(function(err){if(err&&err.name==="AbortError")return;if(vsnd){vsnd=false;vIcon();bindAudioUnlock()}v.muted=true;v.play().catch(function(){})});
 }
 function vSet(on){
  vsnd=on;
