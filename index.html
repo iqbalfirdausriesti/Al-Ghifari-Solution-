@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://iqbalfirdausriesti.github.io/Al-Ghifari-Solution-/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231746d6'/%3E%3Cpath d='M20 9l2.8 7.2L30 19l-7.2 2.8L20 29l-2.8-7.2L10 19l7.2-2.8z' fill='%23d8b46a'/%3E%3C/svg%3E">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <style>
 :root{--bg:#0a1020;--card:#111a30;--card2:#16223e;--ink:#eaf0ff;--mute:#9aa9c8;--line:#22304f;--brand:#4b78ff;--brand2:#0b2a8f;--acc:#ff6a1a;--gold:#d8b46a;--wa:#25d366;color-scheme:dark;box-sizing:border-box}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -45,7 +45,7 @@ nav a,.tb a{white-space:nowrap;padding:8px 0 11px;border-bottom:2px solid transp
 .btn-ghost{background:#ffffff14;color:#eaf0ff;border:1px solid #d8b46a66;box-shadow:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:12px 18px}
 .btn-ghost:hover{background:#d8b46a26;border-color:var(--gold);color:#fff;box-shadow:0 8px 20px #0004}
 .hero-3d-box{position:relative;justify-self:center;width:min(330px,96%);height:330px;border-radius:26px;background:radial-gradient(circle at 50% 45%,#1d347899,#0a1228dd);border:1px solid #d8b46a44;box-shadow:0 28px 60px #0007,inset 0 0 42px #4b78ff28;overflow:hidden}
-.hero-3d-mount{width:100%;height:100%;cursor:grab;touch-action:none}
+.hero-3d-mount{width:100%;height:100%;cursor:grab;touch-action:none;display:grid;place-items:center}.hero-3d-mount.photo{padding:24px;background:#fff;cursor:pointer}.hero-3d-mount.photo img{max-width:100%;max-height:100%;object-fit:contain;animation:heroImgFloat 4.4s ease-in-out infinite}@keyframes heroImgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .hero-3d-mount:active{cursor:grabbing}
 .hero-3d-tag{position:absolute;left:12px;top:12px;z-index:2;background:#0a1020cc;color:var(--gold);border:1px solid #d8b46a55;font-size:10.5px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:99px;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .hero-3d-open{position:absolute;right:12px;bottom:12px;z-index:2;background:#0a1020cc;color:#eaf0ff;border:1px solid #ffffff33;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:99px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:border-color .2s,color .2s,transform .2s}
@@ -193,13 +193,14 @@ html:has(.ld:not(.done)){overflow:hidden}
 .gv{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;background:#fff}
 .gt{display:flex;transition:transform .55s cubic-bezier(.65,0,.35,1)}
 .gs{flex:0 0 100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:0;padding:22px;transform:scale(.85);opacity:.25;transition:transform .55s cubic-bezier(.65,0,.35,1),opacity .55s}.gs.on{transform:none;opacity:1}
-.gs svg{width:76%;height:76%;filter:drop-shadow(0 18px 16px #0003)}.gs img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;-webkit-user-drag:none}
+.gs svg{width:76%;height:76%;filter:drop-shadow(0 18px 16px #0003)}.gs img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;-webkit-user-drag:none;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,.8,.2,1)}.gs img.zoomed{transform:scale(1.85);cursor:zoom-out}
 .gl,.gc{position:absolute;background:#0a1020cc;color:#fff;font-size:12px;font-weight:600;border-radius:99px;padding:4px 12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:2}.gl{left:12px;bottom:12px}.gc{left:12px;top:12px}
 .gth{display:flex;gap:8px;padding:12px 16px 0}.gth button{width:64px;aspect-ratio:1;display:grid;place-items:center;padding:4px;border:2px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;opacity:.6;transition:opacity .3s,border-color .3s,transform .3s}
 .gth button.on{opacity:1;border-color:var(--brand);transform:translateY(-2px)}.gth svg,.gth img{width:100%;height:100%;border-radius:8px;object-fit:contain;display:block}
 .gi{padding:14px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:4px}.gi small{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:11.5px;letter-spacing:.05em}.gi h3{margin:0;font-size:19px}
 .gbt{display:flex;gap:10px;margin-top:12px}.gbt .btn{flex:1;text-align:center;margin:0}
 .pt .ph{right:8px;bottom:8px;z-index:3;display:inline-flex;align-items:center;gap:4px}
+.pt .ph.is3d{background:linear-gradient(135deg,#0a1020ee,#16254dee);color:var(--gold);border:1px solid #d8b46a88}
 .pt .ph svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2}
 .ld-hint{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 48px);text-align:center;z-index:3;font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);opacity:0;transition:opacity .5s;margin:0}.ld.ask .ld-hint{opacity:1}
 .sec,.vs{scroll-margin-top:150px}
@@ -337,14 +338,14 @@ html:has(.ld:not(.done)){overflow:hidden}
 <section class="hero" id="heroSec" data-s="0" aria-label="Banner">
 <div class="hero-inner">
   <div class="ht-wrap"><div class="ht" id="ht">
-    <div class="hs"><div><em>TRENDING SEKARANG</em><h1>iPhone 16 Pro, titanium paling ringan</h1><p>Cicilan 0% sampai 24 bulan, gratis ongkir, dan putar langsung unit 3D-nya dari segala sisi.</p><div class="btn-row"><a class="btn" href="#flash">Belanja Sekarang</a><button type="button" class="btn btn-ghost" onclick="openHeroG(0)">Eksplor 3D 360°</button></div></div></div>
-    <div class="hs"><div><em>LAPTOP PILIHAN</em><h1>Kerja, kuliah, dan gaming dalam satu pilihan</h1><p>ASUS, Lenovo, Acer, Dell, dan MSI. Semua unit baru bergaransi resmi.</p><div class="btn-row"><a class="btn" href="#produk" onclick="tab('Laptop')">Lihat Laptop</a><button type="button" class="btn btn-ghost" onclick="openHeroG(1)">Putar Laptop 3D</button></div></div></div>
-    <div class="hs"><div><em>AKSESORI ORIGINAL</em><h1>Lengkapi gadget dengan aksesori terbaik</h1><p>Charger GaN, power bank, kabel, dan earbuds original dari brand terpercaya.</p><div class="btn-row"><a class="btn" href="#produk" onclick="tab('Aksesoris')">Lihat Aksesori</a><button type="button" class="btn btn-ghost" onclick="openHeroG(2)">Putar Aksesori 3D</button></div></div></div>
+    <div class="hs"><div><em>TRENDING SEKARANG</em><h1>iPhone 16 Pro, titanium paling ringan</h1><p>Cicilan 0% sampai 24 bulan, gratis ongkir, dan putar langsung model 3D barang aslinya 360°.</p><div class="btn-row"><a class="btn" href="#flash">Belanja Sekarang</a><button type="button" class="btn btn-ghost" onclick="openHeroG(0)">Lihat 3D 360°</button></div></div></div>
+    <div class="hs"><div><em>LAPTOP PILIHAN</em><h1>MacBook &amp; Laptop Resmi untuk Kerja &amp; Gaming</h1><p>Apple MacBook, ASUS, Lenovo, Acer, Dell, dan MSI. Semua unit baru bergaransi resmi.</p><div class="btn-row"><a class="btn" href="#produk" onclick="tab('Laptop')">Lihat Laptop</a><button type="button" class="btn btn-ghost" onclick="openHeroG(1)">Lihat 3D 360°</button></div></div></div>
+    <div class="hs"><div><em>AKSESORI ORIGINAL</em><h1>Lengkapi gadget dengan aksesori terbaik</h1><p>AirPods, charger GaN, power bank, kabel, dan mouse original dari brand terpercaya.</p><div class="btn-row"><a class="btn" href="#produk" onclick="tab('Aksesoris')">Lihat Aksesori</a><button type="button" class="btn btn-ghost" onclick="openHeroG(2)">Lihat Detail</button></div></div></div>
   </div></div>
   <div class="hero-3d-box" id="hero3dBox">
-    <span class="hero-3d-tag">✦ 3D 360° • GESER UNTUK PUTAR</span>
+    <span class="hero-3d-tag" id="hero3dTag">✦ 3D BARANG ASLI • GESER 360°</span>
     <div class="hero-3d-mount" id="hero3dMount"></div>
-    <button type="button" class="hero-3d-open" onclick="openHeroG()">Buka Studio 3D ↗</button>
+    <button type="button" class="hero-3d-open" id="hero3dBtn" onclick="openHeroG()">Lihat Detail ↗</button>
   </div>
 </div>
 <button class="ar l" onclick="go(-1)" aria-label="Sebelumnya">‹</button><button class="ar r" onclick="go(1)" aria-label="Berikutnya">›</button><div class="dots" id="dots"></div></section>
@@ -427,15 +428,15 @@ html:has(.ld:not(.done)){overflow:hidden}
 <script>
 var WA="6281574682460";
 var P=[
-{n:"iPhone 16 Pro 256GB",c:"HP",pr:18999000,o:20999000,t:"phone",col:["#8d8f94", "#d9dadd"],b:"Apple",im:["assets/apple/apple-iphone-16-pro-256gb-1.jpg", "assets/apple/apple-iphone-16-pro-256gb-2.jpg", "assets/apple/apple-iphone-16-pro-256gb-3.jpg"]},
+{n:"iPhone 16 Pro 256GB",c:"HP",pr:18999000,o:20999000,t:"phone",col:["#8d8f94", "#d9dadd"],b:"Apple",glb:"assets/3d/iphone-pro.glb",im:["assets/apple/apple-iphone-16-pro-256gb-1.jpg", "assets/apple/apple-iphone-16-pro-256gb-2.jpg", "assets/apple/apple-iphone-16-pro-256gb-3.jpg"]},
 {n:"iPhone 16 128GB",c:"HP",pr:15499000,o:16999000,t:"phone",col:["#0b8073", "#82dfd3"],b:"Apple",im:["assets/apple/apple-iphone-16-128gb-1.jpg", "assets/apple/apple-iphone-16-128gb-1.jpg", "assets/apple/apple-iphone-16-128gb-1.jpg"]},
-{n:"iPhone 15 Pro 128GB",c:"HP",pr:16999000,o:18499000,t:"phone",col:["#474749", "#9e9ea3"],b:"Apple",im:["assets/apple/apple-iphone-15-pro-128gb-1.jpg", "assets/apple/apple-iphone-15-pro-128gb-1.jpg", "assets/apple/apple-iphone-15-pro-128gb-1.jpg"]},
+{n:"iPhone 15 Pro 128GB",c:"HP",pr:16999000,o:18499000,t:"phone",col:["#474749", "#9e9ea3"],b:"Apple",glb:"assets/3d/iphone-pro.glb",im:["assets/apple/apple-iphone-15-pro-128gb-1.jpg", "assets/apple/apple-iphone-15-pro-128gb-1.jpg", "assets/apple/apple-iphone-15-pro-128gb-1.jpg"]},
 {n:"iPhone 15 128GB",c:"HP",pr:11999000,o:12999000,t:"phone",col:["#f1c7d4", "#ffe9ef"],b:"Apple",im:["assets/apple/apple-iphone-15-128gb-1.jpg", "assets/apple/apple-iphone-15-128gb-2.jpg"]},
 {n:"iPhone 14 128GB",c:"HP",pr:10299000,o:11499000,t:"phone",col:["#2c323f", "#6b7791"],b:"Apple",im:["assets/apple/apple-iphone-14-128gb-1.jpg", "assets/apple/apple-iphone-14-128gb-1.jpg", "assets/apple/apple-iphone-14-128gb-1.jpg"]},
 {n:"iPhone 13 128GB (Second)",c:"HP",pr:6499000,o:7299000,t:"phone",col:["#1b2a49", "#5d7bb8"],b:"Apple",im:["assets/apple/apple-iphone-13-128gb-second-1.jpg", "assets/apple/apple-iphone-13-128gb-second-2.jpg", "assets/apple/apple-iphone-13-128gb-second-3.jpg"]},
 {n:"iPhone 12 128GB (Second)",c:"HP",pr:5299000,o:5999000,t:"phone",col:["#5c3c8f", "#a688d6"],b:"Apple",im:["assets/apple/apple-iphone-12-128gb-1.jpg", "assets/apple/apple-iphone-12-128gb-1.jpg", "assets/apple/apple-iphone-12-128gb-1.jpg"]},
-{n:"MacBook Air M3 13-inch 8/256",c:"Laptop",pr:15999000,o:17499000,t:"laptop",col:["#9aa3b2", "#dfe4ee"],b:"Apple",im:["assets/apple/apple-macbook-air-m3-13-8-256-1.jpg", "assets/apple/apple-macbook-air-m3-13-8-256-2.jpg", "assets/apple/apple-macbook-air-m3-13-8-256-3.jpg"]},
-{n:"MacBook Pro 14-inch M4 16/512",c:"Laptop",pr:24999000,o:26999000,t:"laptop",col:["#2b2d33", "#8f95a3"],b:"Apple",im:["assets/apple/apple-macbook-pro-14-inch-m4-16-512-1.jpg", "assets/apple/apple-macbook-pro-14-inch-m4-16-512-2.jpg", "assets/apple/apple-macbook-pro-14-inch-m4-16-512-3.jpg"]},
+{n:"MacBook Air M3 13-inch 8/256",c:"Laptop",pr:15999000,o:17499000,t:"laptop",col:["#9aa3b2", "#dfe4ee"],b:"Apple",glb:"assets/3d/macbook-pro.glb",im:["assets/apple/apple-macbook-air-m3-13-8-256-1.jpg", "assets/apple/apple-macbook-air-m3-13-8-256-2.jpg", "assets/apple/apple-macbook-air-m3-13-8-256-3.jpg"]},
+{n:"MacBook Pro 14-inch M4 16/512",c:"Laptop",pr:24999000,o:26999000,t:"laptop",col:["#2b2d33", "#8f95a3"],b:"Apple",glb:"assets/3d/macbook-pro.glb",im:["assets/apple/apple-macbook-pro-14-inch-m4-16-512-1.jpg", "assets/apple/apple-macbook-pro-14-inch-m4-16-512-2.jpg", "assets/apple/apple-macbook-pro-14-inch-m4-16-512-3.jpg"]},
 {n:"AirPods Pro 2",c:"Aksesoris",pr:3699000,o:3999000,t:"buds",col:["#e9ebef", "#ffffff"],b:"Apple",im:["assets/apple/apple-airpods-pro-2-1.jpg", "assets/apple/apple-airpods-pro-2-2.jpg", "assets/apple/apple-airpods-pro-2-3.jpg"]},
 {n:"Samsung Galaxy S25 256GB",c:"HP",pr:13499000,o:14999000,t:"phone",col:["#1c3d73", "#6aa3ff"],b:"Samsung",im:["assets/samsung/samsung-samsung-galaxy-s25-256gb-1.jpg", "assets/samsung/samsung-samsung-galaxy-s25-256gb-2.jpg", "assets/samsung/samsung-samsung-galaxy-s25-256gb-3.jpg"]},
 {n:"Samsung Galaxy S24 Ultra 256GB",c:"HP",pr:18499000,o:21999000,t:"phone",col:["#363b45", "#8c94a4"],b:"Samsung",im:["assets/samsung/samsung-galaxy-s24-ultra-256gb-1.jpg", "assets/samsung/samsung-galaxy-s24-ultra-256gb-1.jpg", "assets/samsung/samsung-galaxy-s24-ultra-256gb-1.jpg"]},
@@ -645,26 +646,34 @@ var LB={phone:["Tampak depan","Tampak belakang","Dua sisi"],laptop:["Layar terbu
 function uniqIm(p){var a=[],u=p.im||[],j;for(j=0;j<u.length;j++){if(u[j]&&a.indexOf(u[j])<0)a.push(u[j])}return a}
 function fbImg(el,i,v){el.outerHTML=art(P[i],v)}
 function ph(p,v){var i=P.indexOf(p);return p.im&&p.im[v]?'<img src="'+p.im[v]+'" alt="'+p.n.replace(/"/g,'&quot;')+'" draggable="false" loading="lazy" onerror="fbImg(this,'+i+','+v+')">':art(p,v)}
-function phSrc(p,src,i,v){return '<img src="'+src+'" alt="'+p.n.replace(/"/g,'&quot;')+'" draggable="false" loading="lazy" onerror="fbImg(this,'+i+','+v+')">'}
+function phSrc(p,src,i,v,z){return '<img src="'+src+'" alt="'+p.n.replace(/"/g,'&quot;')+'" draggable="false" loading="lazy"'+(z?' onclick="if(!window.__gDragged)this.classList.toggle(\'zoomed\')"':'')+' onerror="fbImg(this,'+i+','+v+')">'}
 
-function m3dMount(){
- var c=document.getElementById("v3dCanvas");
- if(!c||curGIdx<0)return;
- if(window.AGS3D){window.AGS3D.mountModal(c,P[curGIdx])}
- else{c.innerHTML='<span class="v3d-loading">Memuat Model 3D…</span>'}
-}
 function m3dToggle(){
- if(!window.AGS3D)return;
- var on=window.AGS3D.toggleAuto();
- var b=document.getElementById("v3dAuto");
+ var mv=document.getElementById("modalMv"),b=document.getElementById("v3dAuto");
+ if(!mv)return;
+ var on=!mv.hasAttribute("auto-rotate");
+ if(on)mv.setAttribute("auto-rotate","");else mv.removeAttribute("auto-rotate");
  if(b){b.classList.toggle("on",on);b.textContent=on?"⏸ Jeda Putar":"▶ Auto Putar"}
 }
-function m3dReset(){if(window.AGS3D)window.AGS3D.resetView()}
-function m3dZoom(d){if(window.AGS3D)window.AGS3D.zoom(d)}
+function m3dReset(){
+ var mv=document.getElementById("modalMv");
+ if(!mv)return;
+ mv.cameraOrbit="auto auto auto";
+ mv.fieldOfView="auto";
+ if(typeof mv.resetTurntableRotation==="function")mv.resetTurntableRotation();
+}
+function m3dZoom(d){
+ var mv=document.getElementById("modalMv");
+ if(!mv)return;
+ if(typeof mv.zoom==="function"){mv.zoom(d*2.5)}
+ else{var curFov=parseFloat(mv.fieldOfView)||30;mv.fieldOfView=Math.max(12,Math.min(45,curFov-(d*5)))+"deg"}
+}
 function m3dLight(el,preset){
  [].forEach.call(el.parentNode.querySelectorAll("button"),function(b){b.classList.remove("on")});
  el.classList.add("on");
- if(window.AGS3D)window.AGS3D.setLighting(preset);
+ var w=document.getElementById("v3dWrap"),mv=document.getElementById("modalMv");
+ if(w){w.style.background=preset==="light"?"radial-gradient(circle at 50% 42%,#f4f7ff 0%,#dde5f5 100%)":preset==="gold"?"radial-gradient(circle at 50% 42%,#2e2414 0%,#0b0f1b 100%)":""}
+ if(mv){mv.setAttribute("exposure",preset==="light"?"1.24":preset==="gold"?"1.15":"1.08")}
 }
 function gMode(m){
  var w3=document.getElementById("v3dWrap"),gv=document.getElementById("gv"),gth=document.getElementById("gth"),b3=document.getElementById("gm3d"),bg=document.getElementById("gmgal");
@@ -675,7 +684,6 @@ function gMode(m){
  if(gth)gth.style.display=is3d?"none":"flex";
  if(b3)b3.classList.toggle("on",is3d);
  if(bg)bg.classList.toggle("on",!is3d);
- if(is3d){m3dMount()}else if(window.AGS3D){window.AGS3D.unmountModal()}
 }
 function setTenor(el,pr,m){
  [].forEach.call(el.parentNode.children,function(b){b.classList.remove("on")});
@@ -685,25 +693,26 @@ function setTenor(el,pr,m){
 }
 
 function openG(i){
- if(window.AGS3D)window.AGS3D.unmountModal();
  curGIdx=i;
- var p=P[i],uim=uniqIm(p),L=LB[p.t]||["Depan","Samping","Detail"],k;
+ var p=P[i],uim=uniqIm(p),L=LB[p.t]||["Depan","Samping","Detail"],k,hasGlb=!!p.glb;
  if(!uim.length)uim=[""];
  gTotal=uim.length;
  var ic3d='<svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>';
  var icGal='<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 16l-5-5-4 4-3-3-6 5"/></svg>';
 
  var h='<button class="x gx" onclick="closeG()" aria-label="Tutup">×</button>';
- h+='<div class="gmode"><button id="gm3d" class="on" onclick="gMode(\'3d\')">'+ic3d+'Model 3D 360°</button><button id="gmgal" onclick="gMode(\'gal\')">'+icGal+(uim.length>1?'Foto Asli ('+uim.length+')':'Foto Asli')+'</button></div>';
- h+='<div class="v3d-wrap" id="v3dWrap"><span class="v3d-deg">✦ 3D INTERAKTIF • PUTAR 360°</span><div class="v3d-canvas" id="v3dCanvas"></div><span class="v3d-hint">Seret ke segala arah • Scroll / cubit untuk zoom</span>';
- h+='<div class="v3d-ctrl"><button id="v3dAuto" class="on" onclick="m3dToggle()">⏸ Jeda Putar</button><button onclick="m3dReset()">Reset</button><button onclick="m3dZoom(1)" aria-label="Perbesar">＋</button><button onclick="m3dZoom(-1)" aria-label="Perkecil">－</button><div class="v3d-lights"><span>Studio:</span><button class="on" onclick="m3dLight(this,\'dark\')">Dark</button><button onclick="m3dLight(this,\'light\')">Terang</button><button onclick="m3dLight(this,\'gold\')">Gold</button></div></div></div>';
+ if(hasGlb){
+  h+='<div class="gmode"><button id="gm3d" class="on" onclick="gMode(\'3d\')">'+ic3d+'Model 3D Asli (360°)</button><button id="gmgal" onclick="gMode(\'gal\')">'+icGal+(uim.length>1?'Foto Asli ('+uim.length+')':'Foto Asli')+'</button></div>';
+  h+='<div class="v3d-wrap" id="v3dWrap"><span class="v3d-deg">✦ 3D BARANG ASLI • PUTAR 360°</span><div class="v3d-canvas" id="v3dCanvas"><model-viewer id="modalMv" src="'+p.glb+'" alt="'+p.n.replace(/"/g,'&quot;')+'" camera-controls auto-rotate rotation-per-second="24deg" shadow-intensity="1" exposure="1.08" interaction-prompt="none" style="width:100%;height:100%;background:transparent"></model-viewer></div><span class="v3d-hint">Seret untuk putar 360° • Scroll / cubit untuk zoom</span>';
+  h+='<div class="v3d-ctrl"><button id="v3dAuto" class="on" onclick="m3dToggle()">⏸ Jeda Putar</button><button onclick="m3dReset()">Reset</button><button onclick="m3dZoom(1)" aria-label="Perbesar">＋</button><button onclick="m3dZoom(-1)" aria-label="Perkecil">－</button><div class="v3d-lights"><span>Studio:</span><button class="on" onclick="m3dLight(this,\'dark\')">Dark</button><button onclick="m3dLight(this,\'light\')">Terang</button><button onclick="m3dLight(this,\'gold\')">Gold</button></div></div></div>';
+ }
 
- h+='<div class="gv" id="gv" style="display:none"><div class="gt" id="gt">';
- for(k=0;k<uim.length;k++)h+='<div class="gs"><span class="gl">'+(L[k]||("Foto "+(k+1)))+'</span>'+(uim[k]?phSrc(p,uim[k],i,k):art(p,k))+'</div>';
+ h+='<div class="gv" id="gv" style="display:'+(hasGlb?'none':'block')+'"><div class="gt" id="gt">';
+ for(k=0;k<uim.length;k++)h+='<div class="gs"><span class="gl">'+(L[k]||("Foto "+(k+1)))+'</span>'+(uim[k]?phSrc(p,uim[k],i,k,1):art(p,k))+'</div>';
  h+='</div><span class="gc" id="gc"></span>'+(uim.length>1?'<button class="vs-arr l" onclick="gg(-1)" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="vs-arr r" onclick="gg(1)" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>':'')+'</div>';
  if(uim.length>1){
-  h+='<div class="gth" id="gth" style="display:none">';
-  for(k=0;k<uim.length;k++)h+='<button onclick="gShow('+k+')" aria-label="Foto '+(k+1)+'">'+phSrc(p,uim[k],i,k)+'</button>';
+  h+='<div class="gth" id="gth" style="display:'+(hasGlb?'none':'flex')+'">';
+  for(k=0;k<uim.length;k++)h+='<button onclick="gShow('+k+')" aria-label="Foto '+(k+1)+'">'+phSrc(p,uim[k],i,k,0)+'</button>';
   h+='</div>';
  }
  h+='<div class="gi"><small>'+p.b+'</small><h3>'+p.n+'</h3><div><span class="old">'+rp(p.o)+'</span> <span class="price">'+rp(p.pr)+'</span></div>';
@@ -712,18 +721,19 @@ function openG(i){
  h+='<div class="gbt"><button class="btn" onclick="add('+i+')">+ Keranjang</button><a class="btn wa-btn" target="_blank" rel="noopener" href="'+wa("Halo Al Ghifari Solution, saya tertarik dengan "+p.n+". Apakah ready?")+'"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Tanya WhatsApp</a></div></div>';
 
  document.getElementById("gb").innerHTML=h;document.getElementById("gal").classList.add("on");document.body.style.overflow="hidden";
- gShow(0);m3dMount();
+ gShow(0);
 
  var v=document.getElementById("gv"),x0=0;
- v.addEventListener("pointerdown",function(e){x0=e.clientX});
- v.addEventListener("pointerup",function(e){var d=e.clientX-x0;if(Math.abs(d)>45&&gTotal>1)gg(d<0?1:-1)});
+ v.addEventListener("pointerdown",function(e){x0=e.clientX;window.__gDragged=false});
+ v.addEventListener("pointerup",function(e){var d=e.clientX-x0;if(Math.abs(d)>10)window.__gDragged=true;if(Math.abs(d)>45&&gTotal>1)gg(d<0?1:-1)});
 }
 function gShow(k){gi=(k+gTotal)%gTotal;document.getElementById("gt").style.transform="translateX(-"+gi*100+"%)";
+ document.querySelectorAll("#gt .gs img.zoomed").forEach(function(im){im.classList.remove("zoomed")});
  document.querySelectorAll("#gt .gs").forEach(function(e,j){e.classList.toggle("on",j==gi)});
  document.querySelectorAll(".gth button").forEach(function(e,j){e.classList.toggle("on",j==gi)});
- var gc=document.getElementById("gc");if(gc)gc.textContent=(gi+1)+" / "+gTotal}
+ var gc=document.getElementById("gc");if(gc)gc.textContent=(gTotal>1?(gi+1)+" / "+gTotal+" • Klik foto zoom":"Foto Asli • Klik foto zoom")}
 function gg(d){gShow(gi+d)}
-function closeG(){curGIdx=-1;if(window.AGS3D)window.AGS3D.unmountModal();document.getElementById("gal").classList.remove("on");document.body.style.overflow=""}
+function closeG(){curGIdx=-1;document.getElementById("gal").classList.remove("on");document.body.style.overflow=""}
 document.addEventListener("keydown",function(e){
  if(document.getElementById("gal").classList.contains("on")){if(e.key=="ArrowRight")gg(1);else if(e.key=="ArrowLeft")gg(-1);else if(e.key=="Escape")closeG()}
  if(document.getElementById("cartModal").classList.contains("on")&&e.key=="Escape")closeCart();
@@ -738,8 +748,11 @@ function lg(e,n,s){var k=+e.dataset.k||0;e.dataset.k=k+1;if(k==0)e.src="https://
 document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(\''+b[0]+'\')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,\''+b[0]+'\',\''+b[1]+'\')"></a>'}).join("");
 function disc(p){return Math.round((1-p.pr/p.o)*100)}
 function card(p,i,fl){
- var s=45+(i*17)%50,uc=uniqIm(p).length,badge=uc>1?'3D 360° • '+uc+' foto':'3D 360°',ic='<svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>';
- return'<article class="pc"><div class="pt" onclick="openG('+i+')"><b>-'+disc(p)+'%</b><span class="ph">'+ic+badge+'</span>'+ph(p,0)+'</div><div class="pb"><small>'+p.b+'</small><h3 onclick="openG('+i+')">'+p.n+'</h3><span class="old">'+rp(p.o)+'</span><span class="pr">'+rp(p.pr)+'</span><span class="cc">Cicilan '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>'+(fl?'<div class="bar"><i style="width:'+s+'%"></i></div><span class="s">Terjual '+s+'%</span>':'')+'<button onclick="add('+i+')">+ Keranjang</button></div><span class="pc-glare" aria-hidden="true"></span></article>';
+ var s=45+(i*17)%50,uc=uniqIm(p).length;
+ var ic3d='<svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>';
+ var icGal='<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 16l-5-5-4 4-3-3-6 5"/></svg>';
+ var phBadge=p.glb?'<span class="ph is3d">'+ic3d+'✦ 3D 360°</span>':(uc>1?'<span class="ph">'+icGal+uc+' foto</span>':'');
+ return'<article class="pc"><div class="pt" onclick="openG('+i+')"><b>-'+disc(p)+'%</b>'+phBadge+ph(p,0)+'</div><div class="pb"><small>'+p.b+'</small><h3 onclick="openG('+i+')">'+p.n+'</h3><span class="old">'+rp(p.o)+'</span><span class="pr">'+rp(p.pr)+'</span><span class="cc">Cicilan '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>'+(fl?'<div class="bar"><i style="width:'+s+'%"></i></div><span class="s">Terjual '+s+'%</span>':'')+'<button onclick="add('+i+')">+ Keranjang</button></div><span class="pc-glare" aria-hidden="true"></span></article>';
 }
 function initTilt(){
  if(!window.matchMedia||!window.matchMedia("(hover:hover) and (pointer:fine)").matches||window.matchMedia("(prefers-reduced-motion:reduce)").matches)return;
@@ -832,28 +845,38 @@ function chk(){
 var ht=document.getElementById("ht"),dots=document.getElementById("dots"),hSlides=document.querySelectorAll("#ht .hs"),heroSec=document.getElementById("heroSec");
 var heroP=[
  P.filter(function(x){return x.n.indexOf("iPhone 16 Pro")==0})[0]||P[0],
- P.filter(function(x){return x.c=="Laptop"})[0]||P[0],
+ P.filter(function(x){return x.glb&&x.c=="Laptop"})[0]||P.filter(function(x){return x.c=="Laptop"})[0]||P[0],
  P.filter(function(x){return x.c=="Aksesoris"})[0]||P[0]
 ];
 function openHeroG(idx){var p=heroP[typeof idx==="number"?idx:cur]||P[0];openG(P.indexOf(p))}
+function renderHeroMedia(p){
+ var hm=document.getElementById("hero3dMount"),tag=document.getElementById("hero3dTag"),btn=document.getElementById("hero3dBtn");
+ if(!hm||!p)return;
+ if(p.glb){
+  hm.classList.remove("photo");
+  hm.innerHTML='<model-viewer id="heroMv" src="'+p.glb+'" alt="'+p.n.replace(/"/g,'&quot;')+'" camera-controls auto-rotate rotation-per-second="22deg" shadow-intensity="1" exposure="1.08" interaction-prompt="none" style="width:100%;height:100%;background:transparent"></model-viewer>';
+  if(tag)tag.textContent="✦ 3D BARANG ASLI • GESER 360°";
+  if(btn)btn.textContent="Buka 3D Penuh ↗";
+ }else{
+  hm.classList.add("photo");
+  hm.innerHTML=ph(p,0);
+  if(tag)tag.textContent="✦ PRODUK ORIGINAL";
+  if(btn)btn.textContent="Lihat Detail ↗";
+ }
+}
 for(var k=0;k<3;k++){var b=document.createElement("button");b.setAttribute("aria-label","Banner "+(k+1));b.onclick=(function(k){return function(){show(k)}})(k);dots.appendChild(b)}
 function show(i){
  cur=(i+3)%3;ht.style.transform="translateX(-"+cur*100+"%)";
  if(heroSec)heroSec.setAttribute("data-s",String(cur));
  [].forEach.call(hSlides,function(s,j){s.classList.toggle("active",j==cur)});
  [].forEach.call(dots.children,function(d,j){d.classList.toggle("on",j==cur)});
- if(window.AGS3D&&heroP[cur])window.AGS3D.setHeroProduct(heroP[cur]);
+ if(heroP[cur])renderHeroMedia(heroP[cur]);
  clearInterval(tm);tm=setInterval(function(){show(cur+1)},7000);
 }
 function go(d){show(cur+d)}
 var x0=0;ht.addEventListener("pointerdown",function(e){x0=e.clientX});ht.addEventListener("pointerup",function(e){var d=e.clientX-x0;if(Math.abs(d)>50)go(d<0?1:-1)});
 var h3b=document.getElementById("hero3dBox");if(h3b){h3b.addEventListener("pointerdown",function(e){e.stopPropagation()})}
-window.__ags3dReady=function(){
- var hm=document.getElementById("hero3dMount");
- if(hm&&window.AGS3D)window.AGS3D.initHero(hm,heroP[cur]);
- m3dMount();
-};
-if(window.AGS3D)window.__ags3dReady();
+renderHeroMedia(heroP[cur]);
 var end=Date.now()+6*3600*1000;
 setInterval(function(){var r=Math.max(0,end-Date.now()),z=function(v){return String(v).padStart(2,"0")};document.getElementById("h").textContent=z(Math.floor(r/3600000));document.getElementById("m").textContent=z(Math.floor(r/60000)%60);document.getElementById("s").textContent=z(Math.floor(r/1000)%60)},1000);
 drawFlash();drawGrid(true);show(0);
@@ -932,5 +955,4 @@ playSnd();
 if(document.readyState==="complete")setTimeout(done,900);
 else{window.addEventListener("load",function(){setTimeout(done,550)});setTimeout(done,1400)}
 })();</script>
-<script type="module" src="device3d.js"></script>
 </body></html>
