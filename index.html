@@ -1,7 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Al Ghifari Solution – Lifestyle Gadget Terpercaya</title>
-<meta name="description" content="Smartphone, laptop, dan aksesori bergaransi resmi. Cicilan 0% sampai 24x, free ongkir.">
+<meta name="description" content="Smartphone, laptop, dan aksesori bergaransi resmi. Cicilan 0% sampai 24x, free ongkir, dan preview 3D 360° interaktif.">
+<meta name="theme-color" content="#0a1020">
+<meta property="og:title" content="Al Ghifari Solution – Lifestyle Gadget Terpercaya">
+<meta property="og:description" content="Smartphone, laptop, dan aksesori bergaransi resmi. Cicilan 0% sampai 24x dan gratis ongkir se-Indonesia.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iqbalfirdausriesti.github.io/Al-Ghifari-Solution-/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231746d6'/%3E%3Cpath d='M20 9l2.8 7.2L30 19l-7.2 2.8L20 29l-2.8-7.2L10 19l7.2-2.8z' fill='%23d8b46a'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#0a1020;--card:#111a30;--card2:#16223e;--ink:#eaf0ff;--mute:#9aa9c8;--line:#22304f;--brand:#4b78ff;--brand2:#0b2a8f;--acc:#ff6a1a;--gold:#d8b46a;--wa:#25d366;color-scheme:dark;box-sizing:border-box}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -97,7 +103,7 @@ footer{background:#070c1a;border-top:1px solid var(--line);color:var(--mute);mar
 .cfoot{padding:16px 20px;border-top:1px solid var(--line);background:#0c1428}
 .ctot{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:15px}.ctot b{font-size:20px;color:var(--gold)}
 
-@media(max-width:860px){.hs{grid-template-columns:1fr;padding:30px 24px 56px;min-height:420px}.pn{order:-1;width:160px;padding:12px}.dots{left:24px}.qk{grid-template-columns:repeat(4,1fr)}.br{grid-template-columns:repeat(4,1fr)}.pm,.wy{grid-template-columns:1fr}.ct{grid-template-columns:repeat(2,1fr)}footer .w{grid-template-columns:1fr}.hd{flex-wrap:wrap}.sb{order:3;flex:1 0 100%}.top .w>span:last-child{display:none}.ar{display:none}.gp{grid-template-columns:repeat(2,1fr);gap:10px}.pb{padding:11px}.pb h3{font-size:13px;min-height:35px}.pr{font-size:16px}.pb button{padding:8px;font-size:13px}.pc{flex-basis:172px}.pt{padding:8px}.pt b{font-size:10.5px;left:6px;top:6px}.pt .ph{display:none}.wab-float{padding:0;width:54px;height:54px}.wab-float span{display:none}}
+@media(max-width:860px){.hs{grid-template-columns:1fr;padding:30px 24px 56px;min-height:420px}.pn{order:-1;width:160px;padding:12px}.dots{left:24px}.qk{grid-template-columns:repeat(4,1fr)}.br{grid-template-columns:repeat(4,1fr)}.pm,.wy{grid-template-columns:1fr}.ct{grid-template-columns:repeat(2,1fr)}footer .w{grid-template-columns:1fr}.hd{flex-wrap:wrap}.sb{order:3;flex:1 0 100%}.top .w>span:last-child{display:none}.ar{display:none}.gp{grid-template-columns:repeat(2,1fr);gap:10px}.pb{padding:11px}.pb h3{font-size:13px;min-height:35px}.pr{font-size:16px}.pb button{padding:8px;font-size:13px}.pc{flex-basis:172px}.pt{padding:8px}.pt b{font-size:10.5px;left:6px;top:6px}.pt .ph{font-size:10px;padding:2px 7px;right:6px;bottom:6px}.wab-float{padding:0;width:54px;height:54px}.wab-float span{display:none}}
 
 /* Video Slider */
 .vs{margin-top:20px}.vs-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
@@ -183,26 +189,105 @@ html:has(.ld:not(.done)){overflow:hidden}
 .gth button.on{opacity:1;border-color:var(--brand);transform:translateY(-2px)}.gth svg,.gth img{width:100%;height:100%;border-radius:8px;object-fit:contain;display:block}
 .gi{padding:14px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:4px}.gi small{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:11.5px;letter-spacing:.05em}.gi h3{margin:0;font-size:19px}
 .gbt{display:flex;gap:10px;margin-top:12px}.gbt .btn{flex:1;text-align:center;margin:0}
-.pt .ph{right:8px;bottom:8px;z-index:3}
+.pt .ph{right:8px;bottom:8px;z-index:3;display:inline-flex;align-items:center;gap:4px}
+.pt .ph svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2}
 .ld-hint{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 48px);text-align:center;z-index:3;font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);opacity:0;transition:opacity .5s;margin:0}.ld.ask .ld-hint{opacity:1}
 .sec,.vs{scroll-margin-top:150px}
 .ct a span{margin-top:0}
 .ar,.vs-snd,.vs-arr{cursor:pointer}
+
+/* Ambient Motion & Animasi Website */
+.bg-orb{position:fixed;border-radius:50%;filter:blur(95px);pointer-events:none;z-index:-1;opacity:.22;will-change:transform}
+.bg-orb.o1{width:46vmax;height:46vmax;background:radial-gradient(circle,#4b78ff,transparent 70%);left:-14vmax;top:-10vmax;animation:orbFloat1 18s ease-in-out infinite alternate}
+.bg-orb.o2{width:42vmax;height:42vmax;background:radial-gradient(circle,#ff6a1a,transparent 70%);right:-14vmax;bottom:-12vmax;opacity:.14;animation:orbFloat2 22s ease-in-out infinite alternate}
+@keyframes orbFloat1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(8vmax,7vmax) scale(1.12)}}
+@keyframes orbFloat2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-8vmax,-6vmax) scale(1.1)}}
+
+.pn{animation:heroFloat 4.6s ease-in-out infinite}
+.pn:hover{animation-play-state:paused;transform:scale(1.04) rotate(-1.5deg)}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:-20% -60%;background:linear-gradient(105deg,transparent 38%,#ffffff66 50%,transparent 62%);transform:translateX(-80%);transition:transform .75s ease;pointer-events:none}
+.btn:hover::after{transform:translateX(80%)}
+
+.hs.active em{animation:fadeUp .45s ease backwards}
+.hs.active h1{animation:fadeUp .55s .08s ease backwards}
+.hs.active p{animation:fadeUp .6s .15s ease backwards}
+.hs.active .btn{animation:fadeUp .65s .22s ease backwards}
+
+.pc{position:relative;transform-style:preserve-3d;will-change:transform}
+.pc-glare{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;z-index:4;border-radius:inherit}
+.cart b.pop{animation:cartPop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes cartPop{0%{transform:scale(1)}45%{transform:scale(1.42)}100%{transform:scale(1)}}
+
+/* Scroll Reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.2,.8,.2,1),transform .65s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* Filter, Sorting & Pagination Katalog */
+.flt-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.flt-bar label{font-size:12px;color:var(--mute);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.flt-bar select{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;outline:0;cursor:pointer;transition:border-color .2s}
+.flt-bar select:hover,.flt-bar select:focus{border-color:var(--gold)}
+.more-wrap{display:flex;justify-content:center;margin-top:24px}
+.btn-more{background:var(--card);border:1px solid var(--gold);color:var(--gold);padding:11px 24px;border-radius:12px;font-weight:700;font-size:14px;transition:background .2s,color .2s,transform .2s}
+.btn-more:hover{background:var(--gold);color:#0a1020;transform:translateY(-2px)}
+
+/* Viewer 3D 360 Produk di Modal */
+.gmode{display:flex;gap:8px;padding:12px 54px 10px 16px;background:#0c1428;border-bottom:1px solid var(--line);align-items:center;flex-wrap:wrap}
+.gmode button{padding:7px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--mute);font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.gmode button:hover{color:#fff;border-color:#4b78ff88}
+.gmode button.on{background:linear-gradient(135deg,var(--brand),#3563eb);border-color:var(--brand);color:#fff;box-shadow:0 4px 14px #4b78ff44}
+.gmode svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+
+.v3d-wrap{background:radial-gradient(circle at 50% 42%,#ffffff 0%,#e6edf8 100%);position:relative;user-select:none}
+.v3d-stage{height:330px;perspective:1100px;display:grid;place-items:center;cursor:grab;touch-action:none;position:relative;overflow:hidden}
+.v3d-stage:active{cursor:grabbing}
+.v3d-shadow{position:absolute;bottom:22px;width:200px;height:24px;border-radius:50%;background:radial-gradient(ellipse,#0a102042,transparent 72%);pointer-events:none}
+.v3d-obj{width:236px;height:236px;position:relative;transform-style:preserve-3d;will-change:transform}
+.v3d-face{position:absolute;inset:0;border-radius:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff;padding:14px;display:grid;place-items:center;box-shadow:0 16px 38px #0a102022;border:1px solid #d7e0ef;overflow:hidden}
+.v3d-face img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;pointer-events:none}
+.v3d-face.back{transform:rotateY(180deg)}
+.v3d-face.back.spec{padding:18px;text-align:center;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;border:1px solid #ffffff38;text-shadow:0 2px 8px #0006}
+.v3d-face.back.spec small{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:#00000044;padding:3px 10px;border-radius:99px;border:1px solid #ffffff44}
+.v3d-face.back.spec strong{font-size:15px;line-height:1.3}
+.v3d-face.back.spec span{font-size:12px;opacity:.92;background:#0a102088;padding:4px 10px;border-radius:8px}
+.v3d-glare{position:absolute;inset:0;pointer-events:none;border-radius:20px;mix-blend-mode:soft-light}
+.v3d-edge{position:absolute;inset:2px;border-radius:20px;background:#cbd5e1;transform:translateZ(-6px);pointer-events:none}
+.v3d-deg{position:absolute;left:12px;top:12px;z-index:3;background:#0a1020cc;color:var(--gold);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:99px;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.v3d-hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);background:#0a1020b8;color:#fff;font-size:11px;padding:3px 11px;border-radius:99px;pointer-events:none;white-space:nowrap}
+.v3d-ctrl{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#0c1428;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.v3d-ctrl button{padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-size:12px;font-weight:600;color:var(--ink);transition:border-color .2s,background .2s}
+.v3d-ctrl button:hover{border-color:var(--gold)}
+.v3d-ctrl button.on{background:#4b78ff33;border-color:var(--brand);color:#fff}
+.v3d-ctrl input[type=range]{flex:1;min-width:110px;accent-color:var(--gold);cursor:pointer}
+
+/* Simulasi Cicilan & Checkout Mini */
+.tenor{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.tenor button{padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--mute);font-size:12px;font-weight:600;transition:all .2s}
+.tenor button:hover{border-color:var(--gold);color:#fff}
+.tenor button.on{background:#d8b46a22;border-color:var(--gold);color:var(--gold)}
+
+.ckf{display:grid;gap:8px;margin-bottom:12px}
+.ckf input,.ckf select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 11px;color:var(--ink);font:inherit;font-size:13px;outline:0;transition:border-color .2s}
+.ckf input:focus,.ckf select:focus{border-color:var(--gold)}
+.ckf-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+@media(max-width:520px){
+ .v3d-stage{height:275px}
+ .v3d-obj{width:196px;height:196px}
+ .ckf-row{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ .bg-orb,.pn,.btn::after,.cart b.pop{animation:none!important}
+ .rv{opacity:1;transform:none;transition:none}
+ .pc{transform:none!important}
+}
 </style>
-<script>
-// Paksa kembali ke halaman utama (paling atas) setiap kali halaman di-refresh
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
-if (window.location.hash) {
-  history.replaceState(null, "", window.location.pathname + window.location.search);
-}
-window.scrollTo(0, 0);
-window.addEventListener("beforeunload", function () {
-  window.scrollTo(0, 0);
-});
-</script>
 </head><body>
+<div class="bg-orb o1" aria-hidden="true"></div>
+<div class="bg-orb o2" aria-hidden="true"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1-2.1-.2-4 2-6 .5 2.500 2 4.900 4 6.500 2 1.600 3 3.500 3 5.500a7 7 0 1 1-14 0c0-1.150.4-2.300 1-3a2.500 2.500 0 0 0 2.500 2.500z"/></symbol>
 <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5M3 9v11h18V9M3 9c0 1.500 1.300 2.500 3 2.500S9 10.500 9 9c0 1.500 1.300 2.500 3 2.500s3-1 3-2.500c0 1.500 1.300 2.500 3 2.500s3-1 3-2.500M9 20v-6h6v6"/></symbol>
@@ -278,7 +363,27 @@ window.addEventListener("beforeunload", function () {
 
 <section class="sec" id="produk"><div class="sh"><div><small>KATALOG</small><h2>Semua Produk</h2></div><span class="em" id="pcn"></span></div>
 <div class="tb" id="tabs"><a data-t="all" onclick="tab('all')">Semua</a><a data-t="HP" onclick="tab('HP')">Smartphone</a><a data-t="Laptop" onclick="tab('Laptop')">Laptop</a><a data-t="Aksesoris" onclick="tab('Aksesoris')">Aksesori</a></div>
-<div class="gp" id="gp"></div></section>
+<div class="flt-bar">
+  <label>Urutkan:
+    <select id="srt" onchange="drawGrid()">
+      <option value="def">Rekomendasi</option>
+      <option value="asc">Harga Termurah</option>
+      <option value="desc">Harga Termahal</option>
+      <option value="disc">Diskon Terbesar</option>
+    </select>
+  </label>
+  <label>Rentang Harga:
+    <select id="prc" onchange="drawGrid(true)">
+      <option value="all">Semua Harga</option>
+      <option value="0-2">Di bawah Rp2 Juta</option>
+      <option value="2-5">Rp2 – 5 Juta</option>
+      <option value="5-10">Rp5 – 10 Juta</option>
+      <option value="10+">Di atas Rp10 Juta</option>
+    </select>
+  </label>
+</div>
+<div class="gp" id="gp"></div>
+<div class="more-wrap" id="moreWrap"></div></section>
 
 <section class="sec" id="brand"><div class="sh"><div><small>BRAND RESMI</small><h2>Belanja per Brand</h2></div></div><div class="br" id="br"></div></section>
 
@@ -292,7 +397,7 @@ window.addEventListener("beforeunload", function () {
 <footer id="kontak"><div class="w"><div><div class="logo"><i><svg class="ic"><use href="#i-star"/></svg></i><span>Al Ghifari<small>SOLUTION</small></span></div><p style="margin-top:12px">Solusi lifestyle gadget terpercaya. Belanja nyaman, harga bersahabat, garansi resmi.</p></div>
 <div><h4>BELANJA</h4><a href="#flash">Flash Sale</a><a href="#produk">Semua Produk</a><a href="#brand">Brand</a></div>
 <div><h4>BANTUAN</h4><a href="https://wa.me/6281574682460" target="_blank" rel="noopener">WhatsApp 0815-7468-2460</a><a href="#kontak">Ambil di Toko</a><a href="#promo">Promo &amp; Cicilan</a></div></div>
-<div class="cp">© 2026 Al Ghifari Solution. Harga contoh, mohon konfirmasi stok.</div></footer>
+<div class="cp">© 2026 Al Ghifari Solution. Semua unit bergaransi resmi — hubungi WhatsApp untuk cek stok terbaru.</div></footer>
 
 <a class="wab-float" href="https://wa.me/6281574682460?text=Halo%20Al%20Ghifari%20Solution%2C%20saya%20ingin%20tanya%20produk%20gadget" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
   <svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>
@@ -528,33 +633,110 @@ function art(p,v){
  return '<svg viewBox="'+vb+'">'+g+s+'</svg>';
 }
 
-var LB={phone:["Tampak depan","Tampak belakang","Dua sisi"],laptop:["Layar terbuka","Keyboard","Tertutup"],watch:["Tampak depan","Tampilan layar","Miring"],mouse:["Atas","Samping","Bawah"],plug:["Depan","Samping","Dengan kabel"],buds:["Case","Case terbuka","Earbud"]},gi=0;
+var LB={phone:["Tampak depan","Tampak belakang","Dua sisi"],laptop:["Layar terbuka","Keyboard","Tertutup"],watch:["Tampak depan","Tampilan layar","Miring"],mouse:["Atas","Samping","Bawah"],plug:["Depan","Samping","Dengan kabel"],buds:["Case","Case terbuka","Earbud"]},gi=0,gTotal=1,v3dY=0,v3dX=-4,v3dAuto=true,v3dRaf=null,v3dLast=0;
+function uniqIm(p){var a=[],u=p.im||[],j;for(j=0;j<u.length;j++){if(u[j]&&a.indexOf(u[j])<0)a.push(u[j])}return a}
 function fbImg(el,i,v){el.outerHTML=art(P[i],v)}
 function ph(p,v){var i=P.indexOf(p);return p.im&&p.im[v]?'<img src="'+p.im[v]+'" alt="'+p.n.replace(/"/g,'&quot;')+'" draggable="false" loading="lazy" onerror="fbImg(this,'+i+','+v+')">':art(p,v)}
+function phSrc(p,src,i,v){return '<img src="'+src+'" alt="'+p.n.replace(/"/g,'&quot;')+'" draggable="false" loading="lazy" onerror="fbImg(this,'+i+','+v+')">'}
+
+function v3dStop(){if(v3dRaf){cancelAnimationFrame(v3dRaf);v3dRaf=null}}
+function v3dRender(){
+ var obj=document.getElementById("v3dObj"),sh=document.getElementById("v3dSh"),gl=document.getElementById("v3dGlare"),degEl=document.getElementById("v3dDeg"),rng=document.getElementById("v3dRng");
+ if(!obj)return;
+ obj.style.transform="rotateX("+v3dX.toFixed(1)+"deg) rotateY("+v3dY.toFixed(1)+"deg)";
+ var norm=((v3dY%360)+360)%360;
+ if(degEl)degEl.textContent=Math.round(norm)+"°";
+ if(rng)rng.value=Math.round(norm);
+ var rad=norm*Math.PI/180,cw=Math.abs(Math.cos(rad));
+ if(sh){sh.style.transform="scaleX("+(0.42+0.68*cw).toFixed(2)+")";sh.style.opacity=(0.35+0.65*cw).toFixed(2)}
+ if(gl){var lx=50+Math.sin(rad)*42;gl.style.background="linear-gradient("+(110+Math.sin(rad)*40)+"deg, transparent "+Math.max(0,lx-22)+"%, #ffffff66 "+lx+"%, transparent "+Math.min(100,lx+22)+"%)"}
+}
+function v3dTick(ts){
+ if(!v3dLast)v3dLast=ts;
+ var dt=Math.min(50,ts-v3dLast);v3dLast=ts;
+ if(v3dAuto){v3dY=(v3dY+dt*0.045)%360;v3dRender();v3dRaf=requestAnimationFrame(v3dTick)}
+ else{v3dRaf=null}
+}
+function v3dToggle(force){
+ v3dAuto=typeof force==="boolean"?force:!v3dAuto;
+ var b=document.getElementById("v3dAuto");
+ if(b){b.classList.toggle("on",v3dAuto);b.textContent=v3dAuto?"⏸ Jeda Putar":"▶ Auto Putar"}
+ if(v3dAuto){v3dLast=0;if(!v3dRaf)v3dRaf=requestAnimationFrame(v3dTick)}else{v3dStop()}
+}
+function v3dReset(){v3dY=0;v3dX=-4;v3dRender()}
+function v3dSetDeg(val){v3dToggle(false);v3dY=+val||0;v3dRender()}
+function gMode(m){
+ var w3=document.getElementById("v3dWrap"),gv=document.getElementById("gv"),gth=document.getElementById("gth"),b3=document.getElementById("gm3d"),bg=document.getElementById("gmgal");
+ if(!w3||!gv)return;
+ var is3d=(m==="3d");
+ w3.style.display=is3d?"block":"none";
+ gv.style.display=is3d?"none":"block";
+ if(gth)gth.style.display=is3d?"none":"flex";
+ if(b3)b3.classList.toggle("on",is3d);
+ if(bg)bg.classList.toggle("on",!is3d);
+ if(is3d){v3dToggle(true)}else{v3dStop()}
+}
+function setTenor(el,pr,m){
+ [].forEach.call(el.parentNode.children,function(b){b.classList.remove("on")});
+ el.classList.add("on");
+ var cic=Math.round(pr/m/1000)*1000;
+ document.getElementById("giCic").textContent="Cicilan 0% "+m+"x: "+rp(cic)+"/bln";
+}
 
 function openG(i){
- var p=P[i],L=LB[p.t]||["Depan","Samping","Detail"],h='<button class="x gx" onclick="closeG()" aria-label="Tutup">×</button><div class="gv" id="gv"><div class="gt" id="gt">',k;
- for(k=0;k<3;k++)h+='<div class="gs"><span class="gl">'+L[k]+'</span>'+ph(p,k)+'</div>';
- h+='</div><span class="gc" id="gc"></span><button class="vs-arr l" onclick="gg(-1)" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="vs-arr r" onclick="gg(1)" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div><div class="gth">';
- for(k=0;k<3;k++)h+='<button onclick="gShow('+k+')" aria-label="Foto '+(k+1)+'">'+ph(p,k)+'</button>';
- h+='</div><div class="gi"><small>'+p.b+'</small><h3>'+p.n+'</h3><div><span class="old">'+rp(p.o)+'</span> <span class="price">'+rp(p.pr)+'</span></div><span class="cic">Cicilan mulai '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span><div class="gbt"><button class="btn" onclick="add('+i+')">+ Keranjang</button><a class="btn wa-btn" target="_blank" rel="noopener" href="'+wa("Halo Al Ghifari Solution, saya tertarik dengan "+p.n+". Apakah ready?")+'"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Tanya WhatsApp</a></div></div>';
- document.getElementById("gb").innerHTML=h;document.getElementById("gal").classList.add("on");document.body.style.overflow="hidden";gShow(0);
+ v3dStop();
+ var p=P[i],uim=uniqIm(p),L=LB[p.t]||["Depan","Samping","Detail"],k;
+ if(!uim.length)uim=[""];
+ gTotal=uim.length;
+ var ic3d='<svg viewBox="0 0 24 24"><path d="M12 3a9 3.5 0 1 0 9 3.5"/><path d="M21 12a9 3.5 0 0 1-9 3.5 9 3.5 0 0 1-9-3.5"/><path d="M12 3v18"/></svg>';
+ var icGal='<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 16l-5-5-4 4-3-3-6 5"/></svg>';
+ var backHtml=uim.length>1
+  ?'<div class="v3d-face back">'+phSrc(p,uim[1],i,1)+'<div class="v3d-glare"></div></div>'
+  :'<div class="v3d-face back spec" style="background:linear-gradient(145deg,'+p.col[0]+','+p.col[1]+')"><small>'+p.b+' • GARANSI RESMI</small><strong>'+p.n+'</strong><span>Mulai '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span><small style="letter-spacing:.08em">Al Ghifari Solution</small></div>';
+
+ var h='<button class="x gx" onclick="closeG()" aria-label="Tutup">×</button>';
+ h+='<div class="gmode"><button id="gm3d" class="on" onclick="gMode(\'3d\')">'+ic3d+'Putar 360° 3D</button><button id="gmgal" onclick="gMode(\'gal\')">'+icGal+(uim.length>1?'Galeri ('+uim.length+' Foto)':'Lihat Foto')+'</button></div>';
+ h+='<div class="v3d-wrap" id="v3dWrap"><div class="v3d-stage" id="v3dStage"><span class="v3d-deg" id="v3dDeg">0°</span><div class="v3d-shadow" id="v3dSh"></div><div class="v3d-obj" id="v3dObj"><div class="v3d-edge"></div><div class="v3d-face front">'+ph(p,0)+'<div class="v3d-glare" id="v3dGlare"></div></div>'+backHtml+'</div><span class="v3d-hint">Geser ke kiri/kanan untuk memutar 360°</span></div>';
+ h+='<div class="v3d-ctrl"><button id="v3dAuto" class="on" onclick="v3dToggle()">⏸ Jeda Putar</button><button onclick="v3dReset()">Reset 0°</button><input id="v3dRng" type="range" min="0" max="360" value="0" aria-label="Sudut putar 3D" oninput="v3dSetDeg(this.value)"></div></div>';
+
+ h+='<div class="gv" id="gv" style="display:none"><div class="gt" id="gt">';
+ for(k=0;k<uim.length;k++)h+='<div class="gs"><span class="gl">'+(L[k]||("Foto "+(k+1)))+'</span>'+(uim[k]?phSrc(p,uim[k],i,k):art(p,k))+'</div>';
+ h+='</div><span class="gc" id="gc"></span>'+(uim.length>1?'<button class="vs-arr l" onclick="gg(-1)" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button class="vs-arr r" onclick="gg(1)" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>':'')+'</div>';
+ if(uim.length>1){
+  h+='<div class="gth" id="gth" style="display:none">';
+  for(k=0;k<uim.length;k++)h+='<button onclick="gShow('+k+')" aria-label="Foto '+(k+1)+'">'+phSrc(p,uim[k],i,k)+'</button>';
+  h+='</div>';
+ }
+ h+='<div class="gi"><small>'+p.b+'</small><h3>'+p.n+'</h3><div><span class="old">'+rp(p.o)+'</span> <span class="price">'+rp(p.pr)+'</span></div>';
+ h+='<span class="cic" id="giCic">Cicilan 0% 12x: '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>';
+ h+='<div class="tenor"><button onclick="setTenor(this,'+p.pr+',3)">3x</button><button onclick="setTenor(this,'+p.pr+',6)">6x</button><button class="on" onclick="setTenor(this,'+p.pr+',12)">12x</button><button onclick="setTenor(this,'+p.pr+',24)">24x</button></div>';
+ h+='<div class="gbt"><button class="btn" onclick="add('+i+')">+ Keranjang</button><a class="btn wa-btn" target="_blank" rel="noopener" href="'+wa("Halo Al Ghifari Solution, saya tertarik dengan "+p.n+". Apakah ready?")+'"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg>Tanya WhatsApp</a></div></div>';
+
+ document.getElementById("gb").innerHTML=h;document.getElementById("gal").classList.add("on");document.body.style.overflow="hidden";
+ gShow(0);v3dY=0;v3dX=-4;v3dRender();v3dToggle(true);
+
+ var st=document.getElementById("v3dStage"),drag=false,sx=0,sy=0,by=0,bx=0;
+ st.addEventListener("pointerdown",function(e){drag=true;sx=e.clientX;sy=e.clientY;by=v3dY;bx=v3dX;v3dToggle(false);if(st.setPointerCapture)try{st.setPointerCapture(e.pointerId)}catch(err){}});
+ st.addEventListener("pointermove",function(e){if(!drag)return;v3dY=by+(e.clientX-sx)*0.75;v3dX=Math.max(-18,Math.min(18,bx-(e.clientY-sy)*0.25));v3dRender()});
+ st.addEventListener("pointerup",function(){drag=false});
+ st.addEventListener("pointercancel",function(){drag=false});
+
  var v=document.getElementById("gv"),x0=0;
  v.addEventListener("pointerdown",function(e){x0=e.clientX});
- v.addEventListener("pointerup",function(e){var d=e.clientX-x0;if(Math.abs(d)>45)gg(d<0?1:-1)});
+ v.addEventListener("pointerup",function(e){var d=e.clientX-x0;if(Math.abs(d)>45&&gTotal>1)gg(d<0?1:-1)});
 }
-function gShow(k){gi=(k+3)%3;document.getElementById("gt").style.transform="translateX(-"+gi*100+"%)";
+function gShow(k){gi=(k+gTotal)%gTotal;document.getElementById("gt").style.transform="translateX(-"+gi*100+"%)";
  document.querySelectorAll("#gt .gs").forEach(function(e,j){e.classList.toggle("on",j==gi)});
  document.querySelectorAll(".gth button").forEach(function(e,j){e.classList.toggle("on",j==gi)});
- document.getElementById("gc").textContent=(gi+1)+" / 3"}
+ var gc=document.getElementById("gc");if(gc)gc.textContent=(gi+1)+" / "+gTotal}
 function gg(d){gShow(gi+d)}
-function closeG(){document.getElementById("gal").classList.remove("on");document.body.style.overflow=""}
+function closeG(){v3dStop();document.getElementById("gal").classList.remove("on");document.body.style.overflow=""}
 document.addEventListener("keydown",function(e){
  if(document.getElementById("gal").classList.contains("on")){if(e.key=="ArrowRight")gg(1);else if(e.key=="ArrowLeft")gg(-1);else if(e.key=="Escape")closeG()}
  if(document.getElementById("cartModal").classList.contains("on")&&e.key=="Escape")closeCart();
 });
 
-var cart=[],cur=0,TB="all",Q="",tm,BR=[["Apple","apple"],["Samsung","samsung"],["Xiaomi","xiaomi"],["OPPO","oppo"],["vivo","vivo"],["realme","realme"],["Google","google"],["POCO","poco"],["ASUS","asus"],["Lenovo","lenovo"],["Acer","acer"],["HP","hp"],["Dell","dell"],["MSI","msi"],["Anker","anker"],["Logitech","logitech"]];
+var cart=[],cur=0,TB="all",Q="",gLim=24,tm,BR=[["Apple","apple"],["Samsung","samsung"],["Xiaomi","xiaomi"],["OPPO","oppo"],["vivo","vivo"],["realme","realme"],["Google","google"],["POCO","poco"],["ASUS","asus"],["Lenovo","lenovo"],["Acer","acer"],["HP","hp"],["Dell","dell"],["MSI","msi"],["Anker","anker"],["Logitech","logitech"]];
 try{cart=JSON.parse(localStorage.getItem("ags_cart")||"[]")}catch(e){cart=[]}
 function saveCart(){try{localStorage.setItem("ags_cart",JSON.stringify(cart))}catch(e){}document.getElementById("cn").textContent=cart.length}
 saveCart();
@@ -562,19 +744,60 @@ saveCart();
 function lg(e,n,s){var k=+e.dataset.k||0;e.dataset.k=k+1;if(k==0)e.src="https://cdn.simpleicons.org/"+s+"/ffffff";else e.replaceWith(document.createTextNode(n))}
 document.getElementById("br").innerHTML=BR.map(function(b){return'<a onclick="qs(\''+b[0]+'\')"><img src="logos/'+b[1]+'.svg" alt="'+b[0]+'" loading="lazy" onerror="lg(this,\''+b[0]+'\',\''+b[1]+'\')"></a>'}).join("");
 function disc(p){return Math.round((1-p.pr/p.o)*100)}
-function card(p,i,fl){var s=45+(i*17)%50;return'<article class="pc"><div class="pt" onclick="openG('+i+')"><b>-'+disc(p)+'%</b><span class="ph">3 foto</span>'+ph(p,0)+'</div><div class="pb"><small>'+p.b+'</small><h3 onclick="openG('+i+')">'+p.n+'</h3><span class="old">'+rp(p.o)+'</span><span class="pr">'+rp(p.pr)+'</span><span class="cc">Cicilan '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>'+(fl?'<div class="bar"><i style="width:'+s+'%"></i></div><span class="s">Terjual '+s+'%</span>':'')+'<button onclick="add('+i+')">+ Keranjang</button></div></article>'}
-function drawFlash(){var ix=P.map(function(p,i){return i}).sort(function(a,b){return disc(P[b])-disc(P[a])}).slice(0,8);var r=document.getElementById("row");r.innerHTML=ix.concat(ix).map(function(i){return card(P[i],i,1)}).join("");if(r.dataset.slInit)return;r.dataset.slInit="1";var paused=false,ptm=null;function pauseTmp(ms){paused=true;clearTimeout(ptm);ptm=setTimeout(function(){paused=false},ms)}r.addEventListener("mouseenter",function(){paused=true});r.addEventListener("mouseleave",function(){paused=false});r.addEventListener("touchstart",function(){paused=true},{passive:true});r.addEventListener("touchend",function(){pauseTmp(1500)});r.addEventListener("wheel",function(){pauseTmp(1500)},{passive:true});var prev=document.getElementById("fsPrev"),next=document.getElementById("fsNext");if(prev)prev.addEventListener("click",function(){pauseTmp(1400);var half=r.scrollWidth/2;if(r.scrollLeft<=10)r.scrollLeft=half;r.scrollBy({left:-232,behavior:"smooth"})});if(next)next.addEventListener("click",function(){pauseTmp(1400);r.scrollBy({left:232,behavior:"smooth"})});function tick(){if(!paused&&r.offsetParent!==null){var half=r.scrollWidth/2;if(half>r.clientWidth){r.scrollLeft+=0.55;if(r.scrollLeft>=half)r.scrollLeft-=half}}requestAnimationFrame(tick)}requestAnimationFrame(tick)}
-function drawGrid(){var q=Q.toLowerCase(),h="",c=0;P.forEach(function(p,i){if(TB!="all"&&p.c!=TB)return;if(q&&(p.b+" "+p.n).toLowerCase().indexOf(q)<0)return;c++;h+=card(p,i,0)});
- document.getElementById("gp").innerHTML=h||'<p class="em">Produk tidak ditemukan. Coba kata kunci lain atau tanya via WhatsApp.</p>';document.getElementById("pcn").textContent=c+" produk";
- [].forEach.call(document.querySelectorAll("#tabs a"),function(a){a.classList.toggle("k",a.dataset.t==TB)})}
-function tab(t){TB=t;Q="";document.getElementById("q").value="";drawGrid()}
+function card(p,i,fl){
+ var s=45+(i*17)%50,uc=uniqIm(p).length,badge=uc>1?'360° • '+uc+' foto':'360°',ic='<svg viewBox="0 0 24 24"><path d="M12 3a9 3.5 0 1 0 9 3.5"/><path d="M21 12a9 3.5 0 0 1-9 3.5 9 3.5 0 0 1-9-3.5"/></svg>';
+ return'<article class="pc"><div class="pt" onclick="openG('+i+')"><b>-'+disc(p)+'%</b><span class="ph">'+ic+badge+'</span>'+ph(p,0)+'</div><div class="pb"><small>'+p.b+'</small><h3 onclick="openG('+i+')">'+p.n+'</h3><span class="old">'+rp(p.o)+'</span><span class="pr">'+rp(p.pr)+'</span><span class="cc">Cicilan '+rp(Math.round(p.pr/12/1000)*1000)+'/bln</span>'+(fl?'<div class="bar"><i style="width:'+s+'%"></i></div><span class="s">Terjual '+s+'%</span>':'')+'<button onclick="add('+i+')">+ Keranjang</button></div><span class="pc-glare" aria-hidden="true"></span></article>';
+}
+function initTilt(){
+ if(!window.matchMedia||!window.matchMedia("(hover:hover) and (pointer:fine)").matches||window.matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ [].forEach.call(document.querySelectorAll(".pc"),function(el){
+  if(el.dataset.tilt)return;el.dataset.tilt="1";
+  var gl=el.querySelector(".pc-glare");
+  el.addEventListener("pointermove",function(e){
+   var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+   el.style.transform="perspective(750px) rotateX("+((0.5-y)*7).toFixed(2)+"deg) rotateY("+((x-0.5)*7).toFixed(2)+"deg) translateY(-4px)";
+   if(gl){gl.style.opacity="1";gl.style.background="radial-gradient(circle at "+Math.round(x*100)+"% "+Math.round(y*100)+"%, #ffffff24, transparent 58%)"}
+  });
+  el.addEventListener("pointerleave",function(){el.style.transform="";if(gl)gl.style.opacity="0"});
+ });
+}
+function drawFlash(){var ix=P.map(function(p,i){return i}).sort(function(a,b){return disc(P[b])-disc(P[a])}).slice(0,8);var r=document.getElementById("row");r.innerHTML=ix.concat(ix).map(function(i){return card(P[i],i,1)}).join("");initTilt();if(r.dataset.slInit)return;r.dataset.slInit="1";var paused=false,ptm=null;function pauseTmp(ms){paused=true;clearTimeout(ptm);ptm=setTimeout(function(){paused=false},ms)}r.addEventListener("mouseenter",function(){paused=true});r.addEventListener("mouseleave",function(){paused=false});r.addEventListener("touchstart",function(){paused=true},{passive:true});r.addEventListener("touchend",function(){pauseTmp(1500)});r.addEventListener("wheel",function(){pauseTmp(1500)},{passive:true});var prev=document.getElementById("fsPrev"),next=document.getElementById("fsNext");if(prev)prev.addEventListener("click",function(){pauseTmp(1400);var half=r.scrollWidth/2;if(r.scrollLeft<=10)r.scrollLeft=half;r.scrollBy({left:-232,behavior:"smooth"})});if(next)next.addEventListener("click",function(){pauseTmp(1400);r.scrollBy({left:232,behavior:"smooth"})});function tick(){if(!paused&&r.offsetParent!==null){var half=r.scrollWidth/2;if(half>r.clientWidth){r.scrollLeft+=0.55;if(r.scrollLeft>=half)r.scrollLeft-=half}}requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+function drawGrid(resetLim){
+ if(resetLim)gLim=24;
+ var q=Q.toLowerCase(),srtEl=document.getElementById("srt"),prcEl=document.getElementById("prc"),srt=srtEl?srtEl.value:"def",prc=prcEl?prcEl.value:"all";
+ var ix=[];
+ P.forEach(function(p,i){
+  if(TB!="all"&&p.c!=TB)return;
+  if(q&&(p.b+" "+p.n).toLowerCase().indexOf(q)<0)return;
+  if(prc==="0-2"&&p.pr>=2000000)return;
+  if(prc==="2-5"&&(p.pr<2000000||p.pr>5000000))return;
+  if(prc==="5-10"&&(p.pr<=5000000||p.pr>10000000))return;
+  if(prc==="10+"&&p.pr<=10000000)return;
+  ix.push(i);
+ });
+ if(srt==="asc")ix.sort(function(a,b){return P[a].pr-P[b].pr});
+ else if(srt==="desc")ix.sort(function(a,b){return P[b].pr-P[a].pr});
+ else if(srt==="disc")ix.sort(function(a,b){return disc(P[b])-disc(P[a])});
+ var shown=ix.slice(0,gLim),h=shown.map(function(i){return card(P[i],i,0)}).join("");
+ document.getElementById("gp").innerHTML=h||'<p class="em">Produk tidak ditemukan. Coba kata kunci lain atau tanya via WhatsApp.</p>';
+ document.getElementById("pcn").textContent=ix.length+" produk";
+ var mw=document.getElementById("moreWrap");
+ if(mw){
+  var rem=ix.length-shown.length;
+  mw.innerHTML=rem>0?'<button class="btn-more" onclick="loadMore()">Muat Lebih Banyak (sisa '+rem+' produk)</button>':'';
+ }
+ [].forEach.call(document.querySelectorAll("#tabs a"),function(a){a.classList.toggle("k",a.dataset.t==TB)});
+ initTilt();
+}
+function loadMore(){gLim+=24;drawGrid()}
+function tab(t){TB=t;Q="";document.getElementById("q").value="";drawGrid(true)}
 function go2(){document.getElementById("produk").scrollIntoView({behavior:"smooth"})}
-function srch(){Q=document.getElementById("q").value;TB="all";drawGrid();go2()}
+function srch(){Q=document.getElementById("q").value;TB="all";drawGrid(true);go2()}
 function qs(t){document.getElementById("q").value=t;srch()}
 document.getElementById("q").addEventListener("keydown",function(e){if(e.key=="Enter")srch()});
 
 function toast(t){var e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e.t);e.t=setTimeout(function(){e.classList.remove("on")},1800)}
-function add(i){cart.push(i);saveCart();toast(P[i].n+" masuk keranjang")}
+function add(i){cart.push(i);saveCart();var cn=document.getElementById("cn");if(cn){cn.classList.remove("pop");void cn.offsetWidth;cn.classList.add("pop")}toast(P[i].n+" masuk keranjang")}
 
 function openCart(){
  var cb=document.getElementById("cbody"),cf=document.getElementById("cfoot");
@@ -590,7 +813,7 @@ function openCart(){
    html+='<div class="citem"><div class="citem-info"><h4>'+p.n+'</h4><span>'+rp(p.pr)+' × '+q+'</span></div><div class="cqty"><button onclick="modCart('+idx+',-1)" aria-label="Kurangi">−</button><b>'+q+'</b><button onclick="modCart('+idx+',1)" aria-label="Tambah">+</button></div></div>';
   });
   cb.innerHTML=html;
-  cf.innerHTML='<div class="ctot"><span>Total Estimasi</span><b>'+rp(total)+'</b></div><button class="btn wa-btn" style="width:100%;background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff" onclick="chk()"><svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Pesan Sekarang via WhatsApp</button>';
+  cf.innerHTML='<div class="ctot"><span>Total Estimasi</span><b>'+rp(total)+'</b></div><div class="ckf"><input id="ckName" placeholder="Nama Anda (opsional)" aria-label="Nama Anda"><div class="ckf-row"><select id="ckShip" aria-label="Metode Pengambilan"><option value="Kirim Kurir (Free Ongkir)">Kirim Kurir (Free Ongkir)</option><option value="Ambil di Toko">Ambil di Toko</option></select><select id="ckPay" aria-label="Metode Pembayaran"><option value="Transfer / Cash">Transfer / Cash</option><option value="Cicilan 0%">Cicilan 0%</option></select></div></div><button class="btn wa-btn" style="width:100%;background:linear-gradient(135deg,#25d366,#1ebe5d);color:#fff" onclick="chk()"><svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Pesan Sekarang via WhatsApp</button>';
  }
  document.getElementById("cartModal").classList.add("on");
  document.body.style.overflow="hidden";
@@ -606,18 +829,37 @@ function chk(){
  var counts={},order=[],t=0;
  cart.forEach(function(idx){if(!counts[idx]){counts[idx]=0;order.push(idx)}counts[idx]++});
  var l=order.map(function(i){var sub=P[i].pr*counts[i];t+=sub;return"- "+P[i].n+" ("+counts[i]+"x) = "+rp(sub)}).join("\n");
- window.open(wa("Halo Al Ghifari Solution, saya mau pesan:\n"+l+"\nTotal: "+rp(t)+"\nApakah unitnya ready?"),"_blank");
+ var nmEl=document.getElementById("ckName"),shEl=document.getElementById("ckShip"),pyEl=document.getElementById("ckPay");
+ var nm=nmEl&&nmEl.value.trim()?("\nNama: "+nmEl.value.trim()):"";
+ var sh=shEl?("\nMetode: "+shEl.value):"";
+ var py=pyEl?("\nPembayaran: "+pyEl.value):"";
+ window.open(wa("Halo Al Ghifari Solution, saya mau pesan:\n"+l+"\nTotal: "+rp(t)+nm+sh+py+"\nApakah unitnya ready?"),"_blank");
 }
 
-var ht=document.getElementById("ht"),dots=document.getElementById("dots");
+var ht=document.getElementById("ht"),dots=document.getElementById("dots"),hSlides=document.querySelectorAll("#ht .hs");
 for(var k=0;k<3;k++){var b=document.createElement("button");b.setAttribute("aria-label","Banner "+(k+1));b.onclick=(function(k){return function(){show(k)}})(k);dots.appendChild(b)}
-function show(i){cur=(i+3)%3;ht.style.transform="translateX(-"+cur*100+"%)";[].forEach.call(dots.children,function(d,j){d.classList.toggle("on",j==cur)});clearInterval(tm);tm=setInterval(function(){show(cur+1)},6000)}
+function show(i){cur=(i+3)%3;ht.style.transform="translateX(-"+cur*100+"%)";[].forEach.call(hSlides,function(s,j){s.classList.toggle("active",j==cur)});[].forEach.call(dots.children,function(d,j){d.classList.toggle("on",j==cur)});clearInterval(tm);tm=setInterval(function(){show(cur+1)},6000)}
 function go(d){show(cur+d)}
 var x0=0;ht.addEventListener("pointerdown",function(e){x0=e.clientX});ht.addEventListener("pointerup",function(e){var d=e.clientX-x0;if(Math.abs(d)>50)go(d<0?1:-1)});
 [].forEach.call(document.querySelectorAll(".pn"),function(el){var k=el.dataset.k,p=k[0]=="@"?P.filter(function(x){return x.c==k.slice(1)})[0]:P.filter(function(x){return x.n.indexOf(k)==0})[0]||P[0];el.innerHTML=ph(p,0);el.style.cursor="pointer";el.onclick=function(){openG(P.indexOf(p))}});
 var end=Date.now()+6*3600*1000;
 setInterval(function(){var r=Math.max(0,end-Date.now()),z=function(v){return String(v).padStart(2,"0")};document.getElementById("h").textContent=z(Math.floor(r/3600000));document.getElementById("m").textContent=z(Math.floor(r/60000)%60);document.getElementById("s").textContent=z(Math.floor(r/1000)%60)},1000);
-drawFlash();drawGrid();show(0);
+drawFlash();drawGrid(true);show(0);
+
+/* Scroll Reveal Animations */
+(function(){
+ var els=document.querySelectorAll(".sec,.vs,.qk a,.br a,.pm div,.wy div,.ct a");
+ [].forEach.call(els,function(el,idx){
+  el.classList.add("rv");
+  if(!el.classList.contains("sec")&&!el.classList.contains("vs"))el.style.transitionDelay=((idx%8)*45)+"ms";
+ });
+ if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(ents){
+   ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}});
+  },{threshold:0.08,rootMargin:"0px 0px -30px 0px"});
+  [].forEach.call(els,function(el){io.observe(el)});
+ }else{[].forEach.call(els,function(el){el.classList.add("in")})}
+})();
 
 var VS=[{t:"Galaxy A17 5G, AI untuk Semua",p:"HP 5G terbaru dari Samsung dengan fitur AI yang bikin aktivitas harian lebih mudah. Cek stok dan harga terbaiknya di Al Ghifari Solution.",q:"Samsung Galaxy A17 5G"},{t:"Xiaomi 18 Pro Series",p:"Lihat seri flagship terbaru Xiaomi lewat iklan resminya. Mau tahu harga dan ketersediaannya? Tanya langsung ke kami.",q:"Xiaomi 18 Pro"},{t:"OPPO Find X9 Ultra",p:"Flagship terbaru OPPO yang siap bikin kamu penasaran. Hubungi kami untuk info pre-order dan promo.",q:"OPPO Find X9 Ultra"}];
 var vi=0,vsnd=true,vvis=true,vuserMute=false,vunlockBound=false,vids=document.querySelectorAll("#vtk video"),vsl=document.querySelectorAll("#vtk .vs-s"),vdt;
@@ -654,24 +896,16 @@ document.addEventListener("visibilitychange",function(){if(document.hidden)vStop
 var vx=0;document.getElementById("vview").addEventListener("touchstart",function(e){vx=e.touches[0].clientX},{passive:true});
 document.getElementById("vview").addEventListener("touchend",function(e){var d=e.changedTouches[0].clientX-vx;if(Math.abs(d)>50)vgo(d<0?1:-1)});
 vIcon();vShow(0);
-window.addEventListener("load",function(){window.scrollTo(0,0);if(vvis&&!ldOn()){if(!vuserMute)vSet(true);else if(vids[vi].paused)vPlay()}});
+window.addEventListener("load",function(){if(!location.hash)window.scrollTo(0,0);if(vvis&&!ldOn()){if(!vuserMute)vSet(true);else if(vids[vi].paused)vPlay()}});
 </script>
 
 <script>(function(){var l=document.getElementById("ld");if(!l)return;
-var t0=Date.now(),fin=false,ready=false,started=false,loaded=document.readyState==="complete",wait;
-var snd=new Audio("Sound.mp3");snd.preload="auto";snd.volume=.9;
-var ev=["pointerup","touchend","click","keydown"];
-function bind(){ev.forEach(function(e){window.addEventListener(e,tap,true)})}
-function unbind(){ev.forEach(function(e){window.removeEventListener(e,tap,true)})}
-function done(){if(fin)return;fin=true;unbind();clearTimeout(wait);l.classList.add("done");window.scrollTo(0,0);if(window.vResume)window.vResume();setTimeout(function(){l.remove()},900)}
-function ok(){unbind();clearTimeout(wait);l.classList.remove("ask");setTimeout(done,1700)}
-function tap(){if(fin||!started)return;var p=snd.play();if(p&&p.then)p.then(ok).catch(function(){});else ok()}
-function ask(){l.classList.add("ask");clearTimeout(wait);wait=setTimeout(done,12000)}
-function start(){if(started||fin)return;started=true;var p=snd.play();if(p&&p.then)p.then(ok).catch(ask);else ok()}
-function tryStart(){if(loaded&&ready)start()}
-bind();
-setTimeout(function(){ready=true;tryStart()},Math.max(0,3000-(Date.now()-t0)));
-if(loaded)tryStart();else window.addEventListener("load",function(){loaded=true;tryStart()});
-setTimeout(function(){loaded=true;ready=true;start()},9000);
+var fin=false,snd=new Audio("Sound.mp3");snd.preload="auto";snd.volume=.85;
+function done(){if(fin)return;fin=true;l.classList.add("done");if(window.vResume)window.vResume();setTimeout(function(){l.remove()},650)}
+var bar=l.querySelector(".ld-bar i");if(bar)bar.style.animationDuration=".85s";
+function playSnd(){try{var p=snd.play();if(p&&p.catch)p.catch(function(){})}catch(e){}}
+playSnd();
+if(document.readyState==="complete")setTimeout(done,900);
+else{window.addEventListener("load",function(){setTimeout(done,550)});setTimeout(done,1400)}
 })();</script>
 </body></html>
